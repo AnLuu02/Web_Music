@@ -1074,15 +1074,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     $('#searchInput').on('focus', function() {
+        document.querySelector('.main_right header').style.background = '#1b2035'
         if ($(this).val() !== "") {
             $("#listSearch").css("display", "block");
             $('#blur').css('display', 'block');
             $('#delSearch').css('display', 'block');
         }
+        $(this).blur(function(){
+            document.querySelector('.main_right header').style.background = 'transparent';
+        })
         $('#blur').click(function(e) {
             if (e.target === e.currentTarget) {
                 $("#listSearch").css("display", "none");
                 $('#blur').css('display', 'none');
+                
+
             }
         })
     })
