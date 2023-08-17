@@ -429,3 +429,30 @@ ul#list_playlist {
     opacity: .4;
     border-radius: 4px;
 }
+
+
+/* BXH */
+
+.numberTop {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 0 20px;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px white;
+}
+
+#bxh .contentMusic {
+    margin-left: 30px;
+}
+
+#top_1 {
+    -webkit-text-stroke: 2px blue;
+}
+
+#top_2 {
+    -webkit-text-stroke: 2px greenyellow;
+}
+
+#top_3 {
+    -webkit-text-stroke: 2px red;
+}

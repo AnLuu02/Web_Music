@@ -254,10 +254,11 @@ a {
     position: relative;
 }
 
-.play_music .anotherChoice .list_choose_playlist{
+.play_music .anotherChoice .list_choose_playlist {
     left: 70%;
     /* display: block; */
-}   
+}
+
 .play_music .anotherChoice .list_choose_playlist::before {
     border: 10px solid;
     border-color: #355c7d transparent transparent transparent;
@@ -277,9 +278,6 @@ a {
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 .play_music .musicFixed {
     display: none;
@@ -325,8 +323,17 @@ a {
     display: flex;
     align-items: center;
     transition: 0.1s;
-    background:rgba(0,0,0,0.4);
+    /* background:rgba(0,0,0,0.4); */
     position: relative;
+}
+
+.same_list_music ul.music li::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgba(256, 256, 256, 0.1);
+    position: absolute;
+    bottom: 0;
 }
 
 
@@ -553,8 +560,6 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
 
 #careMusic .idMusic {
     width: 8%;

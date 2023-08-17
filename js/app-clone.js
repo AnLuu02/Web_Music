@@ -1,437 +1,509 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    window.onscroll = function() {
-        if (this.scrollY > 0) {
-            document.querySelector('.main_right header').style.background = '#1b2035';
-            if (this.scrollY >= 490) {
-                document.querySelectorAll('.aim').forEach(item => {
-                    item.style.display = `none`;
-                })
-            } else {
-                document.querySelectorAll('.aim').forEach(item => {
-                    item.style.display = `block`;
-                })
-
-            }
-        } else {
-            document.querySelector('.main_right header').style.background = 'transparent';
-
-
-        }
-    }
-
-    function formatDDMMYY(date) {
-        let arr = date.split("-");
-        return arr[2] + "-" + arr[1] + "-" + arr[0];
-    }
-    document.querySelector('.logo').addEventListener('click', () => {
-        location.reload();
-    })
-
-    // move nav_playlist
-    function check_show_musicbox() {
-
-        if ($('.musicFixed').attr("style") && $('.musicFixed').attr("style").includes('display') && window.innerWidth > 768) {
-            $('#nav_playlist').css({ "bottom": '100px' });
-        }
-    }
-
-    function panigation(limit, total_music, elemContainer) {
-        let currentPage;
-        let start;
-        let end;
-        let newArr;
-        let html = "<li>Prev</li>";
-        let totalPage = Math.ceil(total_music.length / limit);
-        for (let i = 0; i < totalPage; i++) {
-            currentPage = i + 1;
-            start = (currentPage - 1) * limit;
-            end = currentPage * limit - 1;
-            newArr = total_music.slice(start, end + 1);
-            html += `<li>${currentPage}</li>`;
-        }
-        html += `<li>Next</li>`;
-        elemContainer.innerHTML = html;
-    }
-
-
-    // // định tuyến 
-    const navLibrary = document.querySelector('#nav_library a');
-    const navPlaylist = document.querySelector('#nav_playlist a');
-    // // play video
-    const audio = document.getElementById('audio');
-    const btn_toggle_music = document.querySelector('.controlsMusic');
-    const musicFixed = document.querySelector('.musicFixed');
-    const progressColor = document.querySelector('.progressColor');
-    const progress = document.querySelector('#progress');
-    const runTime = document.querySelector('.sliderMusic .runTime');
-    const sumTime = document.querySelector('.sliderMusic .sumTime');
-    const music_fixed_left = document.querySelector('.musicFixed .leftMusicFixed');
-    const repeatMusic = document.querySelector('.musicFixed .repeatMusic');
-    const randomMusic = document.querySelector('.musicFixed .randomMusic');
-    const nextMusic = document.querySelector('.musicFixed .nextMusic');
-    const prevMusic = document.querySelector('.musicFixed .prevMusic');
-    const highVolumn = document.querySelector('.volumeMusic .high');
-    const muteVolumn = document.querySelector('.volumeMusic .mute');
-    let second = '';
-    let countSecond = 0;
-    let minute = '';
-    let countMinute = 0;
-
-    let isRepeat = false;
-    let isRandom = false;
-    let isPlaying = false;
-    let isPaused = false;
-
-    let currentIndex = -1;
-    let currentId = 0;
-    let uID = $.cookie('u_id');
-
-
-    document.querySelectorAll('.latter').forEach(item => {
-        item.addEventListener('click', e => {
-            if (e.target === e.currentTarget) {
-                if (e.target.closest('#message-library')) {
-                    e.target.closest('#message-library').classList.remove('active');
-                }
-                if (e.target.closest('#message-playlist')) {
-                    e.target.closest('#message-playlist').classList.remove('active');
-                }
-            }
-        })
-    })
-
-    navPlaylist.addEventListener('click', () => {
-        if (window.innerWidth > 768) {
-            if (uID == undefined) {
-                document.getElementById('message-playlist').classList.add('active');
-                $('#blur').css({ 'display': 'block', 'z-index': '99996' });
-                $('#blur').click(function(e) {
-                    if (e.target === e.currentTarget) {
-                        document.getElementById('message-playlist').classList.remove('active');
-                        $('#blur').css('display', 'none');
-                    }
-                })
-                if (document.getElementById('message-library').classList.contains('active')) {
-                    document.getElementById('message-library').classList.remove('active');
-                }
-            } else {
-                document.getElementById('form_upload_playlist').classList.add('active');
-                if (window.innerWidth <= 768) {
-                    document.querySelector('.container .main_left').classList.remove('active');
-                    $('#blur').css('display', 'none');
-                }
-            }
-        } else {
-            if (document.querySelector('.musicFixed.active')) {
-                document.querySelector('.musicFixed.active').classList.remove('active');
-            }
-            if (uID === undefined) {
-                $('.confirm_dialog').css("display", "flex");
-                $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
-                $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
-                $('.confirm_dialog a#yes').text('Đăng nhập');
-                $('.confirm_dialog a#yes').attr('href', './controller/login.php');
-                $('.confirm_dialog a#no').text('Để sau');
-
-                document.querySelector('.confirm_dialog').addEventListener('click', e => {
-                    if (e.target === e.currentTarget) {
-                        e.target.style.display = 'none';
-                        $('#blur').css('display', 'block');
+            window.onscroll = function() {
+                if (this.scrollY > 0) {
+                    document.querySelector('.main_right header').style.background = '#1b2035';
+                    if (this.scrollY >= 490) {
+                        document.querySelectorAll('.aim').forEach(item => {
+                            item.style.display = `none`;
+                        })
+                    } else {
+                        document.querySelectorAll('.aim').forEach(item => {
+                            item.style.display = `block`;
+                        })
 
                     }
-                })
+                } else {
+                    document.querySelector('.main_right header').style.background = 'transparent';
 
-                $('.confirm_dialog a#no').click(function(e) {
-                    $('.confirm_dialog').css("display", "none");
-                    $('#blur').css('display', 'block');
-                })
-            } else {
-                document.getElementById('form_upload_playlist').classList.add('active');
-                if (window.innerWidth <= 768) {
-                    document.querySelector('.container .main_left').classList.remove('active');
-                    $('#blur').css('display', 'none');
+
                 }
             }
 
-        }
-    })
+            function formatDDMMYY(date) {
+                let arr = date.split("-");
+                return arr[2] + "-" + arr[1] + "-" + arr[0];
+            }
+            document.querySelector('.logo').addEventListener('click', () => {
+                location.reload();
+            })
 
-    navLibrary.addEventListener('click', (e) => {
-            if (window.innerWidth > 768) {
-                if (uID == undefined) {
-                    document.getElementById('message-library').classList.add('active');
-                    $('#blur').css({ 'display': 'block', 'z-index': '99996' });
-                    $('#blur').click(function(e) {
-                        if (e.target === e.currentTarget) {
+            // move nav_playlist
+            function check_show_musicbox() {
+
+                if ($('.musicFixed').attr("style") && $('.musicFixed').attr("style").includes('display') && window.innerWidth > 768) {
+                    $('#nav_playlist').css({ "bottom": '100px' });
+                }
+            }
+
+            function panigation(limit, total_music, elemContainer) {
+                let currentPage;
+                let start;
+                let end;
+                let newArr;
+                let html = "<li>Prev</li>";
+                let totalPage = Math.ceil(total_music.length / limit);
+                for (let i = 0; i < totalPage; i++) {
+                    currentPage = i + 1;
+                    start = (currentPage - 1) * limit;
+                    end = currentPage * limit - 1;
+                    newArr = total_music.slice(start, end + 1);
+                    html += `<li>${currentPage}</li>`;
+                }
+                html += `<li>Next</li>`;
+                elemContainer.innerHTML = html;
+            }
+
+
+            // // định tuyến 
+            const navLibrary = document.querySelector('#nav_library a');
+            const navPlaylist = document.querySelector('#nav_playlist a');
+            // // play video
+            const audio = document.getElementById('audio');
+            const btn_toggle_music = document.querySelector('.controlsMusic');
+            const musicFixed = document.querySelector('.musicFixed');
+            const progressColor = document.querySelector('.progressColor');
+            const progress = document.querySelector('#progress');
+            const runTime = document.querySelector('.sliderMusic .runTime');
+            const sumTime = document.querySelector('.sliderMusic .sumTime');
+            const music_fixed_left = document.querySelector('.musicFixed .leftMusicFixed');
+            const repeatMusic = document.querySelector('.musicFixed .repeatMusic');
+            const randomMusic = document.querySelector('.musicFixed .randomMusic');
+            const nextMusic = document.querySelector('.musicFixed .nextMusic');
+            const prevMusic = document.querySelector('.musicFixed .prevMusic');
+            const highVolumn = document.querySelector('.volumeMusic .high');
+            const muteVolumn = document.querySelector('.volumeMusic .mute');
+            let second = '';
+            let countSecond = 0;
+            let minute = '';
+            let countMinute = 0;
+
+            let isRepeat = false;
+            let isRandom = false;
+            let isPlaying = false;
+            let isPaused = false;
+
+            let currentIndex = -1;
+            let currentId = 0;
+            let uID = $.cookie('u_id');
+
+
+            document.querySelectorAll('.latter').forEach(item => {
+                item.addEventListener('click', e => {
+                    if (e.target === e.currentTarget) {
+                        if (e.target.closest('#message-library')) {
+                            e.target.closest('#message-library').classList.remove('active');
+                        }
+                        if (e.target.closest('#message-playlist')) {
+                            e.target.closest('#message-playlist').classList.remove('active');
+                        }
+                    }
+                })
+            })
+
+            navPlaylist.addEventListener('click', () => {
+                if (window.innerWidth > 768) {
+                    if (uID == undefined) {
+                        document.getElementById('message-playlist').classList.add('active');
+                        $('#blur').css({ 'display': 'block', 'z-index': '99996' });
+                        $('#blur').click(function(e) {
+                            if (e.target === e.currentTarget) {
+                                document.getElementById('message-playlist').classList.remove('active');
+                                $('#blur').css('display', 'none');
+                            }
+                        })
+                        if (document.getElementById('message-library').classList.contains('active')) {
                             document.getElementById('message-library').classList.remove('active');
+                        }
+                    } else {
+                        document.getElementById('form_upload_playlist').classList.add('active');
+                        if (window.innerWidth <= 768) {
+                            document.querySelector('.container .main_left').classList.remove('active');
                             $('#blur').css('display', 'none');
                         }
-                    })
-                    if (document.getElementById('message-playlist').classList.contains('active')) {
-                        document.getElementById('message-playlist').classList.remove('active');
                     }
-                }
-            } else {
-                if (document.querySelector('.musicFixed.active')) {
-                    document.querySelector('.musicFixed.active').classList.remove('active');
-                }
-                if (uID == undefined) {
-                    $('.confirm_dialog').css("display", "flex");
-                    $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
-                    $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
-                    $('.confirm_dialog a#yes').text('Đăng nhập');
-                    $('.confirm_dialog a#yes').attr('href', './controller/login.php');
-                    $('.confirm_dialog a#no').text('Để sau');
-                    document.querySelector('.confirm_dialog').addEventListener('click', e => {
-                        if (e.target === e.currentTarget) {
-                            e.target.style.display = 'none';
+                } else {
+                    if (document.querySelector('.musicFixed.active')) {
+                        document.querySelector('.musicFixed.active').classList.remove('active');
+                    }
+                    if (uID === undefined) {
+                        $('.confirm_dialog').css("display", "flex");
+                        $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
+                        $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
+                        $('.confirm_dialog a#yes').text('Đăng nhập');
+                        $('.confirm_dialog a#yes').attr('href', './controller/login.php');
+                        $('.confirm_dialog a#no').text('Để sau');
+
+                        document.querySelector('.confirm_dialog').addEventListener('click', e => {
+                            if (e.target === e.currentTarget) {
+                                e.target.style.display = 'none';
+                                $('#blur').css('display', 'block');
+
+                            }
+                        })
+
+                        $('.confirm_dialog a#no').click(function(e) {
+                            $('.confirm_dialog').css("display", "none");
                             $('#blur').css('display', 'block');
+                        })
+                    } else {
+                        document.getElementById('form_upload_playlist').classList.add('active');
+                        if (window.innerWidth <= 768) {
+                            document.querySelector('.container .main_left').classList.remove('active');
+                            $('#blur').css('display', 'none');
                         }
-                    })
-
-                    $('.confirm_dialog a#no').click(function(e) {
-                        $('.confirm_dialog').css("display", "none");
-                        $('#blur').css('display', 'block');
-
-
-                    })
-                }
-            }
-        })
-        // // khi song play
-    audio.onplay = function() {
-            isPlaying = true;
-            isPaused = false;
-            btn_toggle_music.querySelector('ion-icon[name="pause-outline"]').classList.add('active');
-            btn_toggle_music.querySelector('ion-icon[name="play"]').classList.remove('active');
-            let last_music_id = $.cookie('last_music_id');
-
-            if (last_music_id > 0) {
-                if (document.querySelectorAll(`ul.music li.song[id_song="${last_music_id}"]`)) {
-                    document.querySelectorAll(`ul.music li.song[id_song="${last_music_id}"]`).forEach(elem => {
-                        if (elem.querySelector('.playMusic') && elem.querySelector('.runAudio')) {
-                            elem.querySelector('.playMusic').classList.remove('active');
-                            elem.querySelector('.runAudio').classList.remove('active');
-                        }
-
-                    })
-                }
-            }
-            if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
-                document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
-                    elem.classList.add('active');
-
-                })
-            }
-            if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active .playMusic`) &&
-                document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active .runAudio`)) {
-                document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active`).forEach(elem => {
-                    if (elem.querySelector('.playMusic') && elem.querySelector('.runAudio')) {
-                        elem.querySelector('.playMusic').classList.add('active');
-                        elem.querySelector('.runAudio').classList.add('active');
                     }
-                })
-            }
-            if (window.innerWidth <= 768) {
-                document.querySelector('.img_playMusic_mobile').style.display = 'block';
-            }
-        }
-        // // khi song pause
-    audio.onpause = function() {
-        isPlaying = false;
-        isPaused = true;
-        btn_toggle_music.querySelector('ion-icon[name="play"]').classList.add('active');
-        btn_toggle_music.querySelector('ion-icon[name="pause-outline"]').classList.remove('active');
-        if (document.querySelector('ul.music li.song.active .playMusic') && document.querySelector('ul.music li.song.active .runAudio')) {
-            document.querySelector('ul.music li.song.active .playMusic').classList.remove('active');
-            document.querySelector('ul.music li.song.active .runAudio').classList.remove('active');
-        }
-    }
 
-    btn_toggle_music.onclick = function() {
-        if (isPlaying) {
-            audio.pause();
-        } else {
-            audio.play();
-
-        }
-    }
-
-    // // progress slider
-    progress.oninput = function(e) {
-        if (audio.currentTime) {
-            const seekTime = (audio.duration / 100) * Number(e.target.value);
-            audio.currentTime = seekTime.toFixed(0);
-        }
-
-    };
-    audio.ontimeupdate = function() {
-        if (audio.duration) {
-            const progressPercent = Math.floor((audio.currentTime / audio.duration) * 100);
-            progress.value = Math.floor((audio.currentTime / audio.duration) * 100);
-            progressColor.style.right = 100 - progressPercent + '%';
-            // set second
-            countSecond = Math.floor(audio.currentTime % 60);
-            countMinute = Math.floor(audio.currentTime / 60);
-            second = countSecond < 10 ? '0' + countSecond : countSecond;
-            minute = countMinute < 10 ? '0' + countMinute : countMinute;
-            runTime.innerHTML = `${minute}:${second}`
-        }
-    }
-
-
-    // // repeat music
-    repeatMusic.onclick = function(e) {
-        isRepeat = true;
-        if (e.target.parentElement.classList.contains('active')) {
-            e.target.parentElement.classList.remove('active');
-        } else {
-            e.target.parentElement.classList.add('active');
-            if (randomMusic.classList.contains('active')) {
-                randomMusic.classList.remove('active');
-                isRandom = false;
-            }
-        }
-    }
-    randomMusic.onclick = function(e) {
-        isRandom = true;
-        if (e.target.parentElement.classList.contains('active')) {
-            e.target.parentElement.classList.remove('active');
-        } else {
-            e.target.parentElement.classList.add('active');
-            if (repeatMusic.classList.contains('active')) {
-                repeatMusic.classList.remove('active');
-                isRepeat = false;
-            }
-        }
-    }
-
-    // volumn
-    audio.volume = 0.5;
-    document.querySelector('.volumeMusic input').oninput = function(e) {
-        let volumnVal = (e.target.value) / 100;
-        audio.volume = volumnVal;
-        document.querySelector('.rightMusicFixed .progressColor').style.right = (1 - volumnVal) * 100 + '%';
-        if (e.target.value <= 0) {
-            highVolumn.classList.remove('active')
-            muteVolumn.classList.add('active')
-        } else {
-            highVolumn.classList.add('active')
-            muteVolumn.classList.remove('active')
-
-        }
-    }
-    highVolumn.addEventListener('click', e => {
-        if (e.target === e.currentTarget) {
-            e.target.classList.toggle('active');
-            muteVolumn.classList.add('active')
-            audio.volume = 0;
-            document.querySelector('.rightMusicFixed .progressColor').style.right = 100 + '%';
-        }
-    })
-    muteVolumn.addEventListener('click', e => {
-        if (e.target === e.currentTarget) {
-            e.target.classList.toggle('active');
-            highVolumn.classList.add('active')
-            audio.volume = 0.5;
-            document.querySelector('.rightMusicFixed .progressColor').style.right = 50 + '%';
-
-        }
-    })
-
-    function loadCurrentSong(musics) {
-        audio.src = musics[currentIndex].src;
-    }
-
-    function load_music_fixed() {
-        $.get('./controller/select_data.php', { 'song_id': currentId }, function(response) {
-            let res = JSON.parse(response);
-            if (res.error !== 1) {
-                let data = res.song;
-                listening_Music(data, $('.list_music_playing > ul'));
-                if ($('#play_music').attr('category') === "playmusic") {
-                    $('.play_music .audio img').attr('src', data.img);
-                    $('.play_music .name_music').html(data.name);
-                    $('.play_music .des .author').html(data.artist);
-                    if ($('.play_music .releaseDate')) {
-                        $('.play_music .releaseDate').html(formatDDMMYY(data.date));
-                    }
-                    if ($('.play_music .sub_left .like')) {
-                        $('.play_music .sub_left .like').html(`Lượt nghe: ${data.quatityLis}`);
-                    }
-                    // handle icon playmusic
-                    handlePlayMusic(document.querySelector('.anotherChoice'), data);
                 }
-
-                if (document.querySelector('.img_playMusic_mobile img')) {
-                    document.querySelector('.img_playMusic_mobile img').src = data.img;
-                }
-
-
-                audio.addEventListener('play', () => {
-                    $('.btnPause').addClass('active');
-                    $('.btnPlay').removeClass('active');
-                    $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
-                    $('.play_music .sub_left .runAudio').addClass('active');
-
-                })
-                audio.addEventListener('pause', () => {
-                    $('.btnPlay').addClass('active');
-                    $('.btnPause').removeClass('active');
-                    $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'paused');
-                    $('.play_music .sub_left .runAudio').removeClass('active');
-
-                })
-            } else {
-                alert('empty');
-            }
-        })
-    }
-
-    function eventClick(musics, event, isClick = "") {
-        let songNode;
-        if (isClick == "" || isClick == "search") {
-            document.querySelectorAll('.song.active').forEach(item => {
-                item.classList.remove('active');
             })
-            if (event.target.closest('#all_playmusic')) {
-                let idSong = Math.floor(Math.random() * musics.length) + 1;
-                songNode = document.querySelector(`ul.music li.song[id_song="${idSong}"]`);
-                songNode.classList.add('active');
-                currentIndex = Number(songNode.getAttribute('index'));
-                $.cookie('last_music_id', currentId);
-                currentId = musics[currentIndex].m_id;
-            } else {
-                songNode = event.target.closest('ul.music li.song');
-                songNode.classList.add('active');
-                currentIndex = Number(songNode.getAttribute('index'));
-                $.cookie('last_music_id', currentId);
-                currentId = musics[currentIndex].m_id;
+
+            navLibrary.addEventListener('click', (e) => {
+                    if (window.innerWidth > 768) {
+                        if (uID == undefined) {
+                            document.getElementById('message-library').classList.add('active');
+                            $('#blur').css({ 'display': 'block', 'z-index': '99996' });
+                            $('#blur').click(function(e) {
+                                if (e.target === e.currentTarget) {
+                                    document.getElementById('message-library').classList.remove('active');
+                                    $('#blur').css('display', 'none');
+                                }
+                            })
+                            if (document.getElementById('message-playlist').classList.contains('active')) {
+                                document.getElementById('message-playlist').classList.remove('active');
+                            }
+                        }
+                    } else {
+                        if (document.querySelector('.musicFixed.active')) {
+                            document.querySelector('.musicFixed.active').classList.remove('active');
+                        }
+                        if (uID == undefined) {
+                            $('.confirm_dialog').css("display", "flex");
+                            $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
+                            $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
+                            $('.confirm_dialog a#yes').text('Đăng nhập');
+                            $('.confirm_dialog a#yes').attr('href', './controller/login.php');
+                            $('.confirm_dialog a#no').text('Để sau');
+                            document.querySelector('.confirm_dialog').addEventListener('click', e => {
+                                if (e.target === e.currentTarget) {
+                                    e.target.style.display = 'none';
+                                    $('#blur').css('display', 'block');
+                                }
+                            })
+
+                            $('.confirm_dialog a#no').click(function(e) {
+                                $('.confirm_dialog').css("display", "none");
+                                $('#blur').css('display', 'block');
+
+
+                            })
+                        }
+                    }
+                })
+                // // khi song play
+            audio.onplay = function() {
+                    isPlaying = true;
+                    isPaused = false;
+                    btn_toggle_music.querySelector('ion-icon[name="pause-outline"]').classList.add('active');
+                    btn_toggle_music.querySelector('ion-icon[name="play"]').classList.remove('active');
+                    let last_music_id = $.cookie('last_music_id');
+
+                    if (last_music_id > 0) {
+                        if (document.querySelectorAll(`ul.music li.song[id_song="${last_music_id}"]`)) {
+                            document.querySelectorAll(`ul.music li.song[id_song="${last_music_id}"]`).forEach(elem => {
+                                if (elem.querySelector('.playMusic') && elem.querySelector('.runAudio')) {
+                                    elem.querySelector('.playMusic').classList.remove('active');
+                                    elem.querySelector('.runAudio').classList.remove('active');
+                                }
+
+                            })
+                        }
+                    }
+                    if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
+                        document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
+                            elem.classList.add('active');
+
+                        })
+                    }
+                    if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active .playMusic`) &&
+                        document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active .runAudio`)) {
+                        document.querySelectorAll(`ul.music li.song[id_song="${currentId}"].active`).forEach(elem => {
+                            if (elem.querySelector('.playMusic') && elem.querySelector('.runAudio')) {
+                                elem.querySelector('.playMusic').classList.add('active');
+                                elem.querySelector('.runAudio').classList.add('active');
+                            }
+                        })
+                    }
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.img_playMusic_mobile').style.display = 'block';
+                    }
+                }
+                // // khi song pause
+            audio.onpause = function() {
+                isPlaying = false;
+                isPaused = true;
+                btn_toggle_music.querySelector('ion-icon[name="play"]').classList.add('active');
+                btn_toggle_music.querySelector('ion-icon[name="pause-outline"]').classList.remove('active');
+                if (document.querySelector('ul.music li.song.active .playMusic') && document.querySelector('ul.music li.song.active .runAudio')) {
+                    document.querySelector('ul.music li.song.active .playMusic').classList.remove('active');
+                    document.querySelector('ul.music li.song.active .runAudio').classList.remove('active');
+                }
             }
 
-            audio.onended = function() {
-                jQuery.ajax({
-                    url: './controller/select_data.php',
-                    type: 'POST',
-                    dataType: 'html',
-                    data: { "song_id": currentId, "updateListen": "updateListen" },
-                    success: function(ketqua) {
+            btn_toggle_music.onclick = function() {
+                if (isPlaying) {
+                    audio.pause();
+                } else {
+                    audio.play();
+
+                }
+            }
+
+            // // progress slider
+            progress.oninput = function(e) {
+                if (audio.currentTime) {
+                    const seekTime = (audio.duration / 100) * Number(e.target.value);
+                    audio.currentTime = seekTime.toFixed(0);
+                }
+
+            };
+            audio.ontimeupdate = function() {
+                if (audio.duration) {
+                    const progressPercent = Math.floor((audio.currentTime / audio.duration) * 100);
+                    progress.value = Math.floor((audio.currentTime / audio.duration) * 100);
+                    progressColor.style.right = 100 - progressPercent + '%';
+                    // set second
+                    countSecond = Math.floor(audio.currentTime % 60);
+                    countMinute = Math.floor(audio.currentTime / 60);
+                    second = countSecond < 10 ? '0' + countSecond : countSecond;
+                    minute = countMinute < 10 ? '0' + countMinute : countMinute;
+                    runTime.innerHTML = `${minute}:${second}`
+                }
+            }
+
+
+            // // repeat music
+            repeatMusic.onclick = function(e) {
+                isRepeat = true;
+                if (e.target.parentElement.classList.contains('active')) {
+                    e.target.parentElement.classList.remove('active');
+                } else {
+                    e.target.parentElement.classList.add('active');
+                    if (randomMusic.classList.contains('active')) {
+                        randomMusic.classList.remove('active');
+                        isRandom = false;
+                    }
+                }
+            }
+            randomMusic.onclick = function(e) {
+                isRandom = true;
+                if (e.target.parentElement.classList.contains('active')) {
+                    e.target.parentElement.classList.remove('active');
+                } else {
+                    e.target.parentElement.classList.add('active');
+                    if (repeatMusic.classList.contains('active')) {
+                        repeatMusic.classList.remove('active');
+                        isRepeat = false;
+                    }
+                }
+            }
+
+            // volumn
+            audio.volume = 0.5;
+            document.querySelector('.volumeMusic input').oninput = function(e) {
+                let volumnVal = (e.target.value) / 100;
+                audio.volume = volumnVal;
+                document.querySelector('.rightMusicFixed .progressColor').style.right = (1 - volumnVal) * 100 + '%';
+                if (e.target.value <= 0) {
+                    highVolumn.classList.remove('active')
+                    muteVolumn.classList.add('active')
+                } else {
+                    highVolumn.classList.add('active')
+                    muteVolumn.classList.remove('active')
+
+                }
+            }
+            highVolumn.addEventListener('click', e => {
+                if (e.target === e.currentTarget) {
+                    e.target.classList.toggle('active');
+                    muteVolumn.classList.add('active')
+                    audio.volume = 0;
+                    document.querySelector('.rightMusicFixed .progressColor').style.right = 100 + '%';
+                }
+            })
+            muteVolumn.addEventListener('click', e => {
+                if (e.target === e.currentTarget) {
+                    e.target.classList.toggle('active');
+                    highVolumn.classList.add('active')
+                    audio.volume = 0.5;
+                    document.querySelector('.rightMusicFixed .progressColor').style.right = 50 + '%';
+
+                }
+            })
+
+            function loadCurrentSong(musics) {
+                audio.src = musics[currentIndex].src;
+            }
+
+            function load_music_fixed() {
+                $.get('./controller/select_data.php', { 'song_id': currentId }, function(response) {
+                    let res = JSON.parse(response);
+                    if (res.error !== 1) {
+                        let data = res.song;
+                        listening_Music(data, $('.list_music_playing > ul'));
+                        if ($('#play_music').attr('category') === "playmusic") {
+                            $('.play_music .audio img').attr('src', data.img);
+                            $('.play_music .name_music').html(data.name);
+                            $('.play_music .des .author').html(data.artist);
+                            if ($('.play_music .releaseDate')) {
+                                $('.play_music .releaseDate').html(formatDDMMYY(data.date));
+                            }
+                            if ($('.play_music .sub_left .like')) {
+                                $('.play_music .sub_left .like').html(`Lượt nghe: ${data.quatityLis}`);
+                            }
+                            // handle icon playmusic
+                            handlePlayMusic(document.querySelector('.anotherChoice'), data);
+                        }
+
+                        if (document.querySelector('.img_playMusic_mobile img')) {
+                            document.querySelector('.img_playMusic_mobile img').src = data.img;
+                        }
+
+
+                        audio.addEventListener('play', () => {
+                            $('.btnPause').addClass('active');
+                            $('.btnPlay').removeClass('active');
+                            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
+                            $('.play_music .sub_left .runAudio').addClass('active');
+
+                        })
+                        audio.addEventListener('pause', () => {
+                            $('.btnPlay').addClass('active');
+                            $('.btnPause').removeClass('active');
+                            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'paused');
+                            $('.play_music .sub_left .runAudio').removeClass('active');
+
+                        })
+                    } else {
+                        alert('empty');
+                    }
+                })
+            }
+
+            function eventClick(musics, event, isClick = "") {
+                let songNode;
+                if (isClick == "" || isClick == "search") {
+                    document.querySelectorAll('.song.active').forEach(item => {
+                        item.classList.remove('active');
+                    })
+                    if (event.target.closest('#all_playmusic')) {
+                        let idSong = Math.floor(Math.random() * musics.length) + 1;
+                        console.log(idSong);
+                        songNode = document.querySelector(`ul.music li.song[id_song="${idSong}"]`);
+                        songNode.classList.add('active');
+                        currentIndex = Number(songNode.getAttribute('index'));
+                        $.cookie('last_music_id', currentId);
+                        currentId = musics[currentIndex].m_id;
+                    } else {
+                        songNode = event.target.closest('ul.music li.song');
+                        songNode.classList.add('active');
+                        currentIndex = Number(songNode.getAttribute('index'));
+                        $.cookie('last_music_id', currentId);
+                        currentId = musics[currentIndex].m_id;
+                    }
+
+                    audio.onended = function() {
+                        jQuery.ajax({
+                            url: './controller/select_data.php',
+                            type: 'POST',
+                            dataType: 'html',
+                            data: { "song_id": currentId, "updateListen": "updateListen" },
+                            success: function(ketqua) {
+
+                            }
+                        });
+                        if (isRepeat) {
+                            audio.play();
+                        } else if (isRandom) {
+                            let newIndex;
+                            do {
+                                newIndex = Math.floor(Math.random() * musics.length);
+                            } while (newIndex === currentIndex);
+                            currentIndex = newIndex;
+                            $.cookie('last_music_id', currentId);
+
+
+                            currentId = musics[currentIndex].m_id;
+                            isPlaying = true;
+                            isPaused = false;
+                            loadCurrentSong(musics);
+                            audio.play();
+                            musicFixed.style.display = 'flex';
+                            load_music_fixed_left(musics[currentIndex]);
+                            sumTime.innerHTML = musics[currentIndex].time;
+                            document.querySelectorAll('ul.music li.song.active').forEach(item => {
+                                item.classList.remove('active');
+                            })
+                            if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
+                                document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
+                                    elem.classList.add('active');
+
+                                })
+                            }
+                            load_music_fixed();
+                        } else {
+                            audio.pause();
+                        }
+                    }
+                    nextMusic.onclick = function() {
+                        currentIndex++;
+                        if (currentIndex >= musics.length) {
+                            currentIndex = 0;
+                        }
+                        $.cookie('last_music_id', currentId);
+
+                        currentId = musics[currentIndex].m_id;
+                        loadCurrentSong(musics);
+                        audio.play();
+                        musicFixed.style.display = 'flex';
+                        load_music_fixed_left(musics[currentIndex]);
+                        sumTime.innerHTML = musics[currentIndex].time;
+                        document.querySelectorAll('ul.music li.song.active').forEach(item => {
+                            item.classList.remove('active');
+                        })
+                        if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
+                            document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
+                                elem.classList.add('active');
+
+                            })
+                        }
+                        load_music_fixed();
 
                     }
-                });
-                if (isRepeat) {
-                    audio.play();
-                } else if (isRandom) {
-                    let newIndex;
-                    do {
-                        newIndex = Math.floor(Math.random() * musics.length);
-                    } while (newIndex === currentIndex);
-                    currentIndex = newIndex;
-                    $.cookie('last_music_id', currentId);
+                    prevMusic.onclick = function() {
+                        currentIndex--;
+                        if (currentIndex < 0) {
+                            currentIndex = musics.length - 1;
+                        }
+                        $.cookie('last_music_id', currentId);
 
+                        currentId = musics[currentIndex].m_id;
+                        loadCurrentSong(musics);
+                        audio.play();
+                        musicFixed.style.display = 'flex';
+                        load_music_fixed_left(musics[currentIndex]);
+                        sumTime.innerHTML = musics[currentIndex].time;
+                        document.querySelectorAll('ul.music li.song.active').forEach(item => {
+                            item.classList.remove('active');
+                        })
+                        if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
+                            document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
+                                elem.classList.add('active');
 
-                    currentId = musics[currentIndex].m_id;
+                            })
+                        }
+                        load_music_fixed();
+
+                    }
                     isPlaying = true;
                     isPaused = false;
                     loadCurrentSong(musics);
@@ -439,374 +511,303 @@ document.addEventListener('DOMContentLoaded', () => {
                     musicFixed.style.display = 'flex';
                     load_music_fixed_left(musics[currentIndex]);
                     sumTime.innerHTML = musics[currentIndex].time;
-                    document.querySelectorAll('ul.music li.song.active').forEach(item => {
-                        item.classList.remove('active');
-                    })
-                    if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
-                        document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
-                            elem.classList.add('active');
+                    load_music_fixed();
 
-                        })
+
+                    if (isClick == "search") {
+                        document.querySelectorAll('ul.music li.song').forEach(item => item.remove());
+                        $("main").load('./view/playmusic.php', function() {
+                            $('#play_music').attr('category', 'playmusic');
+                            $('.btnPause').addClass('active');
+                            $('.btnPlay').removeClass('active');
+                            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
+                            $('.play_music .sub_left .runAudio').addClass('active');
+                            $('.btnPlay').click(function() {
+                                audio.play();
+                            })
+                            $('.btnPause').click(function() {
+                                audio.pause();
+
+                            })
+                            load_music_fixed();
+                            $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
+                                let res = JSON.parse(response);
+                                if (res.error !== 1) {
+                                    let datas = JSON.parse(res.data_music);
+                                    // let filterData = data.filter(data => {
+                                    //     return data.m_id !== currentId;
+                                    // })
+                                    load_music(datas, document.querySelector('#careMusic'));
+                                    handlePlayMusic(document.querySelector('#careMusic'), datas);
+                                } else {
+                                    alert(res.message);
+                                }
+                            })
+                        });
+                        $("#listSearch").css("display", "none");
+                        $("#searchInput").val("");
+
                     }
-                    load_music_fixed();
-                } else {
-                    audio.pause();
-                }
-            }
-            nextMusic.onclick = function() {
-                currentIndex++;
-                if (currentIndex >= musics.length) {
-                    currentIndex = 0;
-                }
-                $.cookie('last_music_id', currentId);
-
-                currentId = musics[currentIndex].m_id;
-                loadCurrentSong(musics);
-                audio.play();
-                musicFixed.style.display = 'flex';
-                load_music_fixed_left(musics[currentIndex]);
-                sumTime.innerHTML = musics[currentIndex].time;
-                document.querySelectorAll('ul.music li.song.active').forEach(item => {
-                    item.classList.remove('active');
-                })
-                if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
-                    document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
-                        elem.classList.add('active');
-
-                    })
-                }
-                load_music_fixed();
-
-            }
-            prevMusic.onclick = function() {
-                currentIndex--;
-                if (currentIndex < 0) {
-                    currentIndex = musics.length - 1;
-                }
-                $.cookie('last_music_id', currentId);
-
-                currentId = musics[currentIndex].m_id;
-                loadCurrentSong(musics);
-                audio.play();
-                musicFixed.style.display = 'flex';
-                load_music_fixed_left(musics[currentIndex]);
-                sumTime.innerHTML = musics[currentIndex].time;
-                document.querySelectorAll('ul.music li.song.active').forEach(item => {
-                    item.classList.remove('active');
-                })
-                if (document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`)) {
-                    document.querySelectorAll(`ul.music li.song[id_song="${currentId}"]`).forEach(elem => {
-                        elem.classList.add('active');
-
-                    })
-                }
-                load_music_fixed();
-
-            }
-            isPlaying = true;
-            isPaused = false;
-            loadCurrentSong(musics);
-            audio.play();
-            musicFixed.style.display = 'flex';
-            load_music_fixed_left(musics[currentIndex]);
-            sumTime.innerHTML = musics[currentIndex].time;
-            load_music_fixed();
-
-
-            if (isClick == "search") {
-                document.querySelectorAll('ul.music li.song').forEach(item => item.remove());
-                $("main").load('./view/playmusic.php', function() {
-                    $('#play_music').attr('category', 'playmusic');
-                    $('.btnPause').addClass('active');
-                    $('.btnPlay').removeClass('active');
-                    $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
-                    $('.play_music .sub_left .runAudio').addClass('active');
-                    $('.btnPlay').click(function() {
-                        audio.play();
-                    })
-                    $('.btnPause').click(function() {
-                        audio.pause();
-
-                    })
-                    load_music_fixed();
-                    $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
-                        let res = JSON.parse(response);
-                        if (res.error !== 1) {
-                            let datas = JSON.parse(res.data_music);
-                            // let filterData = data.filter(data => {
-                            //     return data.m_id !== currentId;
-                            // })
-                            load_music(datas, document.querySelector('#careMusic'));
-                            handlePlayMusic(document.querySelector('#careMusic'), datas);
-                        } else {
-                            alert(res.message);
-                        }
-                    })
-                });
-                $("#listSearch").css("display", "none");
-                $("#searchInput").val("");
-
-            }
-        } else if (isClick === "add_library") {
-            let id;
-            if (event.target.closest('#add_music_plm')) {
-                id = currentId;
-            } else {
-                id = event.target.closest('ul.music li.song').getAttribute('id_song');
-            }
-            let data = { 'id': id, 'action': "add" };
-            jQuery.ajax({
-                url: './controller/addLibrary.php',
-                type: 'POST',
-                dataType: 'html',
-                data: data,
-                success: function(ketqua) {
-                    if (ketqua == "success") {
-                        toast({
-                            title: "Thành công!",
-                            message: "Bài hát đã được thêm vào.",
-                            type: "success",
-                            duration: 1000
-                        });
-
-                    } else if (ketqua == "existed") {
-                        toast({
-                            title: "Cảnh báo!",
-                            message: "Bài hát này đã có trong thư viện.",
-                            type: "warning",
-                            duration: 1000
-                        });
-
-
+                } else if (isClick === "add_library") {
+                    let id;
+                    if (event.target.closest('#add_music_plm')) {
+                        id = currentId;
                     } else {
-                        toast({
-                            title: "Cảnh báo!",
-                            message: "Đăng nhập để tiếp tục.",
-                            type: "error",
-                            duration: 1000
-                        });
-
-
+                        id = event.target.closest('ul.music li.song').getAttribute('id_song');
                     }
-                }
-            });
-        } else if (isClick == "delete_library") {
-            let category = event.target.closest('ul').getAttribute('category')
-            let id = event.target.closest('ul.music li.song').getAttribute('id_song');
-            let pl_id = $.cookie('pl_id');
-            let data = { 'id': id, 'action': "delete", "pl_id": pl_id, 'category': category };
-            let elem = event.target.closest('ul.music li.song');
-            jQuery.ajax({
-                url: './controller/addLibrary.php',
-                type: 'POST',
-                dataType: 'html',
-                data: data,
-                success: function(ketqua) {
-                    if (ketqua == "success") {
-                        toast({
-                            title: "Thành công!",
-                            message: "Xóa bài hát yêu thích thành công.",
-                            type: "success",
-                            duration: 1000
-                        });
+                    let data = { 'id': id, 'action': "add" };
+                    jQuery.ajax({
+                        url: './controller/addLibrary.php',
+                        type: 'POST',
+                        dataType: 'html',
+                        data: data,
+                        success: function(ketqua) {
+                            if (ketqua == "success") {
+                                toast({
+                                    title: "Thành công!",
+                                    message: "Bài hát đã được thêm vào.",
+                                    type: "success",
+                                    duration: 1000
+                                });
 
-                        elem.remove();
-                        let pl_id = $.cookie('pl_id');
-                        let data_get_plItem = { "u_id": uID, "pl_id": pl_id, "action": "getPlaylistItem" };
-                        jQuery.get("./controller/select_data.php", data_get_plItem, function(response) {
-                            let res = JSON.parse(response);
-                            // khoong co bai hat nao trong playlist
-                            if (res.error) {
-                                document.querySelector('#list_music_playlist').classList.remove('active');
-                                document.querySelector('.message_null_playlist').classList.remove('active');
+                            } else if (ketqua == "existed") {
+                                toast({
+                                    title: "Cảnh báo!",
+                                    message: "Bài hát này đã có trong thư viện.",
+                                    type: "warning",
+                                    duration: 1000
+                                });
+
+
+                            } else {
+                                toast({
+                                    title: "Cảnh báo!",
+                                    message: "Đăng nhập để tiếp tục.",
+                                    type: "error",
+                                    duration: 1000
+                                });
+
+
                             }
-                        })
-
-                        if (category === "uploaded") {
-                            var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "upLoaded" };
-                            $.get("./controller/select_data.php", data, function(response) {
-                                let res = JSON.parse(response);
-                                if (res.error == 1) {
-                                    $('#data_library').html(`<li style="padding-left:20px">${res.message}</li>`);
-                                }
-                            });
-                        } else {
-                            var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "liked" };
-                            $.get("./controller/select_data.php", data, function(response) {
-                                let res = JSON.parse(response);
-                                if (res.error == 1) {
-                                    $('#data_library').html(`<li style="padding-left:20px">${res.message}</li>`);
-                                }
-                            });
                         }
-                    } else if (ketqua == "UserExits") {
-                        toast({
-                            title: "Cảnh báo!",
-                            message: "Nguời dùng không tồn tại.",
-                            type: "warning",
-                            duration: 1000
-                        });
+                    });
+                } else if (isClick == "delete_library") {
+                    let category = event.target.closest('ul').getAttribute('category')
+                    let id = event.target.closest('ul.music li.song').getAttribute('id_song');
+                    let pl_id = $.cookie('pl_id');
+                    let data = { 'id': id, 'action': "delete", "pl_id": pl_id, 'category': category };
+                    let elem = event.target.closest('ul.music li.song');
+                    jQuery.ajax({
+                        url: './controller/addLibrary.php',
+                        type: 'POST',
+                        dataType: 'html',
+                        data: data,
+                        success: function(ketqua) {
+                            if (ketqua == "success") {
+                                toast({
+                                    title: "Thành công!",
+                                    message: "Xóa bài hát yêu thích thành công.",
+                                    type: "success",
+                                    duration: 1000
+                                });
 
-
-                    } else {
-                        toast({
-                            title: "Cảnh báo!",
-                            message: "Đăng nhập để tiếp tục.",
-                            type: "error",
-                            duration: 1000
-                        });
-
-
-                    }
-                }
-            });
-        } else if (isClick == "add_playlist") {
-            if (uID != undefined) {
-                let _event = event;
-                if (event.target.closest('ul.music li.song')) {
-                    if (document.querySelector('.list_choose_playlist.active'))
-                        document.querySelector('.list_choose_playlist.active').classList.remove('active');
-                    event.target.closest('ul.music li.song').querySelector('.list_choose_playlist').classList.toggle('active');
-                    $('#blur').css('display', 'block');
-                    $('#blur').click(function(e) {
-                        if (e.target === e.currentTarget) {
-                            event.target.closest('ul.music li.song').querySelector('.list_choose_playlist').classList.remove('active');
-                            $('#blur').css('display', 'none');
-                        }
-                    })
-                }
-                var data = { 'u_id': uID, "getPlaylist": "getPlaylist" };
-                jQuery.get("./controller/select_data.php", data, function(response) {
-                    let res = JSON.parse(response);
-                    let data = "";
-                    let plNode = "";
-                    if (res.error !== 1) {
-                        data = JSON.parse(res.data_playlist);
-                        if (_event.target.closest('ul.music li.song').querySelector('.load_list_playlist')) {
-                            plNode = _event.target.closest('ul.music li.song').querySelector('.load_list_playlist');
-                            load_list_playlist(data, _event.target.closest('ul.music li.song').querySelector('.load_list_playlist'));
-                            plNode.onclick = e => {
-                                if (e.target.closest('li._playlist')) {
-                                    if (e.target.closest('.list_choose_playlist')) {
-                                        e.target.closest('.list_choose_playlist').classList.remove('active');
+                                elem.remove();
+                                let pl_id = $.cookie('pl_id');
+                                let data_get_plItem = { "u_id": uID, "pl_id": pl_id, "action": "getPlaylistItem" };
+                                jQuery.get("./controller/select_data.php", data_get_plItem, function(response) {
+                                    let res = JSON.parse(response);
+                                    // khoong co bai hat nao trong playlist
+                                    if (res.error) {
+                                        document.querySelector('#list_music_playlist').classList.remove('active');
+                                        document.querySelector('.message_null_playlist').classList.remove('active');
                                     }
-                                    let songId;
-                                    if (_event.target.closest('ul.music li.song')) {
-                                        songId = _event.target.closest('ul.music li.song').getAttribute('id_song');
-                                    }
-                                    if (_event.target.closest('#careMusic li.song')) {
-                                        _event.target.closest('#careMusic li.song').remove();
-                                    }
-                                    let pl_id = e.target.getAttribute("id_playlist");
-                                    let data = { 'id': songId, "pl_id": pl_id, 'action': "add_playlist" };
-                                    jQuery.ajax({
-                                        url: './controller/addLibrary.php',
-                                        type: 'POST',
-                                        dataType: 'html',
-                                        data: data,
-                                        success: function(ketqua) {
-                                            if (ketqua === "success_add_pl") {
-                                                toast({
-                                                    title: "Thành công!",
-                                                    message: "Bài hát đã được thêm vào.",
-                                                    type: "success",
-                                                    duration: 1000
-                                                });
+                                })
 
-                                                $('#blur').css('display', 'none');
-
-                                                let pl_id = $.cookie('pl_id');
-                                                let data_get_plItem = { "u_id": uID, "pl_id": pl_id, "action": "getPlaylistItem" };
-                                                jQuery.get("./controller/select_data.php", data_get_plItem, function(response) {
-                                                    let res = JSON.parse(response);
-                                                    let data = "";
-                                                    if (res.error !== 1) {
-                                                        data = JSON.parse(res.data_playlist_item);
-                                                        if (document.querySelector('#list_music_playlist') != null && document.querySelector('.message_null_playlist') != null) {
-                                                            document.querySelector('#list_music_playlist').classList.add('active');
-                                                            document.querySelector('.message_null_playlist').classList.add('active');
-                                                            load_music(data, document.querySelector('#list_music_playlist ul'), true);
-                                                            document.querySelector('#list_music_playlist ul').setAttribute('category', 'playlisted');
-                                                            handlePlayMusic(document.querySelector('#list_music_playlist ul'), data);
-                                                        }
-                                                    }
-                                                })
-                                            } else if (ketqua === "existed") {
-                                                toast({
-                                                    title: "Cảnh báo!",
-                                                    message: "Bài hát đã có trong playlist.",
-                                                    type: "warning",
-                                                    duration: 1000
-                                                });
-
-                                                $('#blur').css('display', 'none');
-
-                                            }
+                                if (category === "uploaded") {
+                                    var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "upLoaded" };
+                                    $.get("./controller/select_data.php", data, function(response) {
+                                        let res = JSON.parse(response);
+                                        if (res.error == 1) {
+                                            $('#data_library').html(`<li style="padding-left:20px">${res.message}</li>`);
                                         }
                                     });
-
+                                } else {
+                                    var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "liked" };
+                                    $.get("./controller/select_data.php", data, function(response) {
+                                        let res = JSON.parse(response);
+                                        if (res.error == 1) {
+                                            $('#data_library').html(`<li style="padding-left:20px">${res.message}</li>`);
+                                        }
+                                    });
                                 }
+                            } else if (ketqua == "UserExits") {
+                                toast({
+                                    title: "Cảnh báo!",
+                                    message: "Nguời dùng không tồn tại.",
+                                    type: "warning",
+                                    duration: 1000
+                                });
+
+
+                            } else {
+                                toast({
+                                    title: "Cảnh báo!",
+                                    message: "Đăng nhập để tiếp tục.",
+                                    type: "error",
+                                    duration: 1000
+                                });
+
+
                             }
                         }
+                    });
+                } else if (isClick == "add_playlist") {
+                    if (uID != undefined) {
+                        let _event = event;
+                        if (event.target.closest('ul.music li.song')) {
+                            if (document.querySelector('.list_choose_playlist.active'))
+                                document.querySelector('.list_choose_playlist.active').classList.remove('active');
+                            event.target.closest('ul.music li.song').querySelector('.list_choose_playlist').classList.toggle('active');
+                            $('#blur').css('display', 'block');
+                            $('#blur').click(function(e) {
+                                if (e.target === e.currentTarget) {
+                                    event.target.closest('ul.music li.song').querySelector('.list_choose_playlist').classList.remove('active');
+                                    $('#blur').css('display', 'none');
+                                }
+                            })
+                        }
+                        var data = { 'u_id': uID, "getPlaylist": "getPlaylist" };
+                        jQuery.get("./controller/select_data.php", data, function(response) {
+                            let res = JSON.parse(response);
+                            let data = "";
+                            let plNode = "";
+                            if (res.error !== 1) {
+                                data = JSON.parse(res.data_playlist);
+                                if (_event.target.closest('ul.music li.song').querySelector('.load_list_playlist')) {
+                                    plNode = _event.target.closest('ul.music li.song').querySelector('.load_list_playlist');
+                                    load_list_playlist(data, _event.target.closest('ul.music li.song').querySelector('.load_list_playlist'));
+                                    plNode.onclick = e => {
+                                        if (e.target.closest('li._playlist')) {
+                                            if (e.target.closest('.list_choose_playlist')) {
+                                                e.target.closest('.list_choose_playlist').classList.remove('active');
+                                            }
+                                            let songId;
+                                            if (_event.target.closest('ul.music li.song')) {
+                                                songId = _event.target.closest('ul.music li.song').getAttribute('id_song');
+                                            }
+                                            if (_event.target.closest('#careMusic li.song')) {
+                                                _event.target.closest('#careMusic li.song').remove();
+                                            }
+                                            let pl_id = e.target.getAttribute("id_playlist");
+                                            let data = { 'id': songId, "pl_id": pl_id, 'action': "add_playlist" };
+                                            jQuery.ajax({
+                                                url: './controller/addLibrary.php',
+                                                type: 'POST',
+                                                dataType: 'html',
+                                                data: data,
+                                                success: function(ketqua) {
+                                                    if (ketqua === "success_add_pl") {
+                                                        toast({
+                                                            title: "Thành công!",
+                                                            message: "Bài hát đã được thêm vào.",
+                                                            type: "success",
+                                                            duration: 1000
+                                                        });
 
+                                                        $('#blur').css('display', 'none');
+
+                                                        let pl_id = $.cookie('pl_id');
+                                                        let data_get_plItem = { "u_id": uID, "pl_id": pl_id, "action": "getPlaylistItem" };
+                                                        jQuery.get("./controller/select_data.php", data_get_plItem, function(response) {
+                                                            let res = JSON.parse(response);
+                                                            let data = "";
+                                                            if (res.error !== 1) {
+                                                                data = JSON.parse(res.data_playlist_item);
+                                                                if (document.querySelector('#list_music_playlist') != null && document.querySelector('.message_null_playlist') != null) {
+                                                                    document.querySelector('#list_music_playlist').classList.add('active');
+                                                                    document.querySelector('.message_null_playlist').classList.add('active');
+                                                                    load_music(data, document.querySelector('#list_music_playlist ul'), true);
+                                                                    document.querySelector('#list_music_playlist ul').setAttribute('category', 'playlisted');
+                                                                    handlePlayMusic(document.querySelector('#list_music_playlist ul'), data);
+                                                                }
+                                                            }
+                                                        })
+                                                    } else if (ketqua === "existed") {
+                                                        toast({
+                                                            title: "Cảnh báo!",
+                                                            message: "Bài hát đã có trong playlist.",
+                                                            type: "warning",
+                                                            duration: 1000
+                                                        });
+
+                                                        $('#blur').css('display', 'none');
+
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                    }
+                                }
+
+                            } else {
+                                $('.load_list_playlist').html('<li>Không có playlist</li>');
+                            }
+                        })
                     } else {
-                        $('.load_list_playlist').html('<li>Không có playlist</li>');
+                        toast({
+                            title: "Cảnh báo!",
+                            message: "Đăng nhập để tiếp tục.",
+                            type: "error",
+                            duration: 1000
+                        });
+
                     }
-                })
-            } else {
-                toast({
-                    title: "Cảnh báo!",
-                    message: "Đăng nhập để tiếp tục.",
-                    type: "error",
-                    duration: 1000
-                });
-
+                }
+                check_show_musicbox();
             }
-        }
-        check_show_musicbox();
-    }
 
-    function handleClickPlayMusic(elemPlayMusic, musics) {
-        if (elemPlayMusic) {
-            elemPlayMusic.ondblclick = function(e) {
-                if (isPlaying && e.target.closest('.song.active')) {
-                    audio.pause();
-                } else if (isPaused && e.target.closest('.song.active')) {
-                    audio.play();
-                } else {
-                    eventClick(musics, e);
+            function handleClickPlayMusic(elemPlayMusic, musics) {
+                if (elemPlayMusic) {
+                    elemPlayMusic.ondblclick = function(e) {
+                        if (isPlaying && e.target.closest('.song.active')) {
+                            audio.pause();
+                        } else if (isPaused && e.target.closest('.song.active')) {
+                            audio.play();
+                        } else {
+                            eventClick(musics, e);
+                        }
+                    }
                 }
             }
-        }
-    }
 
-    function handlePlayMusic(element_main, musics, search = "") {
-        element_main.onclick = function(e) {
-            if (e.target.closest('.playMusic') && e.target.closest('.song.active')) {
-                audio.play();
-            } else if (e.target.closest('.playMusic') || e.target.closest('#all_playmusic')) {
-                eventClick(musics, e);
-            } else if (e.target.closest('#add_library') || e.target.closest('#add_music_plm')) {
-                eventClick(musics, e, "add_library");
-            } else if (e.target.closest('#delete_library')) {
-                eventClick(musics, e, "delete_library");
-            } else if (e.target.closest('#add_playlist') || e.target.closest('#add_playlist_plm')) {
-                eventClick(musics, e, "add_playlist");
-            } else if (e.target.closest('ul.music li.song') && search != "") {
-                eventClick(musics, e, search);
-            } else {
-                if (window.innerWidth <= 768 && e.target.closest('li.song')) {
-                    eventClick(musics, e);
-                } else {
-                    handleClickPlayMusic(e.target.closest('ul.music li.song'), musics);
+            function handlePlayMusic(element_main, musics, search = "") {
+                element_main.onclick = function(e) {
+                    if (e.target.closest('.playMusic') && e.target.closest('.song.active')) {
+                        audio.play();
+                    } else if (e.target.closest('.playMusic') || e.target.closest('#all_playmusic')) {
+                        eventClick(musics, e);
+                    } else if (e.target.closest('#add_library') || e.target.closest('#add_music_plm')) {
+                        eventClick(musics, e, "add_library");
+                    } else if (e.target.closest('#delete_library')) {
+                        eventClick(musics, e, "delete_library");
+                    } else if (e.target.closest('#add_playlist') || e.target.closest('#add_playlist_plm')) {
+                        eventClick(musics, e, "add_playlist");
+                    } else if (e.target.closest('ul.music li.song') && search != "") {
+                        eventClick(musics, e, search);
+                    } else {
+                        if (window.innerWidth <= 768 && e.target.closest('li.song')) {
+                            eventClick(musics, e);
+                        } else {
+                            handleClickPlayMusic(e.target.closest('ul.music li.song'), musics);
+                        }
+                    }
                 }
             }
-        }
-    }
 
-    function load_music_discover(musics, elem, total_music) {
-        let data = musics.map((music, index) => {
-            return `          <li class="song ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
+            function load_music_discover(musics, elem, total_music) {
+                let data = musics.map((music, index) => {
+                    return `          <li class="song ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
                                 <div class="contentMusic">
                                     <div class="imageMusic">
                                         <img src="${music.img}" alt="">
@@ -847,17 +848,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </ul>
                                 </div>
                             </li>`
-        }).filter((elem, index) => index < total_music);
-        elem.innerHTML = data.join("");
-        handlePlayMusic(elem, musics);
-    }
+                }).filter((elem, index) => index < total_music);
+                elem.innerHTML = data.join("");
+                handlePlayMusic(elem, musics);
+            }
 
-    function load_music(musics, element, showDelete = false) {
-        let html = [];
-        if (Array.isArray(musics) && musics.length > 0) {
-            html = musics.map((music, index) => {
-                return `<li class="song  ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
-                                <div class='idMusic'><ion-icon name="musical-notes-outline"></ion-icon></div>
+            function load_music(musics, element, showDelete = false, layout = "") {
+                let html = [];
+                if (Array.isArray(musics) && musics.length > 0) {
+                    html = musics.map((music, index) => {
+                                return `<li class="song  ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
+                                <div class='idMusic'>${layout=="bxh"?`<span class="numberTop" id="top_${index+1}">${index+1}</span>`:'<ion-icon name="musical-notes-outline"></ion-icon>'}</div>
                                 <div class="contentMusic">
                                     <div class="imageMusic">
                                         <img src="${music.img}" alt="">
@@ -1673,6 +1674,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 //         alert(res.message);
                 //     }
                 // });
+            });
+
+
+        } else if (link == `./view/bxh.php`) {
+            // window.location = '/';
+            if (window.innerWidth <= 768) {
+                if (document.querySelector('.musicFixed.active')) {
+                    document.querySelector('.musicFixed.active').classList.remove('active');
+                }
+                document.querySelector('.container .main_left').classList.remove('active');
+                $('#blur').css('display', 'none');
+            }
+            $('main').load(link, function() {
+                $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
+                    let res = JSON.parse(response);
+                    const all_music = document.getElementById('all_music_render');
+                    if (res.error !== 1) {
+                        let datas = JSON.parse(res.data_music);
+                        load_music(datas, all_music, false, "bxh");
+                        handlePlayMusic(all_music, datas);
+
+                        handlePlayMusic(document.getElementById("all_playmusic"), datas);
+                    } else {
+                        toast({
+                            title: "Thất bại!",
+                            message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+                            type: "error",
+                            duration: 1000
+                        });
+
+                    }
+                });
             });
 
 
