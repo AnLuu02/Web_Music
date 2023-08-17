@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 let arr = date.split("-");
                 return arr[2] + "-" + arr[1] + "-" + arr[0];
             }
+
             document.querySelector('.logo').addEventListener('click', () => {
                 location.reload();
             })
 
             // move nav_playlist
             function check_show_musicbox() {
-
                 if ($('.musicFixed').attr("style") && $('.musicFixed').attr("style").includes('display') && window.innerWidth > 768) {
                     $('#nav_playlist').css({ "bottom": '100px' });
                 }
@@ -55,9 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
 
-            // // định tuyến 
-            const navLibrary = document.querySelector('#nav_library a');
-            const navPlaylist = document.querySelector('#nav_playlist a');
             // // play video
             const audio = document.getElementById('audio');
             const btn_toggle_music = document.querySelector('.controlsMusic');
@@ -101,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             })
 
-            navPlaylist.addEventListener('click', () => {
+            document.querySelector('#nav_playlist a').addEventListener('click', () => {
                 if (window.innerWidth > 768) {
                     if (uID == undefined) {
                         document.getElementById('message-playlist').classList.add('active');
@@ -157,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
 
-            navLibrary.addEventListener('click', (e) => {
+            document.querySelector('#nav_library a').addEventListener('click', (e) => {
                     if (window.innerWidth > 768) {
                         if (uID == undefined) {
                             document.getElementById('message-library').classList.add('active');
@@ -623,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 })
 
                                 if (category === "uploaded") {
-                                    var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "upLoaded" };
+                                    var data = { 'u_id': uID, 'btn_uploaded_id': "upLoaded" };
                                     $.get("./controller/select_data.php", data, function(response) {
                                         let res = JSON.parse(response);
                                         if (res.error == 1) {
@@ -631,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         }
                                     });
                                 } else {
-                                    var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': "liked" };
+                                    var data = { 'u_id': uID, 'btn_uploaded_id': "liked" };
                                     $.get("./controller/select_data.php", data, function(response) {
                                         let res = JSON.parse(response);
                                         if (res.error == 1) {
@@ -980,8 +977,6 @@ document.addEventListener('DOMContentLoaded', () => {
 `)
     }
 
-
-
     //     // show list play music
     const btnShowList = document.querySelector('.btn_run_listPlaymusic ion-icon');
     btnShowList.addEventListener('click', e => {
@@ -1007,8 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //     // click profile
     document.querySelector('.user .profile #imgUser').addEventListener('click', (e) => {
-        let u_id = $.cookie('u_id');
-        if (e.target === e.currentTarget && u_id) {
+        if (e.target === e.currentTarget && uID) {
             document.querySelector('.update_profile').classList.add('active');
             if (document.querySelector('.container .main_left').classList.contains('active')) {
                 document.querySelector('.container .main_left').classList.remove('active');
@@ -1077,8 +1071,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         })
     })
-
-
 
 
     $('#searchInput').on('focus', function() {
@@ -1175,14 +1167,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-
-
     $('.profile img#imgUser').on('click', function() {
         let _this = this;
-        let u_id = $.cookie('u_id');
 
-        if (u_id) {
-            var data = { 'u_id': u_id, 'btn_uploaded_id': $(this).attr('id') };
+        if (uID) {
+            var data = { 'u_id': uID, 'btn_uploaded_id': $(this).attr('id') };
             $.get("./controller/select_data.php", data, function(response) {
                 let res = JSON.parse(response);
                 if ($(_this).attr('id') == "imgUser" && res.error !== 1) {
@@ -1196,24 +1185,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-
-    $('.main_left ul li>a').on('click', function(e) {
-        e.preventDefault();
-        if (uID) {
-            $('li.active').removeClass('active');
-            $('#blur').css('display', 'none');
-            $(this).closest('li').addClass('active');
-        } else {
-            if ($(this).closest('li').attr('id') === "nav_playlist" || $(this).closest('li').attr('id') === "nav_library") {} else {
-                $('li.active').removeClass('active');
-                $('#blur').css('display', 'none');
-                $(this).closest('li').addClass('active');
-
-            }
-        }
-        let u_id = $.cookie('u_id');
-        let hrf = $(this).attr('href');
-        var link = './view/' + hrf;
+    var link;
+    function load_content(){
         if (link == `./view/home.php`) {
             // window.location = '/';
             if (window.innerWidth <= 768) {
@@ -1224,6 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('#blur').css('display', 'none');
             }
             $('main').load(link, function() {
+                handle_btn_home_content();
                 // render home
                 const home_music = document.querySelector('.first_home ul');
                 const home_music_spotify = document.querySelector('.second_home ul');
@@ -1270,31 +1244,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('#blur').css('display', 'none');
             }
             $('main').load(link, function() {
-                //    slider
-                // setInterval(changeOrder, 4000);
+                setInterval(changeOrder, 4000);
 
-                // function changeOrder() {
-                //     const allSlides = document.querySelectorAll(".single-slide");
-                //     const previous = "1";
-                //     const current = "2";
-                //     const next = "3";
+                function changeOrder() {
+                    const allSlides = document.querySelectorAll(".single-slide");
+                    const previous = "1";
+                    const current = "2";
+                    const next = "3";
 
-                //     for (const slide of allSlides) {
-                //         const order = slide.getAttribute("data-order");
+                    for (const slide of allSlides) {
+                        const order = slide.getAttribute("data-order");
 
-                //         switch (order) {
-                //             case current:
-                //                 slide.setAttribute("data-order", previous);
-                //                 break;
-                //             case next:
-                //                 slide.setAttribute("data-order", current);
-                //                 break;
-                //             case previous:
-                //                 slide.setAttribute("data-order", next);
-                //                 break;
-                //         }
-                //     }
-                // }
+                        switch (order) {
+                            case current:
+                                slide.setAttribute("data-order", previous);
+                                break;
+                            case next:
+                                slide.setAttribute("data-order", current);
+                                break;
+                            case previous:
+                                slide.setAttribute("data-order", next);
+                                break;
+                        }
+                    }
+                }
                 $("#discover .nav_country li.active").attr('class', "");
                 $('#All').attr('class', 'active');
                 $.get(`./controller/select_data.php?key=discover`, {}, function(response) {
@@ -1410,7 +1383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
         } else if (link == `./view/library.php`) {
-            if (u_id != undefined) {
+            if (uID != undefined) {
                 if (window.innerWidth <= 768) {
                     if (document.querySelector('.musicFixed.active')) {
                         document.querySelector('.musicFixed.active').classList.remove('active');
@@ -1429,7 +1402,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     })
 
-                    var data = { 'u_id': u_id, 'btn_uploaded_id': 'defaultLoad', 'getPlaylist': 'getPlaylist' };
+                    var data = { 'u_id': uID, 'btn_uploaded_id': 'defaultLoad', 'getPlaylist': 'getPlaylist' };
                     jQuery.get("./controller/select_data.php", data, function(response) {
                         let res = JSON.parse(response);
                         let arrId = [];
@@ -1455,7 +1428,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $(this).addClass('active');
 
                         let _this = this;
-                        var data = { 'u_id': $.cookie('u_id'), 'btn_uploaded_id': $(this).attr('id') };
+                        var data = { 'u_id': uID, 'btn_uploaded_id': $(this).attr('id') };
 
                         $.get("./controller/select_data.php", data, function(response) {
                             let res = JSON.parse(response);
@@ -1474,7 +1447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     })
 
-                    var data1 = { 'u_id': u_id, 'getPlaylist': 'getPlaylist' };
+                    var data1 = { 'u_id': uID, 'getPlaylist': 'getPlaylist' };
                     jQuery.get("./controller/select_data.php", data1, function(response) {
                         let res = JSON.parse(response);
                         if (res.error !== 1) {
@@ -1636,7 +1609,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }else if (link == `./view/chude.php`) {
-            // window.location = '/';
+            
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
                     document.querySelector('.musicFixed.active').classList.remove('active');
@@ -1684,7 +1657,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
          else if (link == `./view/top.php`) {
-            // window.location = '/';
+            
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
                     document.querySelector('.musicFixed.active').classList.remove('active');
@@ -1763,11 +1736,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         }
+    }
+    function handle_sidebar(){
+        $('.main_left ul li>a').on('click', function(e) {
+            e.preventDefault();
+            if (uID) {
+                $('li.active').removeClass('active');
+                $('#blur').css('display', 'none');
+                $(this).closest('li').addClass('active');
+            } else {
+                if ($(this).closest('li').attr('id') === "nav_playlist" || $(this).closest('li').attr('id') === "nav_library") {} else {
+                    $('li.active').removeClass('active');
+                    $('#blur').css('display', 'none');
+                    $(this).closest('li').addClass('active');
+    
+                }
+            }
+            let hrf = $(this).attr('href');
+            link = './view/' + hrf;   
+            load_content();
+        })
+    }
+    handle_sidebar();
 
-
-
-    })
-    if (window.innerWidth <= 768) {
+    function load_layout_playmusic_mobile(){
+            if (window.innerWidth <= 768) {
         if (document.querySelector('.musicFixed.active')) {
             document.querySelector('.musicFixed.active').classList.remove('active');
         }
@@ -1809,144 +1802,183 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
     }
-    $('.leftMusicFixed').on('click', function() {
-        document.querySelectorAll('ul.music li.song').forEach(item => {
-            item.remove();
-        })
-        $("main").load('./view/playmusic.php', function() {
-            $('#play_music').attr('category', 'playmusic');
-            $('.btnPause').addClass('active');
-            $('.btnPlay').removeClass('active');
-            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
-            $('.play_music .sub_left .runAudio').addClass('active');
-            $('.btnPlay').click(function() {
-                audio.play();
-            })
-            $('.btnPause').click(function() {
-                audio.pause();
+    }
+    load_layout_playmusic_mobile();
 
+    function load_layout_playmusic_desktop(){
+        $('.leftMusicFixed').on('click', function() {
+            document.querySelectorAll('ul.music li.song').forEach(item => {
+                item.remove();
             })
-            load_music_fixed();
-            $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
+            $("main").load('./view/playmusic.php', function() {
+                $('#play_music').attr('category', 'playmusic');
+                $('.btnPause').addClass('active');
+                $('.btnPlay').removeClass('active');
+                $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
+                $('.play_music .sub_left .runAudio').addClass('active');
+                $('.btnPlay').click(function() {
+                    audio.play();
+                })
+                $('.btnPause').click(function() {
+                    audio.pause();
+    
+                })
+                load_music_fixed();
+                $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
+                    let res = JSON.parse(response);
+                    if (res.error !== 1) {
+                        let data = JSON.parse(res.data_music);
+    
+                        load_music(data, document.querySelector('#careMusic'));
+                        handlePlayMusic(document.querySelector('#careMusic'), data);
+                    } else {
+                        alert(res.message);
+                    }
+                })
+            });
+        })
+    }
+    load_layout_playmusic_desktop();
+
+
+    function load_layout_home_first(){
+        $('main').load('./view/home.php', function() {
+            // render home
+            const home_music = document.querySelector('.first_home ul');
+            const home_music_spotify = document.querySelector('.second_home ul');
+    
+            function load_music_home(musics) {
+                let html = musics.map((music, index) => {
+                    return `<li class="song" index="${index}" id_song = ${music.m_id}>
+                                    <a href="#">
+                                        <img src="${music.img}" alt="##">
+                                        <div class="name">${music.name}</div>
+                                        <div class="des">
+                                            ${music.artist}
+                                        </div>
+                                    </a>
+                                    <div><ion-icon name="caret-forward-outline"></ion-icon></div>
+                                </li>`
+                })
+                home_music.innerHTML = html.join("");
+                home_music_spotify.innerHTML = html.join("");
+                // handle home music
+                const list_home_music = document.querySelector('.first_home ul');
+                const list_home_music_spotify = document.querySelector('.second_home  ul');
+                handlePlayMusic(list_home_music, musics);
+                handlePlayMusic(list_home_music_spotify, musics);
+            }
+            $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
                 let res = JSON.parse(response);
                 if (res.error !== 1) {
-                    let data = JSON.parse(res.data_music);
-
-                    load_music(data, document.querySelector('#careMusic'));
-                    handlePlayMusic(document.querySelector('#careMusic'), data);
+                    let datas = JSON.parse(res.data_music);
+                    load_music_home(datas);
                 } else {
                     alert(res.message);
                 }
-            })
-        });
-    })
+            });
+            handle_btn_home_content();
+        })
+    }
 
-    $('main').load('./view/home.php', function() {
-        // render home
-        const home_music = document.querySelector('.first_home ul');
-        const home_music_spotify = document.querySelector('.second_home ul');
-
-        function load_music_home(musics) {
-            let html = musics.map((music, index) => {
-                return `<li class="song" index="${index}" id_song = ${music.m_id}>
-                                <a href="#">
-                                    <img src="${music.img}" alt="##">
-                                    <div class="name">${music.name}</div>
-                                    <div class="des">
-                                        ${music.artist}
-                                    </div>
-                                </a>
-                                <div><ion-icon name="caret-forward-outline"></ion-icon></div>
-                            </li>`
+    function handle_btn_home_content(){
+        if(document.querySelectorAll("#nav_home_content button>a")){
+            document.querySelectorAll("#nav_home_content button>a").forEach(elem=>{
+                elem.addEventListener('click',e=>{
+                    e.preventDefault();
+                    link ="./view/"+ e.target.getAttribute('href');
+                   if(link == "./view/library.php" && uID || link == "./view/bxh.php" ){
+                        $('li.active').removeClass('active');
+                        $('#blur').css('display', 'none');
+                        $(`li a[href="${e.target.getAttribute('href')}"]`).closest('li').addClass('active');
+                        load_content();
+                   }
+                   else{
+                    toast({
+                        title: "Cảnh báo!",
+                        message: "Đăng nhập để tiếp tục.",
+                        type: "error",
+                        duration: 1000
+                    });
+                   }
+                })
             })
-            home_music.innerHTML = html.join("");
-            home_music_spotify.innerHTML = html.join("");
-            // handle home music
-            const list_home_music = document.querySelector('.first_home ul');
-            const list_home_music_spotify = document.querySelector('.second_home  ul');
-            handlePlayMusic(list_home_music, musics);
-            handlePlayMusic(list_home_music_spotify, musics);
         }
-        $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
-            let res = JSON.parse(response);
-            if (res.error !== 1) {
-                let datas = JSON.parse(res.data_music);
-                load_music_home(datas);
+    }
+    load_layout_home_first();
+    // upload video
+
+    function handle_btn_upload_music(){
+        $("#btn-upload-music").click(function(e) {
+            e.preventDefault();
+            let form_data = new FormData();
+            let img = $("#fileUploadIcon")[0].files;
+            let src = $("#fileUploadMusic")[0].files;
+            let name = $("#m_name_up").val();
+            let artist = $("#m_artist_up").val();
+            let time = $("#m_time_up").val();
+            let nation = $("#m_nation_up").val();
+            let category = $("#m_category_up").val();
+    
+    
+            // Check image selected or not
+            if (img.length > 0 && src.length > 0) {
+                form_data.append('m_img', img[0]);
+                form_data.append('m_src', src[0]);
+                form_data.append('m_name', name);
+                form_data.append('m_artist', artist);
+                form_data.append('m_time', time);
+                form_data.append('m_nation', nation);
+                form_data.append('m_category', category);
+    
+                $.ajax({
+                    url: './controller/upload_video.php',
+                    type: 'post',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function(res) {
+                        let data = JSON.parse(res);
+                        if (data.error === 0) {
+                            if (document.getElementById('data_library')) {
+                                load_music(data.data, document.getElementById('data_library'), true);
+                            }
+                            if (document.getElementById('upLoaded_profile')) {
+                                load_music(data.data, document.getElementById('upLoaded_profile'), true);
+                            }
+                            $('#form_upload_music').removeClass('active');
+                            $('#form_id').trigger("reset");
+                            toast({
+                                title: "Thành công!",
+                                message: "Upload bài hát thành công.",
+                                type: "success",
+                                duration: 1000
+                            });
+    
+                        } else {
+                            toast({
+                                title: "Thất bại!",
+                                message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+                                type: "error",
+                                duration: 1000
+                            });
+    
+                        }
+    
+                    }
+                });
+    
             } else {
-                alert(res.message);
+                toast({
+                    title: "Cảnh báo!",
+                    message: "Hãy nhập đầy đủ các trường.",
+                    type: "warning",
+                    duration: 1000
+                });
             }
         });
-    })
-
-    // upload video
-    $("#btn-upload-music").click(function(e) {
-        e.preventDefault();
-        let form_data = new FormData();
-        let img = $("#fileUploadIcon")[0].files;
-        let src = $("#fileUploadMusic")[0].files;
-        let name = $("#m_name_up").val();
-        let artist = $("#m_artist_up").val();
-        let time = $("#m_time_up").val();
-        let nation = $("#m_nation_up").val();
-        let category = $("#m_category_up").val();
-
-
-        // Check image selected or not
-        if (img.length > 0 && src.length > 0) {
-            form_data.append('m_img', img[0]);
-            form_data.append('m_src', src[0]);
-            form_data.append('m_name', name);
-            form_data.append('m_artist', artist);
-            form_data.append('m_time', time);
-            form_data.append('m_nation', nation);
-            form_data.append('m_category', category);
-
-            $.ajax({
-                url: './controller/upload_video.php',
-                type: 'post',
-                data: form_data,
-                contentType: false,
-                processData: false,
-                success: function(res) {
-                    let data = JSON.parse(res);
-                    if (data.error === 0) {
-                        if (document.getElementById('data_library')) {
-                            load_music(data.data, document.getElementById('data_library'), true);
-                        }
-                        if (document.getElementById('upLoaded_profile')) {
-                            load_music(data.data, document.getElementById('upLoaded_profile'), true);
-                        }
-                        $('#form_upload_music').removeClass('active');
-                        $('#form_id').trigger("reset");
-                        toast({
-                            title: "Thành công!",
-                            message: "Upload bài hát thành công.",
-                            type: "success",
-                            duration: 1000
-                        });
-
-                    } else {
-                        toast({
-                            title: "Thất bại!",
-                            message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
-                            type: "error",
-                            duration: 1000
-                        });
-
-                    }
-
-                }
-            });
-
-        } else {
-            toast({
-                title: "Cảnh báo!",
-                message: "Hãy nhập đầy đủ các trường.",
-                type: "warning",
-                duration: 1000
-            });
-        }
-    });
+    }
+    handle_btn_upload_music();
 
 })
 
@@ -2009,14 +2041,70 @@ function toast({ title = "", message = "", type = "info", position = "right", du
 }
 
 //ajax jquery
-$("#btn-upload-avatar").click(function(e) {
-    e.preventDefault();
-    let form_data = new FormData();
-    let img = $("#fileUploadAvatar")[0].files;
+function handle_btn_upload_avatar(){
+    $("#btn-upload-avatar").click(function(e) {
+        e.preventDefault();
+        let form_data = new FormData();
+        let img = $("#fileUploadAvatar")[0].files;
+    
+        // Check image selected or not
+        if (img.length > 0) {
+            form_data.append('my_image', img[0]);
+            $.ajax({
+                url: './controller/upload_img.php',
+                type: 'post',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    const data = JSON.parse(res);
+                    if (data.error === 0) {
+                        let path = "../uploads/" + data.src;
+                        $("#imgUser").attr("src", path);
+                        $("#imgProfile").attr("src", path);
+                        $("#imgUserMobile").attr("src", path);
+    
+                        $('#form_upload_avatar.form_upload').removeClass('active');
+                        $("#fileUploadAvatar").val('');
+                        toast({
+                            title: "Thành công!",
+                            message: data.em,
+                            type: "success",
+                            position: "left",
+                            duration: 1000
+                        });
+    
+                    } else {
+    
+                        toast({
+                            title: "Thất bại!",
+                            message: data.em,
+                            type: "error",
+                            position: "left",
+                            duration: 1000
+                        });
+    
+                    }
+                }
+            });
+    
+        } else {
+    
+            toast({
+                title: "Thất bại!",
+                message: "Vui lòng chọn ảnh trước khi lưu.",
+                type: "error",
+                position: "left",
+                duration: 1000
+            });
+    
+        }
+    });
 
-    // Check image selected or not
-    if (img.length > 0) {
-        form_data.append('my_image', img[0]);
+    $("#btn-remove-avatar").click(function(e) {
+        e.preventDefault();
+        let form_data = new FormData();
+        form_data.append('status', "remove");
         $.ajax({
             url: './controller/upload_img.php',
             type: 'post',
@@ -2024,211 +2112,167 @@ $("#btn-upload-avatar").click(function(e) {
             contentType: false,
             processData: false,
             success: function(res) {
-                const data = JSON.parse(res);
-                if (data.error === 0) {
-                    let path = "../uploads/" + data.src;
+                let json = JSON.parse(res);
+                if (json.error === 0) {
+                    let path = "";
                     $("#imgUser").attr("src", path);
                     $("#imgProfile").attr("src", path);
                     $("#imgUserMobile").attr("src", path);
-
+    
                     $('#form_upload_avatar.form_upload').removeClass('active');
                     $("#fileUploadAvatar").val('');
+    
                     toast({
                         title: "Thành công!",
-                        message: data.em,
+                        message: json.message,
                         type: "success",
                         position: "left",
                         duration: 1000
                     });
-
+    
                 } else {
-
+    
                     toast({
                         title: "Thất bại!",
-                        message: data.em,
+                        message: json.message,
                         type: "error",
                         position: "left",
                         duration: 1000
                     });
-
+    
                 }
             }
         });
-
-    } else {
-
-        toast({
-            title: "Thất bại!",
-            message: "Vui lòng chọn ảnh trước khi lưu.",
-            type: "error",
-            position: "left",
-            duration: 1000
-        });
-
-    }
-});
-
-$("#btn-remove-avatar").click(function(e) {
-    e.preventDefault();
-    let form_data = new FormData();
-    form_data.append('status', "remove");
-    $.ajax({
-        url: './controller/upload_img.php',
-        type: 'post',
-        data: form_data,
-        contentType: false,
-        processData: false,
-        success: function(res) {
-            let json = JSON.parse(res);
-            if (json.error === 0) {
-                let path = "";
-                $("#imgUser").attr("src", path);
-                $("#imgProfile").attr("src", path);
-                $("#imgUserMobile").attr("src", path);
-
-                $('#form_upload_avatar.form_upload').removeClass('active');
-                $("#fileUploadAvatar").val('');
-
-                toast({
-                    title: "Thành công!",
-                    message: json.message,
-                    type: "success",
-                    position: "left",
-                    duration: 1000
-                });
-
-            } else {
-
-                toast({
-                    title: "Thất bại!",
-                    message: json.message,
-                    type: "error",
-                    position: "left",
-                    duration: 1000
-                });
-
-            }
-        }
+    
     });
+}
+handle_btn_upload_avatar();
 
-});
+
 
 // create playlist
-$("#btn-create-playlist").click(function(e) {
-    e.preventDefault();
-    let form_data = new FormData();
-    let img = $("#fileUploadPlaylist")[0].files;
-    let namePlaylist = $("#name_playlist").val();
-    // Check image selected or not
-    if (img.length > 0) {
-        form_data.append('my_image', img[0]);
-        form_data.append('my_name', namePlaylist);
-        $.ajax({
-            url: './controller/create_playlist.php',
-            type: 'post',
-            data: form_data,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                const data = JSON.parse(res);
-                if (data.error === 0) {
-                    $("#form_upload_playlist").removeClass('active');
-                    let html = data.data.map((data, index) => {
-                        return `<li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
-                          <div class="content">
-                              <img src="../uploads/${data.img}" alt="">
-                              <div class="hover_playlist">
-                                  <ion-icon name="close-outline" id="delete_playlist"></ion-icon>
-                                  <ion-icon name="play" id="run_playlist"></ion-icon>
-                                  <ion-icon name="heart"></ion-icon>
+function handle_btn_create_playlist(){
+    $("#btn-create-playlist").click(function(e) {
+        e.preventDefault();
+        let form_data = new FormData();
+        let img = $("#fileUploadPlaylist")[0].files;
+        let namePlaylist = $("#name_playlist").val();
+        // Check image selected or not
+        if (img.length > 0) {
+            form_data.append('my_image', img[0]);
+            form_data.append('my_name', namePlaylist);
+            $.ajax({
+                url: './controller/create_playlist.php',
+                type: 'post',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    const data = JSON.parse(res);
+                    if (data.error === 0) {
+                        $("#form_upload_playlist").removeClass('active');
+                        let html = data.data.map((data, index) => {
+                            return `<li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
+                              <div class="content">
+                                  <img src="../uploads/${data.img}" alt="">
+                                  <div class="hover_playlist">
+                                      <ion-icon name="close-outline" id="delete_playlist"></ion-icon>
+                                      <ion-icon name="play" id="run_playlist"></ion-icon>
+                                      <ion-icon name="heart"></ion-icon>
+                                  </div>
                               </div>
-                          </div>
-                          <div class="name_pl" style="margin: 4px 0 2px 0;">${data.name_playlist}</div>
-                          <div class="author_pl">${data.name}</div>
-                      </li>`;
-                    })
-                    $('#list_playlist').html(html.join(""));
-
-                    toast({
-                        title: "Thành công!",
-                        message: data.message,
-                        type: "success",
-                        duration: 1000
-                    });
-
-                } else {
-
-                    toast({
-                        title: "Thất bại!",
-                        message: data.message,
-                        type: "error",
-                        duration: 1000
-                    });
-
+                              <div class="name_pl" style="margin: 4px 0 2px 0;">${data.name_playlist}</div>
+                              <div class="author_pl">${data.name}</div>
+                          </li>`;
+                        })
+                        $('#list_playlist').html(html.join(""));
+    
+                        toast({
+                            title: "Thành công!",
+                            message: data.message,
+                            type: "success",
+                            duration: 1000
+                        });
+    
+                    } else {
+    
+                        toast({
+                            title: "Thất bại!",
+                            message: data.message,
+                            type: "error",
+                            duration: 1000
+                        });
+    
+                    }
                 }
-            }
-        });
-
-    } else {
-        alert("Please select an image.");
-    }
-});
+            });
+    
+        } else {
+            toast({
+                title: "Cảnh báo!",
+                message: "Vui lòng nhập đầy đủ các trường.",
+                type: "warning",
+                duration: 1000
+            });
+        }
+    });
+}
+handle_btn_create_playlist();
 
 
 
 // // change name user
-$("#change_name, #save_name").on('click', function(e) {
+function handle_btn_change_name(){
+    $("#change_name, #save_name").on('click', function(e) {
 
-    if ($(e.target).attr('id') == "change_name") {
-        $('#name_user').attr('readonly', false);
-        $('#name_user').css({ "background": "white", "color": "black" })
-        $('#change_name').css("display", 'none');
-        $('#save_name').css("display", 'block');
-    }
-    if ($(e.target).attr('id') == "save_name") {
-        e.preventDefault();
-        let form_data = new FormData();
-        let new_name = $("#name_user").val();
-        form_data.append('new_name', new_name);
-        $.ajax({
-            url: './controller/change_name_user.php',
-            type: 'post',
-            data: form_data,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                let data = JSON.parse(res);
-                if (data.error == 0) {
-                    $("#name_user").val(data.name)
-                    toast({
-                        title: "Thành công!",
-                        message: "Thay đổi thành công!",
-                        type: "success",
-                        position: "left",
-                        duration: 1000
-                    });
-
-
-                    $('#name_user').attr('readonly', true).css({ "background": "transparent", "color": "white" })
-                    $('#change_name').css("display", 'block');
-                    $('#save_name').css("display", 'none');
-                } else {
-                    $("#name_user").val(data.name)
-
-                    toast({
-                        title: "Thất bại!",
-                        message: "Thay đổi tên không thành công.",
-                        type: "error",
-                        position: "left",
-                        duration: 1000
-                    });
-
+        if ($(e.target).attr('id') == "change_name") {
+            $('#name_user').attr('readonly', false);
+            $('#name_user').css({ "background": "white", "color": "black" })
+            $('#change_name').css("display", 'none');
+            $('#save_name').css("display", 'block');
+        }
+        if ($(e.target).attr('id') == "save_name") {
+            e.preventDefault();
+            let form_data = new FormData();
+            let new_name = $("#name_user").val();
+            form_data.append('new_name', new_name);
+            $.ajax({
+                url: './controller/change_name_user.php',
+                type: 'post',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    let data = JSON.parse(res);
+                    if (data.error == 0) {
+                        $("#name_user").val(data.name)
+                        toast({
+                            title: "Thành công!",
+                            message: "Thay đổi thành công!",
+                            type: "success",
+                            position: "left",
+                            duration: 1000
+                        });
+    
+    
+                        $('#name_user').attr('readonly', true).css({ "background": "transparent", "color": "white" })
+                        $('#change_name').css("display", 'block');
+                        $('#save_name').css("display", 'none');
+                    } else {
+                        $("#name_user").val(data.name)
+    
+                        toast({
+                            title: "Thất bại!",
+                            message: "Thay đổi tên không thành công.",
+                            type: "error",
+                            position: "left",
+                            duration: 1000
+                        });
+    
+                    }
                 }
-            }
-        });
-    }
-
-
-
-
-})
+            });
+        }
+    })
+}
+handle_btn_change_name();

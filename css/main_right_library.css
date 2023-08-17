@@ -197,6 +197,10 @@ ul#list_playlist {
     overflow: hidden;
 }
 
+#discover .same_list_music {
+    padding-bottom: 0!important;
+}
+
 #discover.active {
     display: block;
 }
