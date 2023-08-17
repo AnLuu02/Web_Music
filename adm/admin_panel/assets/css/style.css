@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 18px;
+    box-sizing: border-box;
+    list-style-type: none;
+}
+body{
+  background-color: #eeeeee;
+}
+
+img{
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+}
+label{
+  font-weight: bold;
+}
+
+.navbar{
+  width: 85%;
+  margin-left: 15%;
+}
+
+.title_page{
+  font-size: 40px;
+  color: black;
+}
+/*********** admin dashboard styling **********/
+  .card{
+      background-color: gray;
+      padding:20px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 8px 5px 5px gray;
+      cursor: pointer;
+      transition: 0.1s;
+  }
+  .card:hover{
+    transform: scale(1.1);
+  }
+
+
+
+  /* The sidebar menu */
+  .sidebar {
+      width: 15%; 
+      position: fixed; 
+      z-index: 1; 
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background-color: gray; 
+      overflow-x: hidden; 
+      padding-top: 20px; 
+    }
+    .sidebar .form_search{
+      width: 100%;
+      padding: 0 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin: 10px 0 20px 0;
+      z-index: 2;
+    }
+    .sidebar .form_search input{
+      width: 100%;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      border: 1px solid white;
+      background-color: transparent;
+      color: white;
+      padding: 4px 30px 4px 10px;
+      font-size: 14px;
+    }
+    .sidebar .form_search label{
+      position: absolute;
+      color: white;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    ::placeholder{
+      color: white;
+      opacity: .7;
+    }
+    
+    /* The sidebar links */
+    .sidebar a {
+      padding: 8px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #fff;
+      display: block;
+    }
+    
+    .sidebar a i{
+      width: 30px;
+    }
+    
+    .sidebar .side-header{
+          color: #fff;
+          width: 100%;
+          height: max-content;
+          text-align: center;
+      }
+      .sidebar .side-header img{
+        height: 100%;
+      }
+    /* When you mouse over the navigation links, change their color */
+    .sidebar a:hover,
+    .sidebar a.active{
+      background-color: rgb(170, 166, 166);
+    }
+    
+
+
+
+    #main-content{
+      width: 85%;
+      margin-left: 15%;
+      padding: 2%;
+      overflow: hidden;
+    }
+    
+
+/************************** product table styling *********************************/
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 15px rgba(64, 64, 64, .4);
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 50px;
+  }
+
+  td,
+  th {
+    padding: 10px 16px;
+    text-align: center;
+  }
+  th {
+    background-color: lightsteelblue;
+    color: #fafafa;
+    font-family: 'Open Sans', Sans-serif;
+    font-weight: bold;
+  }
+
+  tr {
+    width: 100%;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  tr:nth-child(even) {
+    background-color: #eeeeee;
+  }
+
+
+
+  
+  #trend table tr:nth-child(1){
+    color: white;
+    background: red;
+    font-weight: bold;
+
+  }
+  #trend table tr:nth-child(2){
+    color: white;
+    font-weight: bold;
+    background-color: green;
+  }
+  #trend table tr:nth-child(3){
+    color: white;
+    background-color: yellowgreen;
+    font-weight: bold;
+
+  }
+
+  #trend tr:nth-child(1) td:nth-child(1){
+    font-size: 30px;
+  }
+  #trend tr:nth-child(2) td:nth-child(1){
+    font-size: 22px;
+  }
+  #trend tr:nth-child(3) td:nth-child(1){
+    font-size: 20px;
+}

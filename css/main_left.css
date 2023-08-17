@@ -1,0 +1,291 @@
+.container .main_left {
+    width: 200px;
+    min-height: 100vh;
+    position: fixed;
+    background-color: #2a213a;
+    background-color: #1b2039;
+
+    
+    left: 0;
+    top: 0;
+    z-index: 99997;
+}
+
+ul {
+    width: 100%;
+}
+
+ul.nav_mobile {
+    margin: 36px 0 12px 0;
+}
+
+ul li {
+    width: 100%;
+}
+
+ul li#nav_library {
+    position: relative;
+}
+
+.message-library {
+    position: absolute;
+    width: 300px;
+    background: #1b2051;
+    border-radius: 6px;
+    padding: 10px;
+    right: -130%;
+    top: 30px;
+    color: white!important;
+    display: none;
+}
+
+#message-library.active {
+    display: block;
+}
+
+#message-playlist.active {
+    display: block;
+}
+
+#message-playlist {
+    top: -100px;
+}
+
+.close-message {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+}
+
+.message-library p {
+    color: white!important;
+    font-size: 13px;
+    padding: 4px 0;
+}
+
+.message-library .nav-library {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+.message-library .nav-library button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+
+.message-library .nav-library button:last-child {
+    border: 1px solid white;
+    border-radius: 30px;
+    text-align: center;
+    margin-left: 10px;
+    transition: 0.2s;
+}
+
+.message-library .nav-library button:last-child:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.nav-library button>a {
+    color: white!important;
+}
+
+.nav-library button:last-child a {
+    display: block;
+    padding: 8px 10px;
+}
+
+.message-library .nav-library button.latter {
+    color: white;
+    opacity: .4;
+}
+
+.message-library .nav-library button.latter:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.main_left ul li:hover {
+    cursor: pointer;
+    background: rgba(130, 128, 128, 0.2);
+}
+
+.main_left ul li.active {
+    background: rgba(130, 128, 128, 0.2);
+    border-right: 3px solid aqua;
+    display: block;
+}
+
+.main_left ul li>a,
+#yeucaulogin>div {
+    padding: 14px 0px 14px 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.main_left ul li#nav_playlist>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0!important;
+    margin-left: -20px;
+    padding-left: 0;
+}
+
+.main_left ul #yeucaulogin>div {
+    padding: 10px;
+    flex-direction: column;
+    background-color: #355c7d;
+    margin: 14px;
+    border-radius: 8px;
+    justify-content: center!important;
+    align-items: center!important;
+}
+
+.main_left ul #yeucaulogin .btnLogin {
+    all: unset;
+    padding: 8px 20px;
+    margin: 10px 0 0 0;
+    border-radius: 20px;
+    border: 1px solid;
+    border-color: #fff!important;
+}
+
+.main_left ul li ion-icon {
+    width: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.main_left>span {
+    display: block;
+    height: 1px;
+    margin: 0 30px;
+    background: rgba(130, 128, 128, 0.2);
+}
+
+
+/* create playlist */
+
+#nav_playlist {
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid rgba(256, 256, 256, .2)!important;
+}
+
+.form_upload {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.form_upload>div {
+    width: 300px;
+    background: #1b2051;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.form_upload>div h3 {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+}
+
+.form_upload>div input:not(input[type="file"]) {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    outline: none;
+    margin: 10px 0;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+}
+
+.form_upload>div input[type="submit"] {
+    background-color: black!important;
+    opacity: .7;
+    cursor: pointer;
+}
+
+.form_upload>div input[type="submit"]:hover {
+    opacity: 1;
+}
+
+.form_upload ion-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.form_upload ion-icon:hover {
+    opacity: .7;
+}
+
+.form_upload .img_upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+.form_upload .img_upload label {
+    width: 50%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form_upload #fileUpload {
+    padding: 10px;
+    color: white;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+
+/* login mobile */
+
+.btn_login_mobile {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.btn_login_mobile:hover {
+    transform: unset;
+}
+
+.btn_login_mobile a {
+    color: black;
+    font-size: 20px;
+    font-weight: 500px;
+    background-color: transparent;
+}

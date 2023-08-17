@@ -1,0 +1,689 @@
+.musicFixed {
+    position: fixed;
+    bottom: 0!important;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100px;
+    /* background: linear-gradient(to top right,#29455e,#3b2c48,#905163); */
+    background-color: #14182a;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    z-index: 100000;
+    border-top: 1px solid rgba(256, 256, 256, 0.2);
+}
+
+.musicFixed .leftMusicFixed {
+    width: max-content;
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    left: 0;
+    z-index: 100000;
+}
+
+.musicFixed .desMusicFixed {
+    width: 60%;
+    margin-left: 8px;
+}
+
+.desMusicFixed .nameMusicFixed {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.desMusicFixed .authorMusicFixed {
+    font-size: 12px;
+    color: white;
+    opacity: 0.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leftMusicFixed .AnotherChoiceFixed {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    margin-left: 40px;
+}
+
+.leftMusicFixed .AnotherChoiceFixed div {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.leftMusicFixed .AnotherChoiceFixed div:hover {
+    background-color: rgba(256, 256, 256, 0.2);
+    color: white;
+    border-radius: 50%;
+}
+
+.musicFixed img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+
+/* center */
+
+.musicFixed .centerMusicFixed {
+    width: 40%;
+    height: 100%;
+    padding: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100000;
+}
+
+.musicFixed .centerMusicFixed ul {
+    margin: 10px 0;
+}
+
+.musicFixed .centerMusicFixed ul,
+.musicFixed .centerMusicFixed .sliderMusic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerMusicFixed ul li {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    margin: 0 16px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerMusicFixed ul li:not(li.controlsMusic):hover {
+    background-color: #1b2051;
+}
+
+.centerMusicFixed ul li:not(li.controlsMusic).active {
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background-color: #1b2051;
+}
+
+.centerMusicFixed ul li:hover.controlsMusic {
+    color: #1b2051;
+    border-color: #1b2051;
+    /* background-color: #c06c84; */
+}
+
+.centerMusicFixed li.controlsMusic {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.centerMusicFixed li.controlsMusic ion-icon {
+    display: none;
+}
+
+.centerMusicFixed li.controlsMusic ion-icon.active {
+    display: block;
+}
+
+
+/* slider */
+
+.sliderMusic {
+    width: 600px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.progress:hover~.progressColor::before {
+    opacity: 1;
+}
+
+
+/* end center */
+
+
+/* right */
+
+.rightMusicFixed {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    z-index: 100000;
+}
+
+
+/* volum slider */
+
+.rightMusicFixed .sliderMusic {
+    width: 60%;
+}
+
+.sliderMusic .slider {
+    width: 70%;
+    height: 4px;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 6px;
+    z-index: -1;
+}
+
+.progressColor {
+    position: absolute;
+    top: 0;
+    height: 4px;
+    left: 0;
+    right: 50%;
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background-color: #1b2051;
+    transition: 0.1s;
+}
+
+.progressColor::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background-color: #1b2051;
+    position: absolute;
+    top: -3px;
+    right: -10px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    height: 8px;
+    background: transparent;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* end volumn */
+
+.rightMusicFixed .btn_run_listPlaymusic {
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.rightMusicFixed .btn_run_listPlaymusic.active {
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background: #1b2051;
+    border-radius: 3px;
+}
+
+.rightMusicFixed .volumeMusic {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid hsla(0, 0%, 100%, 0.1);
+}
+
+.rightMusicFixed .volumeMusic ion-icon {
+    display: none;
+}
+
+.rightMusicFixed .volumeMusic ion-icon.active {
+    display: block!important;
+}
+
+
+/* list play múic */
+
+.same_fixed_right {
+    width: 22%;
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background: #1b2051;
+    color: white;
+    padding: 10px;
+    min-height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    z-index: 99999;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(100%);
+    transition: 0.5s;
+}
+
+.update_profile {
+    z-index: 100001!important;
+}
+
+.list_play_music.active,
+.update_profile.active {
+    transform: translateX(0);
+}
+
+.list_play_music .title_bold {
+    font-weight: 500;
+    padding: 4px 0;
+    font-size: 18px;
+}
+
+.list_play_music .playing_music .list_music_render ul {
+    max-height: 200px!important;
+    overflow-y: scroll!important;
+}
+
+.same_fixed_right .same_list_music .list_music_render ul {
+    width: 100%;
+}
+
+.same_fixed_right .next_music_list ul {
+    height: 450px!important;
+    overflow-y: scroll;
+}
+
+.same_fixed_right::-webkit-scrollbar {
+    display: none;
+}
+
+.leftMusicFixed .contentMusic .imageMusic {
+    position: relative;
+}
+
+.contentMusic .runAudio.active>div {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.list_play_music .runAudio span {
+    display: inline-block;
+    width: 2px;
+    height: 30%;
+    background-color: white;
+    margin: 0 1px;
+    animation: run 0.4s linear infinite alternate;
+}
+
+.same_fixed_right .list_music_render ul li {
+    background: transparent;
+    padding-left: 8px;
+}
+
+
+/* profile fixed  right*/
+
+.update_profile {
+    width: 25%;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+
+.update_profile .main_profile {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.update_profile .main_profile .imgUser {
+    position: relative;
+    margin-right: 20px;
+}
+
+.update_profile .main_profile .imgUser ion-icon {
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    font-size: 22px;
+    display: none;
+}
+
+.update_profile .main_profile .imgUser:hover ion-icon {
+    cursor: pointer;
+    display: block;
+}
+
+.update_profile .main_profile .imgUser:hover img {
+    opacity: .6;
+}
+
+.update_profile .main_profile .imgUser img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.submit {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2222;
+    display: none;
+    padding: 4px;
+}
+
+#save_name,
+#save_name_pl {
+    display: none;
+}
+
+.submit ion-icon {
+    font-size: 20px;
+}
+
+.submit ion-icon[name="checkmark-done-circle"] {
+    font-size: 30px;
+    color: greenyellow;
+}
+
+li .nameUser {
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+li .nameUser input {
+    width: 100%;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    z-index: 1;
+    color: white;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+li.editNameUser:hover .submit {
+    display: block!important;
+}
+
+.update_profile .main_profile li:nth-child(2) {
+    font-size: 14px;
+    opacity: .4;
+    margin: 4px 0 10px 0;
+}
+
+.update_profile .main_profile li:nth-child(3) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.update_profile .main_profile li:nth-child(3) div {
+    text-align: center;
+    font-weight: 500;
+}
+
+.update_profile .main_profile li:nth-child(3) div>span {
+    display: block;
+    font-size: 16px;
+    opacity: .4;
+    margin: 4px 0;
+}
+
+.update_profile .nav_profile_user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.update_profile .nav_profile_user button {
+    width: 40%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    margin: 0 6px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+.update_profile .nav_profile_user button a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.update_profile .nav_profile_user button:hover {
+    opacity: .7;
+}
+
+.update_profile .nav_profile_user button ion-icon {
+    margin-left: 10px;
+}
+
+.update_profile .nav_profile_user button.active {
+    /* background: linear-gradient(to right, #5482aa, #b997d7, #c06c84); */
+    background: #1b2051!important;
+    border: none;
+    /* background: linear-gradient(to top right,#355c7d,#6c5b7b,#c06c84); */
+}
+
+.update_profile .header_profile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close_profile {
+    display: block;
+    width: max-content;
+    font-size: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    color: white;
+    cursor: pointer;
+}
+
+.close_profile:hover ion-icon {
+    opacity: .7;
+}
+
+#form_upload_playlist.form_upload.active {
+    display: flex;
+}
+
+.form_upload_music.active {
+    display: flex;
+}
+
+#form_upload_avatar.form_upload.acitve {
+    display: block;
+}
+
+#form_upload_avatar>div {
+    position: absolute;
+    top: 10px;
+    right: 20%;
+}
+
+.next_music_list .playlist {
+    height: max-content!important;
+}
+
+.next_music_list .playlist ul {
+    height: 370px!important;
+    overflow-y: scroll;
+}
+
+.next_music_list .playlist ul::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* cusom form upload */
+
+.drop-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+    background: #eee;
+    border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+    color: #222;
+}
+
+.drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #1b2051!important;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #1b2051!important;
+}
+
+
+/* music playlist */
+
+#list_music_playlist {
+    display: none;
+}
+
+#list_music_playlist.active {
+    display: block;
+}
+
+
+/* change playlist */
+
+li.editNameUser {
+    position: relative;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li.editNameUser .submit {
+    position: absolute;
+    right: -30px;
+}
+
+#name_pl {
+    width: 100%;
+    text-align: center;
+}
+
+.img_playMusic_mobile {
+    display: none;
+}

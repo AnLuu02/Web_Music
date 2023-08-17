@@ -1,0 +1,16 @@
+footer{
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    color: white;
+}
+footer span{
+    display: block;
+    font-weight: 100!important;
+    font-size: 14px;
+}
+footer span a{
+    letter-spacing: unset!important;
+    color: aqua;
+    font-weight: 100!important;
+}

@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 10%;
+}
+
+.form_user {
+    width: 30%;
+}
+
+.form_user h1 {
+    font-size: 50px;
+    letter-spacing: normal;
+    margin: 20px;
+    text-align: center;
+}
+
+.form_user form {
+    width: 100%;
+}
+
+.form_user form input:not(input[type="radio"]) {
+    width: 100%;
+    padding: 16px 0 16px 10px;
+    border-radius: 4px;
+    border: 1px solid black;
+    outline: none;
+    margin: 6px 0;
+}
+
+.content_pass {
+    width: 100%;
+    position: relative;
+}
+
+.content_pass ion-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+}
+
+.content_pass ion-icon.active {
+    display: block;
+}
+
+.form_user form>label {
+    display: block;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.form_user form .birhday label {
+    display: block;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.register form .birhday {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.register form .birhday .item_birthday {
+    width: 20%;
+}
+
+.register form .birhday .item_birthday>input {
+    width: 100%;
+    padding: 16px 0 16px 10px;
+    border-radius: 4px;
+    border: 1px solid black;
+    outline: none;
+    margin-top: 6px;
+}
+
+.register form .item_birthday:nth-child(2) {
+    width: 40%;
+}
+
+.register form .item_birthday select {
+    width: 100%;
+    padding: 16px;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
+.register form .gender {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+.register form .gender .item_gender {
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.register form .gender .item_gender>input {
+    margin-right: 10px;
+}
+
+.register form .option_other {
+    display: flex;
+    margin: 40px 0 20px 0;
+}
+
+.form_user form input[type="submit"] {
+    width: max-content!important;
+    padding: 16px 30px!important;
+    font-size: 14px;
+    /* background-color: rgb(35, 203, 119); */
+    background: linear-gradient(to right, #5482aa, #b997d7, #c06c84);
+    color: white;
+    font-weight: 500;
+    outline: none;
+    border: none!important;
+    border-radius: 30px!important;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.register form .btn_submit_register {
+    text-align: center;
+    margin: 5px 0 20px 0;
+}
+
+.register form input[type="submit"]:hover {
+    transform: scale(1.1);
+}
+
+.login form input[type="submit"]:hover {
+    transform: scale(1.1);
+}
+
+.register form .nav_login {
+    width: 100%;
+    text-align: center;
+}
+
+
+/* login */
+
+.login form .submit_login {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.login h2 {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.login form a {
+    color: black;
+    font-weight: 500;
+}
+
+.login button a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.4)!important;
+}
+
+.login button {
+    width: 100%;
+    padding: 16px 0;
+    border-radius: 30px!important;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+
+/* custom checkbox */
+
+.container {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    background-color: #eee;
+}
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked~.checkmark {
+    /* background-color: rgb(35, 203, 119); */
+    background: linear-gradient(to right, #5482aa, #b997d7, #c06c84);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.error {
+    color: red;
+}
+
+
+/* profile */
+
+.imgProfile {
+    width: 100%;
+    text-align: center;
+}
+
+.imgProfile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-position: center;
+    overflow: hidden;
+    border: 1px solid black;
+    object-fit: cover;
+    z-index: -1;
+}

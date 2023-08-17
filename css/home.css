@@ -1,0 +1,139 @@
+.home {
+    width: 94%;
+    color: white;
+    margin: 1% 3% 5% 3%;
+}
+
+.home ul {
+    width: 100%;
+    flex-wrap: nowrap!important;
+    overflow: hidden;
+}
+
+.home ul li {
+    flex: 0 0 15%;
+}
+
+.title_main {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0px 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home_flex .title_main>a {
+    display: block;
+    font-size: 14px;
+    color: white;
+    opacity: .7;
+    font-weight: 200;
+}
+
+.home_flex .title_main>a:hover {
+    text-decoration: underline;
+}
+
+.home.active ul {
+    flex-wrap: wrap!important;
+}
+
+.home.active ul li {
+    flex: unset;
+}
+
+.home .first_home.active {
+    display: block!important;
+}
+
+.home .second_home.active {
+    display: block!important;
+}
+
+.home .first_home .title_main>a.active,
+.home .second_home .title_main>a.active {
+    display: none;
+}
+
+#banner_home{
+    justify-content: unset;
+    height: 490px;
+    margin-bottom: 100px;
+    /* margin-top: 70px; */
+}
+.aim{
+    transform: translateX(-100px);
+    opacity: 0;
+    animation: showText 1s ease-in-out forwards;
+}
+
+@keyframes showText{
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+#banner_home .content h2{
+    font-size: 50px!important;
+    color: aqua;
+    animation-delay: .6s;
+}
+#banner_home .content p{
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+    animation-delay: .8s;
+
+}
+#banner_home .content .nav_home{
+    animation-delay: 1.2s;
+
+}
+#banner_home .content button {
+    font-size: 14px;
+    background-color: transparent!important;
+    outline: none;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    border: 1px solid aqua;
+
+
+    
+}
+
+#banner_home .content button a {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition: .2s;
+    
+}
+
+#banner_home .content button:nth-child(1) {
+    background: transparent;
+    margin-right: 8px;
+}
+
+#banner_home .content button:nth-child(1) a {
+    color: white;
+}
+#banner_home .content button:nth-child(2) {
+    border: 1px solid aqua;
+}
+
+.content button a:hover {
+    border: unset!important;
+    border: 1px solid aqua;
+    color: black!important;
+    background-color: aqua;
+    box-shadow: 0px 0px 4px aqua, 0px 0px 6px aqua, 0px 0px 10px aqua;
+}

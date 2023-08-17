@@ -1,0 +1,336 @@
+/* toodlip */
+
+.tooltip {
+    position: relative;
+    z-index: 100000;
+    display: inline-block;
+    font-size: 11px!important;
+    font-weight: 500;
+
+}
+
+.tooltip ion-icon {
+    font-size: 20px!important;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: max-content;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 4px;
+    position: absolute;
+    z-index: 99;
+    bottom: 130%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* width: 20%;
+    height: 100%; */
+    border: 8px solid;
+
+    border-color: white transparent transparent transparent;
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* confirm dialog */
+
+.confirm_dialog {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.confirm_dialog .dialog {
+    width: 400px;
+    background-color: white;
+    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
+    background: #1b2051!important;
+    border-radius: 6px;
+    padding: 10px;
+    color: white;
+}
+
+.close-message {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+}
+
+.dialog p {
+    color: white;
+    font-size: 13px;
+    padding: 4px 0;
+}
+
+.dialog .nav-library {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+.dialog .nav-library button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    border: 1px solid white;
+    border-radius: 30px;
+    text-align: center;
+    margin-left: 10px;
+    transition: 0.2s;
+    overflow: hidden;
+}
+
+.dialog .nav-library button:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dialog .nav-library button>a {
+    color: white;
+    padding: 4px 10px;
+    display: block;
+}
+
+.dialog .nav-library button.active>a,
+.dialog .nav-library button.active {
+    background-color: #c06c84;
+    border: none;
+}
+
+
+/* list_choose_playlist */
+
+.list_choose_playlist {
+    position: absolute;
+    right: 1%;
+    bottom: 95%;
+    z-index: 100000000000000000000000000000000000000000000000000000000000000000;
+    width: 200px;
+    background-color: #355c7d;
+    color: white;
+    border-radius: 6px;
+    padding: 4px 0 10px 0;
+    display: none;
+}
+
+.list_choose_playlist::before {
+    content: "";
+    position: absolute;
+    border: 10px solid;
+    border-color: #355c7d transparent transparent transparent;
+    bottom: -19px;
+    right: 12%;
+    color: white;
+}
+
+.list_choose_playlist.active {
+    display: block;
+}
+
+.list_choose_playlist>div {
+    width: 100%;
+    padding: 6px 10px;
+}
+
+.list_choose_playlist h3 {
+    padding: 10px 10px 3px 10px;
+    font-size: 16px;
+}
+
+.list_choose_playlist ul {
+    width: 100%;
+}
+
+.list_choose_playlist ul li {
+    width: 100%!important;
+    justify-content: unset!important;
+    background-color: transparent;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.list_choose_playlist ul li:hover,
+a.create_playlist:hover {
+    cursor: pointer;
+    background: rgba(256, 256, 256, 0.1);
+}
+
+.list_choose_playlist ion-icon {
+    margin-right: 8px;
+}
+
+.blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: transparent;
+    z-index: 99998;
+}
+#blur{
+    display: none;
+
+}
+
+#loading{
+    background-color: #47d864;
+    z-index: 1000000!important;
+}
+
+/* ======= Toast message ======== */
+
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 9999999000000000000000000000000000000000000000000;
+}
+
+#toast--left {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    z-index: 9999999000000000000000000000000000000000000000000;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 20px 0;
+    min-width: 400px;
+    max-width: 450px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear 0.3s;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(calc(-100% - 32px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.toast--success {
+    border-color: #47d864;
+}
+
+.toast--success .toast__icon {
+    color: #47d864;
+}
+
+.toast--info {
+    border-color: #2f86eb;
+}
+
+.toast--info .toast__icon {
+    color: #2f86eb;
+}
+
+.toast--warning {
+    border-color: #ffc021;
+}
+
+.toast--warning .toast__icon {
+    color: #ffc021;
+}
+
+.toast--error {
+    border-color: #ff623d;
+}
+
+.toast--error .toast__icon {
+    color: #ff623d;
+}
+
+.toast+.toast {
+    margin-top: 24px;
+}
+
+.toast__icon {
+    font-size: 24px;
+}
+
+.toast__icon,
+.toast__close {
+    padding: 0 16px;
+}
+
+.toast__body {
+    flex-grow: 1;
+}
+
+.toast__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toast__msg {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+.toast__close {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
