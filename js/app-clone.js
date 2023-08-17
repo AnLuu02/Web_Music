@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.remove('active');
             })
             if (event.target.closest('#all_playmusic')) {
-                let idSong = Math.floor(Math.random() * musics.length);
+                let idSong = Math.floor(Math.random() * musics.length) + 1;
                 songNode = document.querySelector(`ul.music li.song[id_song="${idSong}"]`);
                 songNode.classList.add('active');
                 currentIndex = Number(songNode.getAttribute('index'));
