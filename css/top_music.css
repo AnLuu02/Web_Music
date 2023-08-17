@@ -5,11 +5,10 @@
 }
 
 .top_music ul.list_playlist li {
-    /* display: inline-block; */
     width: 230px!important;
     height: 275px!important;
-    padding: 0 12px;
-    margin: 0;
+    margin: 0!important;
+    color: white!important;
 }
 
 .top_music ul li .content {

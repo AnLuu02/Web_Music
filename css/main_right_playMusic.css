@@ -329,11 +329,13 @@ a {
 
 .same_list_music ul.music li::after {
     content: "";
-    width: 100%;
-    height: 1px;
+    width: 96%;
+    height: 0.6px;
     background-color: rgba(256, 256, 256, 0.1);
     position: absolute;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 

@@ -35,7 +35,6 @@ img {
     min-height: 100vh;
     background-color: #170f23;
     background-color: #14182a;
-
     display: flex;
     justify-content: space-between;
 }
@@ -44,12 +43,11 @@ img {
     width: calc(100% - 200px);
     position: relative;
     top: 0;
-    padding-top: 70px;
+    padding: 5% 3% 0 3%;
     margin-left: 200px;
     background: url(../uploads/footer_bg.png);
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
 
 .container .main_right .logo,

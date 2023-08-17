@@ -2,10 +2,7 @@
     width: 200px;
     min-height: 100vh;
     position: fixed;
-    background-color: #2a213a;
     background-color: #1b2039;
-
-    
     left: 0;
     top: 0;
     z-index: 99997;

@@ -1,7 +1,6 @@
 .home {
-    width: 94%;
+    width: 100%;
     color: white;
-    margin: 1% 3% 5% 3%;
 }
 
 .home ul {
@@ -60,42 +59,43 @@
     display: none;
 }
 
-#banner_home{
+#banner_home {
     justify-content: unset;
     height: 490px;
     margin-bottom: 100px;
     /* margin-top: 70px; */
 }
-.aim{
+
+.aim {
     transform: translateX(-100px);
     opacity: 0;
     animation: showText 1s ease-in-out forwards;
 }
 
-@keyframes showText{
-    100%{
+@keyframes showText {
+    100% {
         transform: translateX(0);
         opacity: 1;
     }
 }
 
-
-#banner_home .content h2{
+#banner_home .content h2 {
     font-size: 50px!important;
     color: aqua;
     animation-delay: .6s;
 }
-#banner_home .content p{
+
+#banner_home .content p {
     font-size: 16px;
     line-height: 1.6;
     margin: 10px 0;
     animation-delay: .8s;
-
 }
-#banner_home .content .nav_home{
+
+#banner_home .content .nav_home {
     animation-delay: 1.2s;
-
 }
+
 #banner_home .content button {
     font-size: 14px;
     background-color: transparent!important;
@@ -105,9 +105,6 @@
     border: none;
     border-radius: 20px;
     border: 1px solid aqua;
-
-
-    
 }
 
 #banner_home .content button a {
@@ -115,7 +112,6 @@
     padding: 6px 10px;
     border-radius: 20px;
     transition: .2s;
-    
 }
 
 #banner_home .content button:nth-child(1) {
@@ -126,8 +122,22 @@
 #banner_home .content button:nth-child(1) a {
     color: white;
 }
+
 #banner_home .content button:nth-child(2) {
     border: 1px solid aqua;
+}
+
+#banner_chude {
+    width: 100%;
+    height: 360px;
+    margin-bottom: 50px;
+}
+
+#banner_chude img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
 }
 
 .content button a:hover {

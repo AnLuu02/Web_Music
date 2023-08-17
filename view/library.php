@@ -48,7 +48,7 @@
 <div class="library" id="library">
     <h1 class="header_library">
         THƯ VIỆN
-        <ion-icon name="play"></ion-icon>
+        <ion-icon name="play" id="all_playmusic"></ion-icon>
     </h1>
     <h2>PLAYLIST
         <ion-icon name="add" id="create_pl"></ion-icon>

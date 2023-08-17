@@ -5,7 +5,6 @@
     right: 0;
     width: 100%;
     height: 100px;
-    /* background: linear-gradient(to top right,#29455e,#3b2c48,#905163); */
     background-color: #14182a;
     overflow: hidden;
     align-items: center;
@@ -292,7 +291,6 @@
 
 .same_fixed_right {
     width: 22%;
-    /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
     background: #1b2051;
     color: white;
     padding: 10px;
