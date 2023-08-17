@@ -1630,7 +1630,55 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
             }
-        } else if (link == `./view/top.php`) {
+        }else if (link == `./view/chude.php`) {
+            // window.location = '/';
+            if (window.innerWidth <= 768) {
+                if (document.querySelector('.musicFixed.active')) {
+                    document.querySelector('.musicFixed.active').classList.remove('active');
+                }
+                document.querySelector('.container .main_left').classList.remove('active');
+                $('#blur').css('display', 'none');
+            }
+            $('main').load(link, function() {
+                // render home
+                const home_music = document.querySelector('.first_home ul');
+                const home_music_spotify = document.querySelector('.second_home ul');
+
+                function load_music_home(musics) {
+                    let html = musics.map((music, index) => {
+                        return `<li class="song" index="${index}" id_song = ${music.m_id}>
+                                        <a href="#">
+                                            <img src="${music.img}" alt="##">
+                                            <div class="name">${music.name}</div>
+                                            <div class="des">
+                                                ${music.artist}
+                                            </div>
+                                        </a>
+                                        <div><ion-icon name="caret-forward-outline"></ion-icon></div>
+                                    </li>`
+                    })
+                    home_music.innerHTML = html.join("");
+                    home_music_spotify.innerHTML = html.join("");
+                    // handle home music
+                    const list_home_music = document.querySelector('.first_home ul.music');
+                    const list_home_music_spotify = document.querySelector('.second_home  ul.music');
+                    handlePlayMusic(list_home_music, musics);
+                    handlePlayMusic(list_home_music_spotify, musics);
+                }
+                // $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
+                //     let res = JSON.parse(response);
+                //     if (res.error !== 1) {
+                //         let datas = JSON.parse(res.data_music);
+                //         load_music_home(datas);
+                //     } else {
+                //         alert(res.message);
+                //     }
+                // });
+            });
+
+
+        }
+         else if (link == `./view/top.php`) {
             // window.location = '/';
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
