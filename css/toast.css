@@ -6,7 +6,6 @@
     display: inline-block;
     font-size: 11px!important;
     font-weight: 500;
-
 }
 
 .tooltip ion-icon {
@@ -39,9 +38,7 @@
     /* width: 20%;
     height: 100%; */
     border: 8px solid;
-
     border-color: white transparent transparent transparent;
-
 }
 
 .tooltip:hover .tooltiptext {
@@ -200,15 +197,16 @@ a.create_playlist:hover {
     background: transparent;
     z-index: 99998;
 }
-#blur{
-    display: none;
 
+#blur {
+    display: none;
 }
 
-#loading{
+#loading {
     background-color: #47d864;
     z-index: 1000000!important;
 }
+
 
 /* ======= Toast message ======== */
 

@@ -1755,19 +1755,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     link = $(this).attr('href');
                 }
             }
-      
-            window.history.pushState(load_content(link),link,link);
+            window.history.pushState(load_content(link),"",link);
         })
     }
     handle_sidebar();
 
-    // check url render layout
-    function check_url_render_layout(){
-      let url = window.location.pathname;
-      load_content(url);
 
-    }
-    check_url_render_layout()
+    // prev - next page
+    $('#prevPage').click(function(){
+       if(window.history.length > 0){
+            window.history.back();
+            if(window.history.length > 0){
+                document.getElementById("prevPage").style.cursor =  "pointer";
+            }
+            let url = window.location.pathname;
+            if(url == "/index.php"){
+                url = "/home";
+            }
+            document.querySelectorAll('.main_left ul li>a').forEach(elem=>{
+                    if(elem.getAttribute('href') == url){
+                        if (uID) {
+                            if(document.querySelector('li.active')){
+                                document.querySelector('li.active').classList.remove('active');
+                            }
+                            $('#blur').css('display', 'none');
+                            if(elem.closest('li')){
+                                elem.closest('li').classList.add('active');
+                            }
+                        } else {
+                            if (elem.closest('li') && elem.closest('li').getAttribute('id') === "nav_playlist" || elem.closest('li') && elem.closest('li').getAttribute('id') === "nav_library") {} else {
+                                $('li.active').removeClass('active');
+                                if(document.querySelector('li.active')){
+                                    document.querySelector('li.active').classList.remove('active');
+                                }
+
+                                $('#blur').css('display', 'none');
+                                if(elem.closest('li')){
+                                    elem.closest('li').classList.add('active');
+                                }
+                                
+                            }
+                        }
+                    }
+            })
+            // load_content(url);
+       }
+    })
+    // // check url render layout
+    // function check_url_render_layout(){
+    //   let url = window.location.pathname;
+    //   load_content(url);
+
+    // }
+    // check_url_render_layout()
 
     function load_layout_playmusic_mobile(){
             if (window.innerWidth <= 768) {
@@ -1890,6 +1930,7 @@ document.addEventListener('DOMContentLoaded', () => {
             handle_btn_home_content();
         })
     }
+    load_layout_home_first();
 
     function handle_btn_home_content(){
         if(document.querySelectorAll("#nav_home_content button>a")){
@@ -1915,7 +1956,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
     }
-    load_layout_home_first();
+   
     // upload video
 
     function handle_btn_upload_music(){
