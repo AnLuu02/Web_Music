@@ -21,14 +21,18 @@ header .nav_header {
 header .nav_header div {
     font-size: 22px;
     color: white;
-    opacity: .2;
     margin-right: 20px;
+}
+
+header .nav_header div ion-icon {
+    opacity: .2;
     cursor: not-allowed;
 }
 
-header .nav_header div:first-child.active,
-header .nav_header div:last-child.active {
+header .nav_header div #prevPage.active,
+header .nav_header div #nextPage.active {
     opacity: 1;
+    cursor: pointer;
 }
 
 
