@@ -93,19 +93,19 @@ if (!empty($_SESSION["id"])) {
             </div>
             <ul class="nav_mobile" id="nav_main_left">
                 <li id="nav_home" class="active">
-                    <a href="home.php">
+                    <a href="/home">
                         <ion-icon name="home-outline"></ion-icon>
                         Trang chủ
                     </a>
                 </li>
                 <li id="nav_discover">
-                    <a href="discover.php">
+                    <a href="/discover">
                         <ion-icon name="disc-outline"></ion-icon>
                         Khám phá
                     </a>
                 </li>
                 <li id="nav_library">
-                    <a href="library.php">
+                    <a href="/library">
                         <ion-icon name="library-outline"></ion-icon>
                         Thư viện
                     </a>
@@ -122,19 +122,19 @@ if (!empty($_SESSION["id"])) {
             <span></span>
             <ul style="margin-top: 12px;">
                 <li id="likeMusic">
-                    <a href="bxh.php">
+                    <a href="/bxh">
                         <ion-icon name="musical-note-outline"></ion-icon>
                         BXH Nhạc Mới
                     </a>
                 </li>
                 <li id="nav_phanloai">
-                    <a href="chude.php">
+                    <a href="/chude">
                         <ion-icon name="grid-outline"></ion-icon>
                         Chủ đề
                     </a>
                 </li>
                 <li id="nav_top_music">
-                    <a href="top.php">
+                    <a href="/top">
                         <ion-icon name="star-outline"></ion-icon>
                         Top 100
                     </a>

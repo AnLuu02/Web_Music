@@ -5,8 +5,8 @@
             <h2 class="aim">Âm nhạc <br> <span style="font-size: 30px;">Một loại ngôn ngữ hài hòa.</span></h2>
             <p class="aim">Thêm chút đường cà phê có ngọt? <br>Thêm chút tình mình có thuộc về nhau?</p>
             <div class="nav_home aim" id="nav_home_content">
-                <button><a href="bxh.php">Nghe nhạc</a></button>
-                <button><a href="library.php">Xem playlist</a></button>
+                <button><a href="/bxh">Nghe nhạc</a></button>
+                <button><a href="/library">Xem playlist</a></button>
             </div>
         </div>
     </div>

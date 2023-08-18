@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="hot_song_artist">
-
+                
             </div>
         </div>
     </div>

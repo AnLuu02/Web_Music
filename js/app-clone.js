@@ -11,12 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelectorAll('.aim').forEach(item => {
                             item.style.display = `block`;
                         })
-
                     }
                 } else {
                     document.querySelector('.main_right header').style.background = 'transparent';
-
-
                 }
             }
 
@@ -25,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return arr[2] + "-" + arr[1] + "-" + arr[0];
             }
 
-            document.querySelector('.logo').addEventListener('click', () => {
-                location.reload();
-            })
 
             // move nav_playlist
             function check_show_musicbox() {
@@ -1191,9 +1185,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    var link;
-    function load_content(){
-        if (link == `./view/home.php`) {
+    function load_content(link){
+        let rootLink = "./view" + link; 
+        let url = rootLink + '.php';
+        if (rootLink == `./view/home`) {
             // window.location = '/';
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
@@ -1202,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.container .main_left').classList.remove('active');
                 $('#blur').css('display', 'none');
             }
-            $('main').load(link, function() {
+            $('main').load(url, function() {
                 handle_btn_home_content();
                 // render home
                 const home_music = document.querySelector('.first_home ul');
@@ -1241,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
 
-        } else if (link == `./view/discover.php`) {
+        } else if (rootLink == `./view/discover`) {
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
                     document.querySelector('.musicFixed.active').classList.remove('active');
@@ -1249,7 +1244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.container .main_left').classList.remove('active');
                 $('#blur').css('display', 'none');
             }
-            $('main').load(link, function() {
+            $('main').load(url, function() {
                 setInterval(changeOrder, 4000);
 
                 function changeOrder() {
@@ -1388,7 +1383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 })
             });
-        } else if (link == `./view/library.php`) {
+        } else if (rootLink == `./view/library`) {
             if (uID != undefined) {
                 if (window.innerWidth <= 768) {
                     if (document.querySelector('.musicFixed.active')) {
@@ -1397,7 +1392,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('.container .main_left').classList.remove('active');
                     $('#blur').css('display', 'none');
                 }
-                $('main').load(link, function() {
+                $('main').load(url, function() {
                     document.getElementById('create_pl').addEventListener('click', () => {
                         document.getElementById('form_upload_playlist').classList.add('active');
                     })
@@ -1614,7 +1609,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
             }
-        }else if (link == `./view/chude.php`) {
+        }else if (rootLink == `./view/chude`) {
             
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
@@ -1623,7 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.container .main_left').classList.remove('active');
                 $('#blur').css('display', 'none');
             }
-            $('main').load(link, function() {
+            $('main').load(url, function() {
                 // render home
                 const home_music = document.querySelector('.first_home ul');
                 const home_music_spotify = document.querySelector('.second_home ul');
@@ -1662,7 +1657,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         }
-         else if (link == `./view/top.php`) {
+         else if (rootLink == `./view/top`) {
             
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
@@ -1671,7 +1666,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.container .main_left').classList.remove('active');
                 $('#blur').css('display', 'none');
             }
-            $('main').load(link, function() {
+            $('main').load(url, function() {
                 // render home
                 const home_music = document.querySelector('.first_home ul');
                 const home_music_spotify = document.querySelector('.second_home ul');
@@ -1709,7 +1704,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
 
-        } else if (link == `./view/bxh.php`) {
+        } else if (rootLink == `./view/bxh`) {
             // window.location = '/';
             if (window.innerWidth <= 768) {
                 if (document.querySelector('.musicFixed.active')) {
@@ -1718,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.container .main_left').classList.remove('active');
                 $('#blur').css('display', 'none');
             }
-            $('main').load(link, function() {
+            $('main').load(url, function() {
                 $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
                     let res = JSON.parse(response);
                     const all_music = document.getElementById('all_music_render');
@@ -1746,24 +1741,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function handle_sidebar(){
         $('.main_left ul li>a').on('click', function(e) {
             e.preventDefault();
-            if (uID) {
+            let link;
+            if (uID && $(this).attr('href') == "/library") {
                 $('li.active').removeClass('active');
                 $('#blur').css('display', 'none');
                 $(this).closest('li').addClass('active');
+                link = $(this).attr('href');
             } else {
                 if ($(this).closest('li').attr('id') === "nav_playlist" || $(this).closest('li').attr('id') === "nav_library") {} else {
                     $('li.active').removeClass('active');
                     $('#blur').css('display', 'none');
                     $(this).closest('li').addClass('active');
-    
+                    link = $(this).attr('href');
                 }
             }
-            let hrf = $(this).attr('href');
-            link = './view/' + hrf;   
-            load_content();
+      
+            window.history.pushState(load_content(link),link,link);
         })
     }
     handle_sidebar();
+
+    // check url render layout
+    function check_url_render_layout(){
+      let url = window.location.pathname;
+      load_content(url);
+
+    }
+    check_url_render_layout()
 
     function load_layout_playmusic_mobile(){
             if (window.innerWidth <= 768) {
@@ -1892,12 +1896,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll("#nav_home_content button>a").forEach(elem=>{
                 elem.addEventListener('click',e=>{
                     e.preventDefault();
-                    link ="./view/"+ e.target.getAttribute('href');
+                    let link = e.target.getAttribute('href');
                    if(link == "./view/library.php" && uID || link == "./view/bxh.php" ){
                         $('li.active').removeClass('active');
                         $('#blur').css('display', 'none');
                         $(`li a[href="${e.target.getAttribute('href')}"]`).closest('li').addClass('active');
-                        load_content();
+                        load_content(link);
                    }
                    else{
                     toast({
