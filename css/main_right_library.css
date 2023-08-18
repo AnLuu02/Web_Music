@@ -434,16 +434,19 @@ ul#list_playlist {
 
 /* BXH */
 
+#bxh ul li .idMusic {
+    width: 8%;
+}
+
 .numberTop {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
-    padding: 0 20px;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 2px white;
 }
 
 #bxh .contentMusic {
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 #top_1 {

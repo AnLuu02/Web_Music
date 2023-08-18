@@ -469,6 +469,7 @@ a {
 }
 
 .same_list_music .hoverItem .hoverAnotherChoice {
+    height: 100%;
     float: right;
     display: flex;
     justify-content: center;
