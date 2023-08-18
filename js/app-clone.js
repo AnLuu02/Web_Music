@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
             window.onscroll = function() {
-                if (this.scrollY > 0) {
+                if (Math.floor(this.scrollY) >= 0) {
                     document.querySelector('.main_right header').style.background = '#1b2035';
-                    if (this.scrollY >= 490) {
+                    if (Math.floor(this.scrollY) >= 490) {
                         document.querySelectorAll('.aim').forEach(item => {
                             item.style.display = `none`;
                         })

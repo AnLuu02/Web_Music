@@ -27,41 +27,44 @@
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
         ?>
-                <tr>
-                    <td><?= $count ?></td>
-                    <td><img height='100px' src='../../<?= $row["img"] ?>'></td>
-                    <td><?= $row["name"] ?></td>
-                    <td><?= $row["artist"] ?></td>
-                    <td><?= $row["category"] ?></td>
-                    <td><?= $row["nation"] ?></td>
-                    <td><?= $row["owner"] ?></td>
+        <tr>
+            <td><?= $count ?></td>
+            <td><img height='100px' src='../../<?= $row["img"] ?>'></td>
+            <td><?= $row["name"] ?></td>
+            <td><?= $row["artist"] ?></td>
+            <td><?= $row["category"] ?></td>
+            <td><?= $row["nation"] ?></td>
+            <td><?= $row["owner"] ?></td>
 
-                    <td><?php
+            <td><?php
                         list($year, $month, $day) = explode('-', $row['date']);
                         echo "$day-$month-$year";
                         ?></td>
-                    <td><?= $row["time"] ?></td>
-                    <td><button class="btn btn-danger" style="height:40px" onclick="itemDelete('<?= $row['m_id'] ?>')" data-toggle="modal" data-target="#staticBackdrop">Delete</button></td>
-                    <!-- modal delete music -->
-                    <!-- Modal -->
-                    <div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Cảnh báo</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn chắc chắn muốn xóa bài hát này chứ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-                                    <button type="button" class="btn btn-primary" id="allowDel" id_del="" category="uploaded">Có</button>
-                                </div>
-                            </div>
+            <td><?= $row["time"] ?></td>
+            <td><button class="btn btn-danger" style="height:40px" onclick="itemDelete('<?= $row['m_id'] ?>')"
+                    data-toggle="modal" data-target="#staticBackdrop">Delete</button></td>
+            <!-- modal delete music -->
+            <!-- Modal -->
+            <div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Cảnh báo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn chắc chắn muốn xóa bài hát này chứ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                            <button type="button" class="btn btn-primary" id="allowDel" id_del=""
+                                category="uploaded">Có</button>
                         </div>
                     </div>
-                </tr>
+                </div>
+            </div>
+        </tr>
         <?php
                 $count = $count + 1;
             }
@@ -93,7 +96,8 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Thời gian:</label>
-                            <input type="text" placeholder="Nhập thời lượng bài hát theo định dạng (00:00)" class="form-control" id="m_time">
+                            <input type="text" placeholder="Nhập thời lượng bài hát theo định dạng (00:00)"
+                                class="form-control" id="m_time">
                         </div>
 
 
@@ -116,13 +120,15 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-secondary" id="upload" style="height:40px" onclick="addItems(event)">Add
+                            <button type="submit" class="btn btn-secondary" id="upload" style="height:40px"
+                                onclick="addItems(event)">Add
                                 Music</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="height:40px">Close</button>
                 </div>
             </div>
 
