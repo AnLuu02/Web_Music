@@ -1,4 +1,4 @@
-<div class="home" id="home">
+<div class="home" id="chude">
     <div class="banner" id="banner_chude">
         <img src="../uploads/IMG-PLAYLIST-64605c2a87c705.19002013.jpg" alt="" width="100%" height="300px">
 

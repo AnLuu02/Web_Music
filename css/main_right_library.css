@@ -1,6 +1,7 @@
 .library {
     width: 100%!important;
     color: white!important;
+    padding: 8% 3% 0 3%;
     overflow: hidden;
 }
 
@@ -194,6 +195,7 @@ ul#list_playlist {
 
 #discover {
     width: 100%!important;
+    padding: 8% 3% 0 3%;
     overflow: hidden;
 }
 
@@ -393,7 +395,7 @@ ul#list_playlist {
 }
 
 #discover .list_music .imageMusic {
-    width: 18%;
+    width: 50px!important;
     height: 50px;
     border-radius: 4px;
 }
