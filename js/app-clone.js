@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+            document.querySelector(".logo").addEventListener('click', () => {
+                window.location = "/";
+            })
             window.onscroll = function() {
                 if (Math.floor(this.scrollY) >= 0) {
                     document.querySelector('.main_right header').style.background = '#1b2035';
@@ -1757,12 +1760,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if(link != undefined && link != "/home"){
-                if(!arrPageDirec.includes(link)){
-                    arrPageDirec.unshift(link);
-                    indexPage = arrPageDirec.length;
-                    if(indexPage > 0){
+                if(!arrPrevPage.includes(link)){
+                    arrPrevPage.unshift(link);
+                    arrNextPage.unshift(link);
+
+                    if(arrPrevPage.length > 0){
                         document.getElementById("prevPage").classList.add('active');
                     }
+                
                 }
                 
             }
@@ -1774,17 +1779,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // prev - next page
     var lastUrl;
-    var indexPage;
-    let arrPageDirec = [];
+    var indexPage = 0;
+    let arrPrevPage = ["/home"];
+    let arrNextPage = [];
+
     $('#prevPage').click(function(e){
-        if(arrPageDirec.length > 1){
-            lastUrl = arrPageDirec.splice(1,1);
-            indexPage = arrPageDirec.length;
+        if(indexPage < arrPrevPage.length-1){
+            indexPage++;
         }
-        else{
-            lastUrl = "/home";
-            indexPage = 0;
+        // else{
+        //     arrPrevPage = ["/home"];
+        //     indexPage = 0;
+        // }
+        // show next btn
+        if(indexPage > 0){
+            document.getElementById("nextPage").classList.add('active');
         }
+
+        lastUrl = arrPrevPage[indexPage];
+    
+
+        document.querySelectorAll('.main_left ul li>a').forEach(elem=>{
+                if(elem.getAttribute('href') == lastUrl){
+                    if (uID) {
+                        if(document.querySelector('li.active')){
+                            document.querySelector('li.active').classList.remove('active');
+                        }
+                        $('#blur').css('display', 'none');
+                        if(elem.closest('li')){
+                            elem.closest('li').classList.add('active');
+                        }
+                    } else {
+                        if (elem.closest('li') && elem.closest('li').getAttribute('id') === "nav_playlist" || elem.closest('li') && elem.closest('li').getAttribute('id') === "nav_library") {} else {
+                            $('li.active').removeClass('active');
+                            if(document.querySelector('li.active')){
+                                document.querySelector('li.active').classList.remove('active');
+                            }
+
+                            $('#blur').css('display', 'none');
+                            if(elem.closest('li')){
+                                elem.closest('li').classList.add('active');
+                            }
+                            
+                        }
+                    }
+                }
+        })
+        if(indexPage >= arrPrevPage.length - 1){
+            document.getElementById("prevPage").classList.remove('active');
+        }
+        load_content(lastUrl);
+       
+    })
+
+    $('#nextPage').click(function(e){
+        if(indexPage > 0){
+            indexPage--;
+        }
+        if(arrPrevPage.length >= 0){
+            document.getElementById("prevPage").classList.add('active');
+        }
+
+        lastUrl = arrNextPage[indexPage];
        
         document.querySelectorAll('.main_left ul li>a').forEach(elem=>{
                 if(elem.getAttribute('href') == lastUrl){
@@ -1813,7 +1869,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
         })
         if(indexPage <= 0){
-            document.getElementById("prevPage").classList.remove('active');
+            document.getElementById("nextPage").classList.remove('active');
         }
         load_content(lastUrl);
        
