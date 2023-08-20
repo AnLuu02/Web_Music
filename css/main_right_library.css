@@ -40,8 +40,11 @@ ul#list_playlist {
 
 .list_playlist li {
     width: 20%;
-    padding-right: 14px;
     margin-bottom: 20px;
+}
+
+.list_playlist li:not(:nth-child(5n)) {
+    padding-right: 14px;
 }
 
 .list_playlist .content {
