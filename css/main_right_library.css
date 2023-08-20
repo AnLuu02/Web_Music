@@ -403,9 +403,7 @@ ul#list_playlist {
 #discover .list_music div.name_artist {
     width: 80%;
     margin: 5px 0;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis!important;
 }
 
 #discover .list_music div.nameMusic {

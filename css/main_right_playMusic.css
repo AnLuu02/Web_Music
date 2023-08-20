@@ -394,9 +394,10 @@ a {
     text-overflow: ellipsis;
 }
 
-.same_list_music .desMusic .name_artist {
+.name_artist {
     width: max-content;
     font-size: 12px;
+    color: white;
     opacity: 0.4;
     margin: 6px 0;
     white-space: nowrap;

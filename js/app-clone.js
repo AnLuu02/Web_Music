@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${music.img}" alt="">
                             <div class="desMusicFixed">
                                 <div class="nameMusicFixed"><a>${music.name}</a></div>
-                                <div class="name_artistFixed">${music.artist}</div>
+                                <div class="name_artist">${music.artist}</div>
                             </div>
                             <div class="AnotherChoiceFixed">
                             <div class="add_library" id="add_library">
@@ -2100,8 +2100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     handle_btn_upload_music();
 
-    // show info artist
-
 })
 
 
@@ -2397,4 +2395,4 @@ function handle_btn_change_name(){
         }
     })
 }
-handle_btn_change_name();handle_btn_change_name();
+handle_btn_change_name();

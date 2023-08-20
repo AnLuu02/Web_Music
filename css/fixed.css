@@ -42,15 +42,6 @@
     text-overflow: ellipsis;
 }
 
-.desMusicFixed .name_artist_fixed {
-    font-size: 12px;
-    color: white;
-    opacity: 0.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .leftMusicFixed .AnotherChoiceFixed {
     display: flex;
     align-items: center;
