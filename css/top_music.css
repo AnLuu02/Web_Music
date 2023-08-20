@@ -1,12 +1,4 @@
-.top_music ul#list_playlist {
-    display: unset!important;
-    display: grid!important;
-    grid-template-columns: auto auto auto auto auto;
-    gap: 10px;
-}
-
-.top_music ul.list_playlist li {
-    width: 230px!important;
+.top_music ul li {
     height: 275px!important;
     margin: 0!important;
     color: white!important;
