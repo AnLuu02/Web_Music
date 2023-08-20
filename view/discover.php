@@ -16,9 +16,9 @@
         </div>
         <ul class="nav_country">
             <div>
-                <li id="All" class="active"><a href="#">TẤT CẢ</a></li>
-                <li id="VN"><a href="#">VIỆT NAM</a></li>
-                <li id="TG"><a href="#">QUỐC TẾ</a></li>
+                <li id="All" class="active">TẤT CẢ</li>
+                <li id="VN">VIỆT NAM</li>
+                <li id="TG">QUỐC TẾ</li>
             </div>
             <li class="showAll" id="showAll">
                 <a href="all_music.php">

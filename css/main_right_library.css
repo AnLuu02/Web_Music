@@ -171,8 +171,8 @@ ul#list_playlist {
 .library ul.sub_nav_library li.active {
     border: none;
     font-weight: 500;
-    background: #1b2051;
-    border: 2px solid #1b2051;
+    background: #1b2070;
+    border: 2px solid #1b2070;
 }
 
 #list_music_library .list_music_render ul.music {
@@ -274,8 +274,7 @@ ul#list_playlist {
 
 #discover .new_music {
     width: 100%;
-    padding: 20px 0;
-    padding-bottom: 50px;
+    padding: 50px 0;
 }
 
 #discover .new_music .title {
@@ -331,46 +330,33 @@ ul#list_playlist {
     font-weight: 500;
     border: 1px solid white;
     cursor: pointer;
+    color: white!important;
 }
 
 #discover .nav_country>div li {
     margin: 20px 20px 20px 0;
 }
 
-#discover .nav_country>div li a {
-    color: white!important;
-    pointer-events: none;
-}
-
-#discover .nav_country>div li:hover a {
-    opacity: .7;
+#discover .nav_country>div li:not(.active):hover,
+.library ul.sub_nav_library li:not(.active):hover {
+    border-color: #1b2070!important;
+    color: #1b2070!important;
 }
 
 #discover .nav_country>div li.active {
-    /* background: linear-gradient(to right, #5482aa, #b997d7, #c06c84); */
-    background: #1b2051!important;
-    border: 2px solid #1b2051!important;
+    background: #1b2070!important;
+    border: 2px solid #1b2070!important;
     border: none;
 }
 
-#discover .nav_country>li:last-child {
-    float: right;
-}
-
-#discover .nav_country>li:last-child a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white!important;
-}
-
-#discover .nav_country>li:last-child ion-icon {
-    margin-left: 6px;
+#showAll:hover a {
+    color: .5;
 }
 
 #discover .list_music {
     width: 100%;
     /* min-height: 300px; */
+    height: 230px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

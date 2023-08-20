@@ -1,5 +1,6 @@
 <div id="view_artist">
     <div class="header_view_artist">
+        <img src="../uploads/IMG-PLAYLIST-64605c2a87c705.19002013.jpg" alt="">
         <div class="content_header">
             <div class="left_view_header">
                 <img src="../uploads/avata_default.jpg" alt="">

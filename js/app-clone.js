@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location = "/";
             })
             window.onscroll = function() {
-                if (Math.floor(this.scrollY) >= 0) {
+                if (Math.floor(this.scrollY) > 0) {
                     document.querySelector('.main_right header').style.background = '#1b2035';
                     if (Math.floor(this.scrollY) >= 490) {
                         document.querySelectorAll('.aim').forEach(item => {
@@ -560,6 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Thành công!",
                                     message: "Bài hát đã được thêm vào.",
                                     type: "success",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
                                     duration: 1000
                                 });
 
@@ -568,6 +569,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Cảnh báo!",
                                     message: "Bài hát này đã có trong thư viện.",
                                     type: "warning",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -577,6 +580,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Cảnh báo!",
                                     message: "Đăng nhập để tiếp tục.",
                                     type: "error",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -601,6 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Thành công!",
                                     message: "Xóa bài hát yêu thích thành công.",
                                     type: "success",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -638,6 +645,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Cảnh báo!",
                                     message: "Nguời dùng không tồn tại.",
                                     type: "warning",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -647,6 +656,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Cảnh báo!",
                                     message: "Đăng nhập để tiếp tục.",
                                     type: "error",
+                                    position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -704,6 +715,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                             title: "Thành công!",
                                                             message: "Bài hát đã được thêm vào.",
                                                             type: "success",
+                                                            position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                             duration: 1000
                                                         });
 
@@ -730,6 +743,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                             title: "Cảnh báo!",
                                                             message: "Bài hát đã có trong playlist.",
                                                             type: "warning",
+                                                            position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                             duration: 1000
                                                         });
 
@@ -752,6 +767,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: "Cảnh báo!",
                             message: "Đăng nhập để tiếp tục.",
                             type: "error",
+                            position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                             duration: 1000
                         });
 
@@ -844,6 +861,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).filter((elem, index) => index < total_music);
                 elem.innerHTML = data.join("");
                 handlePlayMusic(elem, musics);
+                handle_btn_name_artist();
+
             }
 
             function load_music(musics, element, showDelete = false, layout = "") {
@@ -900,6 +919,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
         element.innerHTML = html.join("");
+        handle_btn_name_artist();
+
     }
 
     function load_music_fixed_left(music) {
@@ -925,6 +946,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
         `
+        handle_btn_name_artist();
+
     }
 
     // load playlist library{}
@@ -944,6 +967,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </li>`;
         })
         document.querySelector('.list_playlist').innerHTML = html.join("");
+        handle_btn_name_artist();
+
     }
 
     function load_list_playlist(datas, element_main) {
@@ -954,24 +979,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     </li>`;
         })
         element_main.innerHTML = html.join("");
+        handle_btn_name_artist();
+
     }
     // // listening to music
     function listening_Music(music, elem) {
-        elem.html(`<li class="song active  id_song="${music.m_id}">
-        <div><ion-icon name="musical-notes-outline"></ion-icon></div>
-        <div class="contentMusic">
-            <div class="imageMusic">
-                <img src="${music.img}" alt="">
-            </div>
-            <div class="desMusic">
-                <div class="nameMusic">${music.name}</div>
-                <div class="name_artist">${music.artist}</div>
-            </div>
-        </div>
-        <div class="timeMusic">${music.time}</div>
-       
-    </li>
-`)
+                elem.html(`<li class="song active  id_song="${music.m_id}">
+                <div><ion-icon name="musical-notes-outline"></ion-icon></div>
+                <div class="contentMusic">
+                    <div class="imageMusic">
+                        <img src="${music.img}" alt="">
+                    </div>
+                    <div class="desMusic">
+                        <div class="nameMusic">${music.name}</div>
+                        <div class="name_artist">${music.artist}</div>
+                    </div>
+                </div>
+                <div class="timeMusic">${music.time}</div>
+            
+            </li>
+        `)
+        handle_btn_name_artist();
     }
 
     //     // show list play music
@@ -1334,6 +1362,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     title: "Thất bại!",
                                     message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                                     type: "error",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                     duration: 1000
                                 });
 
@@ -1515,6 +1545,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                             title: "Thành công!",
                                                             message: "Thay đổi thành công.",
                                                             type: "success",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                             duration: 1000
                                                         });
 
@@ -1527,6 +1559,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                             title: "Cảnh báo!",
                                                             message: "Thay đổi tên không thành công.",
                                                             type: "warning",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                             duration: 1000
                                                         });
 
@@ -1584,6 +1618,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                         title: "Thành công!",
                                                         message: json.message,
                                                         type: "success",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                         duration: 1000
                                                     });
 
@@ -1593,6 +1629,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                         title: "Thất bại!",
                                                         message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                                                         type: "error",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                                         duration: 1000
                                                     });
 
@@ -1731,6 +1769,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: "Thất bại!",
                             message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                             type: "error",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                             duration: 1000
                         });
 
@@ -2018,6 +2058,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         title: "Cảnh báo!",
                         message: "Đăng nhập để tiếp tục.",
                         type: "error",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                         duration: 1000
                     });
                    }
@@ -2072,6 +2114,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 title: "Thành công!",
                                 message: "Upload bài hát thành công.",
                                 type: "success",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                 duration: 1000
                             });
     
@@ -2080,6 +2124,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 title: "Thất bại!",
                                 message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                                 type: "error",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                                 duration: 1000
                             });
     
@@ -2093,12 +2139,66 @@ document.addEventListener('DOMContentLoaded', () => {
                     title: "Cảnh báo!",
                     message: "Hãy nhập đầy đủ các trường.",
                     type: "warning",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                     duration: 1000
                 });
             }
         });
     }
     handle_btn_upload_music();
+
+
+    // show infor artist
+    function handle_btn_name_artist(){
+        document.querySelectorAll('.name_artist').forEach(elem=>{
+            if(elem){
+                elem.addEventListener('click',e=>{
+                    $('main').load('./view/view_artist.php', function() {
+                        document.querySelector("#name_artist p").innerText = e.target.textContent;
+                        // history.pushState(null,"",`/${e.target.textContent}`)
+                        // arrPrevPage.unshift(`/${e.target.textContent}`);
+                        // arrNextPage.unshift(`/${e.target.textContent}`);
+                        // // render home
+                        // const home_music = document.querySelector('.first_home ul');
+                        // const home_music_spotify = document.querySelector('.second_home ul');
+                
+                        // function load_music_home(musics) {
+                        //     let html = musics.map((music, index) => {
+                        //         return `<li class="song" index="${index}" id_song = ${music.m_id}>
+                        //                         <a href="#">
+                        //                             <img src="${music.img}" alt="##">
+                        //                             <div class="name">${music.name}</div>
+                        //                             <div class="des">
+                        //                                 ${music.artist}
+                        //                             </div>
+                        //                         </a>
+                        //                         <div><ion-icon name="caret-forward-outline"></ion-icon></div>
+                        //                     </li>`
+                        //     })
+                        //     home_music.innerHTML = html.join("");
+                        //     home_music_spotify.innerHTML = html.join("");
+                        //     // handle home music
+                        //     const list_home_music = document.querySelector('.first_home ul');
+                        //     const list_home_music_spotify = document.querySelector('.second_home  ul');
+                        //     handlePlayMusic(list_home_music, musics);
+                        //     handlePlayMusic(list_home_music_spotify, musics);
+                        // }
+                        // $.get(`./controller/select_data.php?key=getAllData`, {}, function(response) {
+                        //     let res = JSON.parse(response);
+                        //     if (res.error !== 1) {
+                        //         let datas = JSON.parse(res.data_music);
+                        //         load_music_home(datas);
+                        //     } else {
+                        //         alert(res.message);
+                        //     }    
+                        // });
+                        // handle_btn_home_content();
+                    })
+                })
+            }
+        })
+    }
 
 })
 
@@ -2142,7 +2242,16 @@ function toast({ title = "", message = "", type = "info", position = "right", du
         const delay = (duration / 1000).toFixed(2);
 
         toast.classList.add("toast", `toast--${type}`);
-        toast.style.animation = `${position != "right"? "slideInRight":"slideInLeft"} ease .3s, fadeOut linear .3s ${delay}s forwards`;
+        let typeAnimation;
+        if(position === "bottom"){
+            typeAnimation = "slideInBottom";
+        }else if (position != "right"){
+            typeAnimation = "slideInRight";
+        }
+        else{
+                typeAnimation = "slideInLeft";
+            }
+        toast.style.animation = `${typeAnimation} ease .3s, fadeOut linear .3s ${delay}s forwards`;
 
         toast.innerHTML = `
                   <div class="toast__icon">
@@ -2190,7 +2299,8 @@ function handle_btn_upload_avatar(){
                             title: "Thành công!",
                             message: data.em,
                             type: "success",
-                            position: "left",
+                position: `${window.innerWidth <= 768?"bottom":"left"}`,
+
                             duration: 1000
                         });
     
@@ -2200,7 +2310,8 @@ function handle_btn_upload_avatar(){
                             title: "Thất bại!",
                             message: data.em,
                             type: "error",
-                            position: "left",
+                position: `${window.innerWidth <= 768?"bottom":"left"}`,
+
                             duration: 1000
                         });
     
@@ -2214,7 +2325,8 @@ function handle_btn_upload_avatar(){
                 title: "Thất bại!",
                 message: "Vui lòng chọn ảnh trước khi lưu.",
                 type: "error",
-                position: "left",
+                position: `${window.innerWidth <= 768?"bottom":"left"}`,
+
                 duration: 1000
             });
     
@@ -2246,7 +2358,8 @@ function handle_btn_upload_avatar(){
                         title: "Thành công!",
                         message: json.message,
                         type: "success",
-                        position: "left",
+                position: `${window.innerWidth <= 768?"bottom":"left"}`,
+
                         duration: 1000
                     });
     
@@ -2256,7 +2369,8 @@ function handle_btn_upload_avatar(){
                         title: "Thất bại!",
                         message: json.message,
                         type: "error",
-                        position: "left",
+                position: `${window.innerWidth <= 768?"bottom":"left"}`,
+
                         duration: 1000
                     });
     
@@ -2311,6 +2425,8 @@ function handle_btn_create_playlist(){
                             title: "Thành công!",
                             message: data.message,
                             type: "success",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
+
                             duration: 1000
                         });
     
@@ -2320,6 +2436,7 @@ function handle_btn_create_playlist(){
                             title: "Thất bại!",
                             message: data.message,
                             type: "error",
+                            position: `${window.innerWidth <= 768?"bottom":"right"}`,
                             duration: 1000
                         });
     
@@ -2332,6 +2449,7 @@ function handle_btn_create_playlist(){
                 title: "Cảnh báo!",
                 message: "Vui lòng nhập đầy đủ các trường.",
                 type: "warning",
+                position: `${window.innerWidth <= 768?"bottom":"right"}`,
                 duration: 1000
             });
         }
@@ -2370,7 +2488,7 @@ function handle_btn_change_name(){
                             title: "Thành công!",
                             message: "Thay đổi thành công!",
                             type: "success",
-                            position: "left",
+                            position: `${window.innerWidth <= 768?"bottom":"left"}`,
                             duration: 1000
                         });
     
@@ -2385,7 +2503,7 @@ function handle_btn_change_name(){
                             title: "Thất bại!",
                             message: "Thay đổi tên không thành công.",
                             type: "error",
-                            position: "left",
+                            position: `${window.innerWidth <= 768?"bottom":"left"}`,
                             duration: 1000
                         });
     
@@ -2395,4 +2513,5 @@ function handle_btn_change_name(){
         }
     })
 }
+handle_btn_change_name();
 handle_btn_change_name();

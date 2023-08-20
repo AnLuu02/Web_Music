@@ -2,12 +2,16 @@
     #blur {
         background: rgba(0, 0, 0, 0.4);
     }
+    #toast--left {
+        left: 50%;
+        transform: translateX(-50%);
+    }
     main {
         width: 100%!important;
     }
     .container .main_left {
         width: 60%;
-        background-color: white!important;
+        background-color: #1b2039!important;
         transform: translateX(-120%);
         transition: 0.5s;
         z-index: 1000000000000000000000000;
@@ -23,9 +27,11 @@
     }
     ul li a {
         width: 100%;
-        color: black!important;
         /* opacity: .5; */
         font-weight: bold;
+    }
+    .container .main_right {
+        padding-top: 86px;
     }
     .container .main_right .user .settings_header,
     .container .main_right .nav_header,
@@ -62,13 +68,14 @@
     .close_nav_left {
         background-color: transparent!important;
         display: block!important;
-        color: black;
+        color: white;
         position: absolute;
         right: -24px;
         top: 4px;
     }
     header {
         width: 100%!important;
+        left: 0;
         justify-content: space-between;
         background-color: #1b2035!important;
     }
@@ -80,7 +87,7 @@
         box-shadow: 0 2px 4px 0 rgba(158, 158, 158, 0), 0 2px 15px 0 rgba(0, 0, 0, 0.06);
     }
     header.active ion-icon {
-        color: black;
+        color: white;
         font-weight: bold;
         font-size: 30px;
     }
@@ -88,7 +95,7 @@
         width: max-content!important;
     }
     header.active .user .profile {
-        border: 1px solid black;
+        border: 1px solid white;
     }
     .update_profile {
         width: 85%;
@@ -111,6 +118,8 @@
         display: flex;
         align-items: center;
         padding: 30px 0;
+        background-color: #1b2039!important;
+        color: white;
     }
     .name_user_mobile {
         font-size: 20px;
@@ -145,11 +154,10 @@
         left: 0;
         right: 0;
         z-index: 1000000000000000000000000000000;
-        color: black!important;
         display: block;
         transform: translateY(calc(-100% - 100px));
         transition: 0.5s;
-        background-color: white;
+        background-color: #1b2039!important;
         padding: 20px;
     }
     .container .main_right .searchMobile.active {
@@ -165,13 +173,13 @@
         background-color: transparent!important;
     }
      ::placeholder {
-        color: black!important;
+        color: white!important;
         opacity: .4;
     }
     /* overflow: hidden; */
     .container .main_right .searchMobile .search input {
         width: 100%;
-        color: black;
+        color: white;
         border-radius: unset;
         border-radius: 4px;
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -182,7 +190,6 @@
         left: 10px;
         top: 50%;
         z-index: 9999;
-        color: black!important;
         transform: translateY(-50%);
         display: flex;
         justify-content: center;
@@ -192,13 +199,16 @@
         width: 100%;
         border-radius: unset;
         padding-top: unset;
-        background: white!important;
+        background: transparent!important;
         top: 40px;
-        color: black;
+        color: white;
         margin-top: 20px;
         display: block;
     }
     /* home */
+    .container .main_right .home {
+        margin-top: -10px!important;
+    }
     #banner_home .content {
         position: absolute;
         margin-left: 20px;
@@ -216,6 +226,19 @@
     /* .home ul::-webkit-scrollbar{
         display: none;
     } */
+    /* top music */
+    .top_music ul.list_playlist li {
+        width: 190px!important;
+        height: 275px!important;
+    }
+    #top .banner {
+        display: flex!important;
+        justify-content: flex-end!important;
+        align-items: center!important;
+    }
+    #top .banner svg {
+        width: 325px;
+    }
     .home ul li {
         flex: 0 0 49%;
         margin-right: 1%!important;
@@ -242,6 +265,10 @@
     }
     #discover .nav_country>div li {
         margin: 20px 0;
+    }
+    #discover .list_music {
+        height: 300px;
+        overflow-y: scroll;
     }
     .same_list_music ul li .hoverItem {
         opacity: 1;
