@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -273,7 +273,7 @@
                                 </div>
                                 <div class="desMusic">
                                     <div class="nameMusic">${music.name}</div>
-                                    <div class="authorMusic">${music.artist}</div>
+                                    <div class="name_artist">${music.artist}</div>
 
                                 </div>
                                 <div class="timeMusic">${music.time}</div>

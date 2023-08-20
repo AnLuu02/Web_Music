@@ -394,7 +394,7 @@ a {
     text-overflow: ellipsis;
 }
 
-.same_list_music .desMusic .authorMusic {
+.same_list_music .desMusic .name_artist {
     width: max-content;
     font-size: 12px;
     opacity: 0.4;
@@ -406,7 +406,7 @@ a {
     text-overflow: ellipsis;
 }
 
-.authorMusic:hover {
+.name_artist:hover {
     cursor: pointer;
     text-decoration: underline;
     font-weight: bold;

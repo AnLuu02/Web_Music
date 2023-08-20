@@ -400,7 +400,7 @@ ul#list_playlist {
     border-radius: 4px;
 }
 
-#discover .list_music div.authorMusic {
+#discover .list_music div.name_artist {
     width: 80%;
     margin: 5px 0;
     white-space: nowrap;

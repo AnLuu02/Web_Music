@@ -115,7 +115,7 @@ header .search {
 }
 
 .listSearch ul li .nameMusic,
-.listSearch ul li .authorMusic {
+.listSearch ul li .name_artist {
     width: 80%!important;
 }
 

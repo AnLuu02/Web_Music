@@ -42,7 +42,7 @@
     text-overflow: ellipsis;
 }
 
-.desMusicFixed .authorMusicFixed {
+.desMusicFixed .name_artist_fixed {
     font-size: 12px;
     color: white;
     opacity: 0.4;

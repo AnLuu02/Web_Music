@@ -813,7 +813,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <div class="desMusic">
                                         <div class="nameMusic">${music.name}</div>
-                                        <div class="authorMusic">${music.artist}</div>
+                                        <div class="name_artist">${music.artist}</div>
                                         <div class="time_up">${formatDDMMYY(music.date)}</div>
                                     </div>
                                     <div class="hoverItem">
@@ -863,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <div class="desMusic">
                                         <div class="nameMusic">${music.name}</div>
-                                        <div class="authorMusic">${music.artist}</div>
+                                        <div class="name_artist">${music.artist}</div>
                                     </div>
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${music.img}" alt="">
                             <div class="desMusicFixed">
                                 <div class="nameMusicFixed"><a>${music.name}</a></div>
-                                <div class="authorMusicFixed">${music.artist}</div>
+                                <div class="name_artistFixed">${music.artist}</div>
                             </div>
                             <div class="AnotherChoiceFixed">
                             <div class="add_library" id="add_library">
@@ -965,7 +965,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="desMusic">
                 <div class="nameMusic">${music.name}</div>
-                <div class="authorMusic">${music.artist}</div>
+                <div class="name_artist">${music.artist}</div>
             </div>
         </div>
         <div class="timeMusic">${music.time}</div>
@@ -1130,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                                     </div>
                                                     <div class="desMusic">
                                                         <div class="nameMusic">${data.name}</div>
-                                                        <div class="authorMusic">${data.artist}</div>
+                                                        <div class="name_artist">${data.artist}</div>
                                                     </div>
                                                 </div>
                                             </li>`
@@ -2100,6 +2100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     handle_btn_upload_music();
 
+    // show info artist
+
 })
 
 
@@ -2395,4 +2397,4 @@ function handle_btn_change_name(){
         }
     })
 }
-handle_btn_change_name();
+handle_btn_change_name();handle_btn_change_name();

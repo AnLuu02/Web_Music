@@ -70,8 +70,7 @@
     header {
         width: 100%!important;
         justify-content: space-between;
-    background-color: #1b2035!important;
-
+        background-color: #1b2035!important;
     }
     header.active {
         background-color: rgb(249, 245, 245);
@@ -200,15 +199,13 @@
         display: block;
     }
     /* home */
-    #banner_home .content{
+    #banner_home .content {
         position: absolute;
         margin-left: 20px;
-        
     }
-    #banner_home .content img{
+    #banner_home .content img {
         background-blend-mode: darken;
     }
-    
     .home .title_main a {
         display: none;
     }
@@ -272,7 +269,7 @@
         width: 100%;
         padding-left: 0;
     }
-    #discover .same_list_music ul li .authorMusic {
+    #discover .same_list_music ul li .name_artist {
         width: 70%;
     }
     .tooltip:hover .tooltiptext {
