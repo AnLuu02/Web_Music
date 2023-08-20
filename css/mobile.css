@@ -30,6 +30,9 @@
         /* opacity: .5; */
         font-weight: bold;
     }
+    .btn_login_mobile a {
+        color: white!important;
+    }
     .container .main_right {
         padding-top: 86px;
     }

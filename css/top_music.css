@@ -2,6 +2,7 @@
     display: unset!important;
     display: grid!important;
     grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
 }
 
 .top_music ul.list_playlist li {
