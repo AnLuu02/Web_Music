@@ -1,5 +1,6 @@
 <?php
-require('./connect.php');
+require('../controller/connect.php');
+
 session_start();
 // if (!empty($_SESSION["id"])) {
 //     header("Location: ../index.php");
@@ -96,7 +97,7 @@ if (!empty($_SESSION["id"])) {
                 var data = $(this).serialize();
                 $.ajax({
                     type: "POST",
-                    url: "./checkChangePass.php",
+                    url: "../controller/checkChangePass.php",
                     data: data,
                     success: function(data) {
                         let json = JSON.parse(data);

@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
                         $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
                         $('.confirm_dialog a#yes').text('Đăng nhập');
-                        $('.confirm_dialog a#yes').attr('href', './controller/login.php');
+                        $('.confirm_dialog a#yes').attr('href', './view/login.php');
                         $('.confirm_dialog a#no').text('Để sau');
 
                         document.querySelector('.confirm_dialog').addEventListener('click', e => {
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $('.confirm_dialog').css("z-index", "10000000000000000000000000000000000000000000");
                             $('.confirm_dialog p').text('Đăng nhập để tiếp tục.');
                             $('.confirm_dialog a#yes').text('Đăng nhập');
-                            $('.confirm_dialog a#yes').attr('href', './controller/login.php');
+                            $('.confirm_dialog a#yes').attr('href', './view/login.php');
                             $('.confirm_dialog a#no').text('Để sau');
                             document.querySelector('.confirm_dialog').addEventListener('click', e => {
                                 if (e.target === e.currentTarget) {
@@ -509,34 +509,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (isClick == "search") {
                         document.querySelectorAll('ul.music li.song').forEach(item => item.remove());
-                        $("main").load('./view/playmusic.php', function() {
-                            $('#play_music').attr('category', 'playmusic');
-                            $('.btnPause').addClass('active');
-                            $('.btnPlay').removeClass('active');
-                            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
-                            $('.play_music .sub_left .runAudio').addClass('active');
-                            $('.btnPlay').click(function() {
-                                audio.play();
-                            })
-                            $('.btnPause').click(function() {
-                                audio.pause();
+                        if (e.target.closest('.name_artist')) {
+                            handle_btn_name_artist()
+                        } else {
+                            $("main").load('./view/playmusic.php', function() {
+                                $('#play_music').attr('category', 'playmusic');
+                                $('.btnPause').addClass('active');
+                                $('.btnPlay').removeClass('active');
+                                $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
+                                $('.play_music .sub_left .runAudio').addClass('active');
+                                $('.btnPlay').click(function() {
+                                    audio.play();
+                                })
+                                $('.btnPause').click(function() {
+                                    audio.pause();
 
-                            })
-                            load_music_fixed();
-                            $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
-                                let res = JSON.parse(response);
-                                if (res.error !== 1) {
-                                    let datas = JSON.parse(res.data_music);
-                                    // let filterData = data.filter(data => {
-                                    //     return data.m_id !== currentId;
-                                    // })
-                                    load_music(datas, document.querySelector('#careMusic'));
-                                    handlePlayMusic(document.querySelector('#careMusic'), datas);
-                                } else {
-                                    alert(res.message);
-                                }
-                            })
-                        });
+                                })
+                                load_music_fixed();
+                                $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
+                                    let res = JSON.parse(response);
+                                    if (res.error !== 1) {
+                                        let datas = JSON.parse(res.data_music);
+                                        // let filterData = data.filter(data => {
+                                        //     return data.m_id !== currentId;
+                                        // })
+                                        load_music(datas, document.querySelector('#careMusic'));
+                                        handlePlayMusic(document.querySelector('#careMusic'), datas);
+                                    } else {
+                                        alert(res.message);
+                                    }
+                                })
+                            });
+                        }
                         $("#listSearch").css("display", "none");
                         $("#searchInput").val("");
 
@@ -629,6 +633,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         let res = JSON.parse(response);
                                         if (res.error == 1) {
                                             $('#data_library').html(`<li style="padding-left:20px">${res.message}</li>`);
+                                            $('#upLoaded_profile').html(`<li style="padding-left:20px">${res.message}</li>`);
+
                                         }
                                     });
                                 } else {
@@ -889,7 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Array.isArray(musics) && musics.length > 0) {
                     html = musics.map((music, index) => {
                                 return `<li class="song  ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
-                                <div class='idMusic'>${layout=="bxh"?`<span class="numberTop" id="top_${index+1}">${index+1}</span>`:'<ion-icon name="musical-notes-outline"></ion-icon>'}</div>
+                                <div class='idMusic' style="${layout == null?"display:none":""}">${layout=="bxh"?`<span class="numberTop" id="top_${index+1}">${index+1}</span>`:'<ion-icon name="musical-notes-outline"></ion-icon>'}</div>
                                 <div class="contentMusic">
                                     <div class="imageMusic">
                                         <img src="${music.img}" alt="">
@@ -1229,7 +1235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let res = JSON.parse(response);
                 if ($(_this).attr('id') == "imgUser" && res.error !== 1) {
                     let data = JSON.parse(res.data_music_upload);
-                    load_music(data, document.querySelector(".update_profile .playlist ul"), true);
+                    load_music(data, document.querySelector(".update_profile .playlist ul"), true,null);
                     handlePlayMusic(document.querySelector(".update_profile .playlist ul"), data);
                 } else {
                     $(".update_profile .playlist ul").html(`<li>${res.message}</li>`);
@@ -2128,7 +2134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 load_music(data.data, document.getElementById('data_library'), true);
                             }
                             if (document.getElementById('upLoaded_profile')) {
-                                load_music(data.data, document.getElementById('upLoaded_profile'), true);
+                                load_music(data.data, document.getElementById('upLoaded_profile'), true,null);
                             }
                             $('#form_upload_music').removeClass('active');
                             $('#form_id').trigger("reset");
@@ -2136,8 +2142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 title: "Thành công!",
                                 message: "Upload bài hát thành công.",
                                 type: "success",
-                position: `${window.innerWidth <= 768?"bottom":"right"}`,
-
+                                position: `${window.innerWidth <= 768?"bottom":"right"}`,
                                 duration: 1000
                             });
     
@@ -2146,8 +2151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 title: "Thất bại!",
                                 message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                                 type: "error",
-                position: `${window.innerWidth <= 768?"bottom":"right"}`,
-
+                                position: `${window.innerWidth <= 768?"bottom":"right"}`,
                                 duration: 1000
                             });
     

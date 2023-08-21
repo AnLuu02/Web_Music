@@ -16,7 +16,7 @@ if (!empty($_GET['u_id']) && !empty($_GET['btn_uploaded_id'])) {
 
             $conn->close();
         } else {
-            $messege =  "Chưa có bài hát nào được thêm vào hoặc tải lên.";
+            $messege =  "Không có bài hát.";
             $res = array('error' => 1, 'message' => $messege);
         }
     }
@@ -30,7 +30,7 @@ if (!empty($_GET['u_id']) && !empty($_GET['btn_uploaded_id'])) {
             $res = array('error' => 0, 'data_music_liked' => $json);
             $conn->close();
         } else {
-            $messege =  "Chưa có bài hát nào được thêm vào hoặc tải lên.";
+            $messege =  "Không có bài hát.";
             $res = array('error' => 1, 'message' => $messege);
         }
     }

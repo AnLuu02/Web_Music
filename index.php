@@ -84,7 +84,7 @@ if (!empty($_SESSION["id"])) {
                         <?php if (!empty($_SESSION["id"])) {
                             echo $row['name'];
                         } else {
-                            echo "<button class='btn_login_mobile'><a href='./controller/login.php'>Đăng nhập</a></button>";
+                            echo "<button class='btn_login_mobile'><a href='./view/login.php'>Đăng nhập</a></button>";
                         }
                         ?>
                     </div>
@@ -114,7 +114,7 @@ if (!empty($_SESSION["id"])) {
                         <p>Đăng nhập để tiếp tục </p>
                         <div class="nav-library">
                             <button class="latter">Để sau</button>
-                            <button><a href="./controller/login.php">Đăng nhập</a></button>
+                            <button><a href="./view/login.php">Đăng nhập</a></button>
                         </div>
                     </div>
                 </li>
@@ -148,7 +148,7 @@ if (!empty($_SESSION["id"])) {
                         <p style="text-align:center;font-size:12px">
                             Đăng nhập để khám phá nhiều hơn.
                         </p>
-                        <button class="btnLogin"><a href="./controller/login.php">Đăng nhập</a></button>
+                        <button class="btnLogin"><a href="./view/login.php">Đăng nhập</a></button>
 
                     </div>
                 </div>
@@ -164,7 +164,7 @@ if (!empty($_SESSION["id"])) {
                         <p>Đăng nhập để tiếp tục </p>
                         <div class="nav-library">
                             <button class="latter">Để sau</button>
-                            <button><a href="./controller/login.php">Đăng nhập</a></button>
+                            <button><a href="./view/login.php">Đăng nhập</a></button>
                         </div>
                     </div>
                 </li>
@@ -276,8 +276,8 @@ if (!empty($_SESSION["id"])) {
                                                     } else {
                                                         echo "display:flex;";
                                                     } ?>">
-                        <button><a href="./controller/register.php">Đăng kí</a></button>
-                        <button><a href="./controller/login.php">Đăng nhập</a></button>
+                        <button><a href="./view/register.php">Đăng kí</a></button>
+                        <button><a href="./view/login.php">Đăng nhập</a></button>
                     </div>
 
                 </div>
@@ -402,7 +402,7 @@ if (!empty($_SESSION["id"])) {
             <span class="close_profile" id="close_profile">
                 <ion-icon name="close"></ion-icon>
             </span>
-            <span><a href="./controller/changePassword.php" style="text-decoration:underline;">Đổi mật khẩu</a></span>
+            <span><a href="./view/changePassword.php" style="text-decoration:underline;">Đổi mật khẩu</a></span>
         </div>
         <div class="main_profile">
             <div class="imgUser">
@@ -463,7 +463,7 @@ if (!empty($_SESSION["id"])) {
                                     }
                                     ?></ion-icon>
                 </a></button>
-            <button><a href="./controller/logout.php">Log out
+            <button><a href="./view/logout.php">Log out
                     <ion-icon name="log-out-outline"></ion-icon>
                 </a>
             </button>
@@ -473,7 +473,7 @@ if (!empty($_SESSION["id"])) {
         <div class="same_list_music next_music_list">
             <div class="list_music_render playlist">
                 <div class="title_bold" style="margin-top: 30px; font-weight:bold;font-size:20px">Đã tải lên</div>
-                <ul class="music" id="upLoaded_profile">
+                <ul class="music" id="upLoaded_profile" category="uploaded">
                     <!-- render list music -->
                     <li>Chưa có bài hát nào được thêm vào hoặc tải lên.
                     </li>
