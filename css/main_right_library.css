@@ -35,7 +35,6 @@ ul#list_playlist {
     font-weight: 500;
     margin: 10px 0 40px 0;
     display: flex!important;
-    flex-wrap: wrap;
 }
 
 .list_playlist li {
@@ -356,7 +355,7 @@ ul#list_playlist {
 #discover .list_music {
     width: 100%;
     /* min-height: 300px; */
-    height: 230px;
+    height: 210px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

@@ -304,14 +304,14 @@
         opacity: 0;
     }
     /* library */
-    .library ul#list_playlist {
+    ul#list_playlist {
         width: 100%;
         flex-wrap: nowrap;
         overflow-x: scroll;
     }
-    /* .library ul#list_playlist::-webkit-scrollbar{
-        display: none;
-    } */
+    ul#list_playlist li {
+        width: calc(50vw - 7px)!important;
+    }
     .library .list_playlist li {
         flex: 0 0 49%;
         margin-bottom: 20px;
