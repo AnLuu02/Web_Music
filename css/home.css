@@ -212,13 +212,13 @@
     color: white;
 }
 
-.right_view_header #name_artist {
+.right_view_header #name_artist_profile {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
 }
 
-.right_view_header #name_artist .icon_play {
+.right_view_header #name_artist_profile .icon_play {
     width: 52px;
     height: 52px;
     margin: 0 20px;
@@ -229,12 +229,12 @@
     align-items: center;
 }
 
-.right_view_header #name_artist .icon_play ion-icon {
+.right_view_header #name_artist_profile .icon_play ion-icon {
     display: block;
     font-size: 30px;
 }
 
-.right_view_header #name_artist p {
+.right_view_header #name_artist_profile p {
     font-size: 60px;
     font-weight: bold;
 }

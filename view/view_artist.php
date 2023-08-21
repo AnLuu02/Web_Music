@@ -6,7 +6,7 @@
                 <img src="../uploads/avata_default.jpg" alt="">
             </div>
             <div class="right_view_header">
-                <div id="name_artist">
+                <div id="name_artist_profile">
                     <p>Hello</p>
                     <div class="icon_play">
                         <ion-icon name="play" id="all_playmusic"></ion-icon>

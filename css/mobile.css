@@ -299,9 +299,6 @@
         width: 100%;
         padding-left: 0;
     }
-    #discover .same_list_music ul li .name_artist {
-        width: 70%;
-    }
     .tooltip:hover .tooltiptext {
         visibility: hidden;
         opacity: 0;

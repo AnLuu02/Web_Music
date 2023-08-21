@@ -815,6 +815,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            function load_name_artist(name) {
+                let arrNameArtist = [];
+                let html = '';
+                if (name.includes(',')) {
+                    arrNameArtist = name.split(",");
+                    arrNameArtist.forEach((item, index, arr) => {
+                        if (index != arr.length - 1) {
+                            html += `<span class="name_artist"> ${arr[index].trim()},</span>` + " ";
+                        } else {
+                            html += `<span class="name_artist"> ${arr[index].trim()}</span>`
+                        }
+                    })
+                } else {
+                    html = `<span class="name_artist"> ${name}</span>`
+                }
+                return html;
+
+            }
+
             function load_music_discover(musics, elem, total_music) {
                 let data = musics.map((music, index) => {
                     return `          <li class="song ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
@@ -830,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <div class="desMusic">
                                         <div class="nameMusic">${music.name}</div>
-                                        <div class="name_artist">${music.artist}</div>
+                                        <div id="name_artist" >${load_name_artist(music.artist)}</div>
                                         <div class="time_up">${formatDDMMYY(music.date)}</div>
                                     </div>
                                     <div class="hoverItem">
@@ -882,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <div class="desMusic">
                                         <div class="nameMusic">${music.name}</div>
-                                        <div class="name_artist">${music.artist}</div>
+                                        <div id="name_artist" >${load_name_artist(music.artist)}</div>
                                     </div>
                                 </div>
                                 <div class="timeMusic">${music.time}</div>
@@ -929,7 +948,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${music.img}" alt="">
                             <div class="desMusicFixed">
                                 <div class="nameMusicFixed"><a>${music.name}</a></div>
-                                <div class="name_artist">${music.artist}</div>
+                                <div id="name_artist" >${load_name_artist(music.artist)}</div>
+
                             </div>
                             <div class="AnotherChoiceFixed">
                             <div class="add_library" id="add_library">
@@ -992,7 +1012,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="desMusic">
                         <div class="nameMusic">${music.name}</div>
-                        <div class="name_artist">${music.artist}</div>
+                        <div id="name_artist" >${load_name_artist(music.artist)}</div>
+
                     </div>
                 </div>
                 <div class="timeMusic">${music.time}</div>
@@ -1158,7 +1179,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                     </div>
                                                     <div class="desMusic">
                                                         <div class="nameMusic">${data.name}</div>
-                                                        <div class="name_artist">${data.artist}</div>
+                        <div id="name_artist" >${load_name_artist(data.artist)}</div>
+
                                                     </div>
                                                 </div>
                                             </li>`
@@ -2155,7 +2177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(elem){
                 elem.addEventListener('click',e=>{
                     $('main').load('./view/view_artist.php', function() {
-                        document.querySelector("#name_artist p").innerText = e.target.textContent;
+                        document.querySelector("#name_artist_profile p").innerText = e.target.textContent.split(',').join('');
                         // history.pushState(null,"",`/${e.target.textContent}`)
                         // arrPrevPage.unshift(`/${e.target.textContent}`);
                         // arrNextPage.unshift(`/${e.target.textContent}`);

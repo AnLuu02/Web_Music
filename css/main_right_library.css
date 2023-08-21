@@ -360,6 +360,7 @@ ul#list_playlist {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 60px;
 }
 
 #discover .list_music li {
@@ -384,16 +385,6 @@ ul#list_playlist {
     width: 50px!important;
     height: 50px;
     border-radius: 4px;
-}
-
-#discover .list_music div.name_artist {
-    width: 80%;
-    margin: 5px 0;
-    overflow: hidden;
-}
-
-#discover .list_music div.nameMusic {
-    width: 80%;
 }
 
 #discover .new_music .hoverItem {

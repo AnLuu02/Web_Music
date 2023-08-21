@@ -524,8 +524,7 @@ li.editNameUser:hover .submit {
 
 .update_profile .nav_profile_user button.active {
     /* background: linear-gradient(to right, #5482aa, #b997d7, #c06c84); */
-    background: #1b2051!important;
-    border: none;
+    border: 2px solid rgba(256, 256, 256, 0.2);
     /* background: linear-gradient(to top right,#355c7d,#6c5b7b,#c06c84); */
 }
 
