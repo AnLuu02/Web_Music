@@ -509,38 +509,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (isClick == "search") {
                         document.querySelectorAll('ul.music li.song').forEach(item => item.remove());
-                        if (e.target.closest('.name_artist')) {
-                            handle_btn_name_artist()
-                        } else {
-                            $("main").load('./view/playmusic.php', function() {
-                                $('#play_music').attr('category', 'playmusic');
-                                $('.btnPause').addClass('active');
-                                $('.btnPlay').removeClass('active');
-                                $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
-                                $('.play_music .sub_left .runAudio').addClass('active');
-                                $('.btnPlay').click(function() {
-                                    audio.play();
-                                })
-                                $('.btnPause').click(function() {
-                                    audio.pause();
+                        $("main").load('./view/playmusic.php', function() {
+                            $('#play_music').attr('category', 'playmusic');
+                            $('.btnPause').addClass('active');
+                            $('.btnPlay').removeClass('active');
+                            $('.list_music_playing li > div:first-child ion-icon').css('animationPlayState', 'running');
+                            $('.play_music .sub_left .runAudio').addClass('active');
+                            $('.btnPlay').click(function() {
+                                audio.play();
+                            })
+                            $('.btnPause').click(function() {
+                                audio.pause();
 
-                                })
-                                load_music_fixed();
-                                $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
-                                    let res = JSON.parse(response);
-                                    if (res.error !== 1) {
-                                        let datas = JSON.parse(res.data_music);
-                                        // let filterData = data.filter(data => {
-                                        //     return data.m_id !== currentId;
-                                        // })
-                                        load_music(datas, document.querySelector('#careMusic'));
-                                        handlePlayMusic(document.querySelector('#careMusic'), datas);
-                                    } else {
-                                        alert(res.message);
-                                    }
-                                })
-                            });
-                        }
+                            })
+                            load_music_fixed();
+                            $.get('./controller/select_data.php', { 'key': "getAllData" }, function(response) {
+                                let res = JSON.parse(response);
+                                if (res.error !== 1) {
+                                    let datas = JSON.parse(res.data_music);
+                                    // let filterData = data.filter(data => {
+                                    //     return data.m_id !== currentId;
+                                    // })
+                                    load_music(datas, document.querySelector('#careMusic'));
+                                    handlePlayMusic(document.querySelector('#careMusic'), datas);
+                                } else {
+                                    alert(res.message);
+                                }
+                            })
+                        });
                         $("#listSearch").css("display", "none");
                         $("#searchInput").val("");
 
