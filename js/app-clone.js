@@ -880,10 +880,37 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </li>`
                 }).filter((elem, index) => index < total_music);
-                elem.innerHTML = data.join("");
-                handlePlayMusic(elem, musics);
-                handle_btn_name_artist();
+                if (elem) {
+                    elem.innerHTML = data.join("");
+                    handlePlayMusic(elem, musics);
+                    handle_btn_name_artist();
+                }
 
+            }
+
+            function load_music_discover_hot(musics, elem, total_music) {
+                let html = musics.filter(item => {
+                    return item.nation === "Việt Nam";
+                }).map((music, index) => {
+                    return `            <li class="song" index="${index}" id_song="${music.m_id}">
+                    <div class="content">
+                        <img src="${music.img}" alt="">
+                        <div class="hover_playlist">
+                            <ion-icon name="close-outline" id="delete_playlist"></ion-icon>
+                            <ion-icon name="play" id="run_playlist"></ion-icon>
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="name_pl" style="margin-top:10px">${music.name}</div>
+                    <div id="name_artist"  style="margin: 4px 0 2px 0;" >${load_name_artist(music.artist)}</div>
+
+                </li>`
+                }).filter((elem, index) => index < total_music);
+                if (elem) {
+                    elem.innerHTML = html.join("");
+                    handlePlayMusic(elem, musics);
+                    handle_btn_name_artist();
+                }
             }
 
             function load_music(musics, element, showDelete = false, layout = "") {
@@ -939,36 +966,42 @@ document.addEventListener('DOMContentLoaded', () => {
                             </li>`;
             })
         }
-        element.innerHTML = html.join("");
+        if(element){
+            element.innerHTML = html.join("");
         handle_btn_name_artist();
+        }
 
     }
 
     function load_music_fixed_left(music) {
-        musicFixed.setAttribute("song_id", music.m_id);
-        music_fixed_left.innerHTML = `
-                            <img src="${music.img}" alt="">
-                            <div class="desMusicFixed">
-                                <div class="nameMusicFixed"><a>${music.name}</a></div>
-                                <div id="name_artist" >${load_name_artist(music.artist)}</div>
-
-                            </div>
-                            <div class="AnotherChoiceFixed">
-                            <div class="add_library" id="add_library">
-                            <div class="tooltip">
-                                <ion-icon name="heart"></ion-icon>
-                                <span class="tooltiptext">Thêm vào thư viện</span>
-                            </div>
-                        </div>
-                                <div class="add_playlist" id="add_playlist">
+        if(music_fixed_left){
+            if(musicFixed){
+                musicFixed.setAttribute("song_id", music.m_id);
+            }
+            music_fixed_left.innerHTML = `
+                                <img src="${music.img}" alt="">
+                                <div class="desMusicFixed">
+                                    <div class="nameMusicFixed"><a>${music.name}</a></div>
+                                    <div id="name_artist" >${load_name_artist(music.artist)}</div>
+    
+                                </div>
+                                <div class="AnotherChoiceFixed">
+                                <div class="add_library" id="add_library">
                                 <div class="tooltip">
-                                <ion-icon name="add-outline"></ion-icon>
-                                    <span class="tooltiptext">Thêm vào Play list</span>
-                                </div>
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span class="tooltiptext">Thêm vào thư viện</span>
                                 </div>
                             </div>
-        `
-        handle_btn_name_artist();
+                                    <div class="add_playlist" id="add_playlist">
+                                    <div class="tooltip">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                        <span class="tooltiptext">Thêm vào Play list</span>
+                                    </div>
+                                    </div>
+                                </div>
+            `
+            handle_btn_name_artist();
+        }
 
     }
 
@@ -988,8 +1021,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="author_pl">${data.name}</div>
                     </li>`;
         })
-        document.querySelector('.list_playlist').innerHTML = html.join("");
-        handle_btn_name_artist();
+        if(document.querySelector('.list_playlist')){
+            document.querySelector('.list_playlist').innerHTML = html.join("");
+            handle_btn_name_artist();
+        }
+       
 
     }
 
@@ -1000,13 +1036,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${data.name_playlist}
                     </li>`;
         })
-        element_main.innerHTML = html.join("");
+        if(element_main){
+            element_main.innerHTML = html.join("");
         handle_btn_name_artist();
+        }
 
     }
     // // listening to music
     function listening_Music(music, elem) {
-                elem.html(`<li class="song active  id_song="${music.m_id}">
+        if(elem){
+            elem.html(`<li class="song active  id_song="${music.m_id}">
                 <div><ion-icon name="musical-notes-outline"></ion-icon></div>
                 <div class="contentMusic">
                     <div class="imageMusic">
@@ -1023,6 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </li>
         `)
         handle_btn_name_artist();
+        }
     }
 
     //     // show list play music
@@ -1330,6 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let res = JSON.parse(response);
                     if (res.error !== 1) {
                         load_music_discover(JSON.parse(res.data_discover), document.querySelector('#discover .list_music'), 9);
+                        load_music_discover_hot(JSON.parse(res.data_discover),document.getElementById("list_music_vn"),5);
                     } else {
                         alert(res.message);
                     }

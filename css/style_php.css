@@ -131,7 +131,7 @@ body {
     padding: 16px 30px!important;
     font-size: 14px;
     /* background-color: rgb(35, 203, 119); */
-    background: linear-gradient(to right, #5482aa, #b997d7, #c06c84);
+    background-color: #14182a;
     color: white;
     font-weight: 500;
     outline: none;
@@ -235,7 +235,7 @@ body {
 
 .container input:checked~.checkmark {
     /* background-color: rgb(35, 203, 119); */
-    background: linear-gradient(to right, #5482aa, #b997d7, #c06c84);
+    background-color: #14182a;
 }
 
 .checkmark:after {

@@ -315,7 +315,7 @@
         <div class="title_main">
             Nổi bật
         </div>
-        <ul class="list_playlist" id="list_playlist">
+        <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">
@@ -388,7 +388,7 @@
         <div class="title_main">
             Nhạc Việt Nam
         </div>
-        <ul class="list_playlist" id="list_playlist">
+        <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">
@@ -461,7 +461,7 @@
         <div class="title_main">
             Nhạc Châu Á
         </div>
-        <ul class="list_playlist" id="list_playlist">
+        <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">
@@ -534,7 +534,7 @@
         <div class="title_main">
             Nhạc Âu Mỹ
         </div>
-        <ul class="list_playlist" id="list_playlist">
+        <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">
@@ -607,7 +607,7 @@
         <div class="title_main">
             Nhạc Hòa Tấu
         </div>
-        <ul class="list_playlist" id="list_playlist">
+        <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">

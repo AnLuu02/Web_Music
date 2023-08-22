@@ -51,7 +51,9 @@ if (!empty($_GET['u_id']) && !empty($_GET['btn_uploaded_id'])) {
 } else
     // select music load disvoer
     if (!empty($_GET['key']) && $_GET['key'] === "discover") {
-        $result = $conn->query("SELECT * FROM musics WHERE m_id BETWEEN 1 AND 9 ");
+        // $result = $conn->query("SELECT * FROM musics WHERE m_id BETWEEN 1 AND 9 ");
+        $result = $conn->query("SELECT * FROM musics");
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
