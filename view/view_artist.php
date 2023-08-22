@@ -603,11 +603,11 @@
         </ul>
     </div>
 
-    <div class="top_music" id="concert_music">
+    <div class="top_music" id="artist_other">
         <div class="title_main">
             Bạn Có Thể Thích
         </div>
-        <ul class="list_playlist" id="">
+        <ul class="list_playlist" id="list_artist_other">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
                 <div class="content">
                     <img src="../uploads/1.jpg" alt="">

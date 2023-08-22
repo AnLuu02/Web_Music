@@ -390,3 +390,14 @@ a.create_playlist:hover {
     margin-top: 4px;
     opacity: .6;
 }
+
+#list_artist_other li .content {
+    height: 212px!important;
+    width: 212px!important;
+    border-radius: 50%!important;
+}
+
+#list_artist_other .hover_playlist {
+    width: 100%;
+    height: 100%;
+}
