@@ -5,13 +5,13 @@
     overflow: hidden;
 }
 
-.home ul {
+#home ul {
     width: 100%;
     flex-wrap: nowrap!important;
     overflow: hidden;
 }
 
-.home ul li {
+#home ul li {
     flex: 0 0 15%;
 }
 
@@ -44,7 +44,7 @@
     flex-wrap: wrap!important;
 }
 
-.home.active ul li {
+#home.active ul li {
     flex: unset;
 }
 

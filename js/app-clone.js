@@ -1021,8 +1021,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="author_pl">${data.name}</div>
                     </li>`;
         })
-        if(document.querySelector('.list_playlist')){
-            document.querySelector('.list_playlist').innerHTML = html.join("");
+        if(document.getElementById('list_playlist')){
+            document.getElementById('list_playlist').innerHTML = html.join("");
             handle_btn_name_artist();
         }
        

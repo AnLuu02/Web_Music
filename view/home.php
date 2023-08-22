@@ -21,7 +21,7 @@
     </div>
     <div class="second_home home_flex">
         <div class="title_main">
-            Spotify Playlists
+            Thịnh hành
             <a href="#">Hiện tất cả</a>
 
         </div>

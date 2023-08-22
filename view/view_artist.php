@@ -313,7 +313,7 @@
 
     <div class="top_music" id="outStanding">
         <div class="title_main">
-            Nổi bật
+            Single & EP
         </div>
         <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
@@ -386,7 +386,7 @@
 
     <div class="top_music" id="vn_music">
         <div class="title_main">
-            Nhạc Việt Nam
+            MV
         </div>
         <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
@@ -459,7 +459,7 @@
 
     <div class="top_music" id="asia_music">
         <div class="title_main">
-            Nhạc Châu Á
+            Tuyển Tập
         </div>
         <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
@@ -532,7 +532,7 @@
 
     <div class="top_music" id="uk_music">
         <div class="title_main">
-            Nhạc Âu Mỹ
+            Xuất Hiện Trong
         </div>
         <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
@@ -605,7 +605,7 @@
 
     <div class="top_music" id="concert_music">
         <div class="title_main">
-            Nhạc Hòa Tấu
+            Bạn Có Thể Thích
         </div>
         <ul class="list_playlist" id="">
             <li class="playlist_item" index="${index}" id_playlist="${data.pl_id}">
@@ -672,6 +672,31 @@
                 <div class="name_pl" style="margin: 4px 0 2px 0;">Top 100 bài nhạc trẻ hay nhất mọi thời đời Việt Nam
                     siêu cấp vip pr</div>
                 <div class="author_pl">MONO, Jack - J97, Phát Huy, T4</div>
+            </li>
+        </ul>
+    </div>
+    <div class="top_music" id="concert_music">
+        <div class="title_main">
+            Về Đen Vâu
+        </div>
+        <ul class="" id="about_artist">
+            <li>
+                <img src="../uploads/avata_default.jpg" alt="">
+            </li>
+            <li>
+                <div class="des">
+                    <p>DJ Onionn tên thật là Nguyễn Ngọc Hoàng Anh, sinh năm1993 và
+                        hiện tại đang theo học tại Đại học Văn hóa Hà Nội. Anh bắt đầu
+                        tìm tòi về việc phối khí từ cách đây 4 năm nhưng đến 2 năm trở lại
+                        đây tôi mới bắt đầu theo đuổi chuyên nghiệp.
+                        Anh đã từng tham gia phối khí cho một số liveshow truyền hình và
+                        các sản phẩm ca nhạc của nhiều ca sĩ qua lời giới thiệu của nhạc
+                        sỹ Huy Tuấn, DJ/Producer Touliver và nhà sản xuất... </p><span id="more_des"> XEM THÊM</span>
+                </div>
+                <div class="des_other">
+                    <span>7.845</span>
+                    <span>Người quan tâm</span>
+                </div>
             </li>
         </ul>
     </div>
