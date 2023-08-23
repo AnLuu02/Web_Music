@@ -29,25 +29,24 @@
     padding: 10px 0;
 }
 
-ul#list_playlist {
-    overflow: hidden!important;
-    flex-wrap: wrap!important;
+ul.list_playlist li:not(:nth-child(5n)) {
+    margin-right: 1%;
 }
 
 ul.list_playlist {
-    width: 100%!important;
+    width: 100%;
     font-size: 14px;
     font-weight: 500;
     margin: 10px 0 40px 0;
     display: flex!important;
+    overflow: hidden!important;
 }
 
 ul.list_playlist li {
-    width: 20%!important;
-    height: 275px!important;
-    margin: 0!important;
-    color: white!important;
-    padding: 0 14px;
+    width: 19.2%;
+    flex: 0 0 19.2%;
+    height: 275px;
+    color: white;
 }
 
 ul.list_playlist li .name_pl,
@@ -63,11 +62,6 @@ ul.list_playlist li .author_pl {
     width: 98%;
     opacity: .4;
 }
-
-
-/* .list_playlist li:not(:nth-child(5n)) {
-    padding-right: 14px;
-} */
 
 .list_playlist .content {
     width: 100%;

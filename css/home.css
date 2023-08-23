@@ -1,6 +1,6 @@
 .home {
     width: 100%;
-    color: white;
+    color: white!important;
     padding: 6% 3% 0 3%;
     overflow: hidden;
 }
@@ -9,10 +9,6 @@
     width: 100%;
     flex-wrap: nowrap!important;
     overflow: hidden;
-}
-
-#home ul li {
-    flex: 0 0 15%;
 }
 
 .title_main {

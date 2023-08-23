@@ -1283,13 +1283,13 @@ if (uID) {
 function load_music_home(musics) {
 let html = musics.map((music, index) => {
     return `<li class="song" index="${index}" id_song = ${music.m_id}>
-                    <a href="#">
+                    <div class="content_home">
                         <img src="${music.img}" alt="##">
                         <div class="name">${music.name}</div>
                         <div class="des">
                             ${load_name_artist(music.artist)}
                         </div>
-                    </a>
+                    </div>
                     <div><ion-icon name="caret-forward-outline"></ion-icon></div>
                 </li>`
 })
@@ -1673,7 +1673,7 @@ if (rootLink == `./view/home`) {
                             $('.confirm_dialog button.active a').click(function(e) {
                                 e.preventDefault();
                                 $('.confirm_dialog').css("display", "none");
-                                _e.target.closest('#delete_playlist').closest('li').remove();
+                                _e.target.closest('#delete_playlist').closest(`li`).remove();
                                 let data = { "u_id": uID, "pl_id": pl_id };
                                 jQuery.ajax({
                                     url: './controller/create_playlist.php',
@@ -1687,7 +1687,7 @@ if (rootLink == `./view/home`) {
                                                 title: "Thành công!",
                                                 message: json.message,
                                                 type: "success",
-        position: `${window.innerWidth <= 768?"bottom":"right"}`,
+                                                position: `${window.innerWidth <= 768?"bottom":"right"}`,
 
                                                 duration: 1000
                                             });
@@ -1698,7 +1698,7 @@ if (rootLink == `./view/home`) {
                                                 title: "Thất bại!",
                                                 message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
                                                 type: "error",
-        position: `${window.innerWidth <= 768?"bottom":"right"}`,
+                                                position: `${window.innerWidth <= 768?"bottom":"right"}`,
 
                                                 duration: 1000
                                             });

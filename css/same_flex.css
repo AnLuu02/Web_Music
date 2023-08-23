@@ -12,6 +12,7 @@
 
 .home_flex ul li {
     width: 15%;
+    flex: 0 0 15%;
     height: 280px;
     background: #11223344;
     border-radius: 6px;
@@ -26,7 +27,6 @@
 }
 
 .home_flex ul li:hover {
-    /* background: rgba(0,0,0,0.4); */
     background: rgba(256, 256, 256, 0.1);
 }
 
@@ -37,7 +37,7 @@
     background-position: center;
 }
 
-.home_flex ul li a {
+.home_flex ul li .content_home {
     color: white!important;
 }
 
@@ -57,7 +57,7 @@
     text-overflow: ellipsis;
 }
 
-.home_flex ul li>div {
+.home_flex ul li>div:nth-child(2) {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -72,16 +72,16 @@
     opacity: 0;
 }
 
-.home_flex ul li>div ion-icon {
+.home_flex ul li>div:nth-child(2) ion-icon {
     font-size: 30px;
     color: black;
 }
 
-.home_flex ul li:hover>div {
+.home_flex ul li:hover>div:nth-child(2) {
     opacity: 1;
 }
 
-.home_flex ul li>div:hover {
+.home_flex ul li>div:nth-child(2):hover {
     cursor: pointer;
     transform: translateY(-50%) scale(1.1);
 }
@@ -89,10 +89,11 @@
 
 /* top_music */
 
-.top_music ul li {
+
+/* .top_music ul li {
     width: 20%!important;
 }
 
 .top_music ul li:not(:nth-child(6n)) {
     margin-right: 2%;
-}
+} */
