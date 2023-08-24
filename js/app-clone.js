@@ -838,46 +838,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function load_music_discover(musics, elem, total_music) {
                 let data = musics.map((music, index) => {
-                    return `          <li class="song ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
-                        <div class="contentMusic">
-                            <div class="imageMusic">
-                                <img src="${music.img}" alt="">
-                                <div class="playMusic ${currentId === music.m_id && isPlaying  ? "active" : ""}">
-                                    <ion-icon name="play"></ion-icon>
-                                </div>
-                                <div class="runAudio ${currentId === music.m_id && isPlaying ? "active" : ""}">
-                                    <div><span></span><span></span><span></span><span></span></div>
-                                </div>
-                            </div>
-                            <div class="desMusic">
-                                <div class="nameMusic">${music.name}</div>
-                                <div id="name_artist" >${load_name_artist(music.artist)}</div>
-                                <div class="time_up">${formatDDMMYY(music.date)}</div>
-                            </div>
-                            <div class="hoverItem">
-                                <div class="hoverAnotherChoice">
-                                <div class="add_library" id="add_library"> 
-                                <div class="tooltip">
-                                    <ion-icon name="heart"></ion-icon>
-                                    <span class="tooltiptext">Thêm vào thư viện</span>
-                                </div>
-                            </div>
-                                <div class="add_playlist" id="add_playlist">
-                                    <div class="tooltip">
-                                    <ion-icon name="add-outline"></ion-icon>
-                                        <span class="tooltiptext">Thêm vào Play list</span>
+                    return ` <li class="song ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
+                                <div class="contentMusic">
+                                    <div class="imageMusic">
+                                        <img src="${music.img}" alt="">
+                                        <div class="playMusic ${currentId === music.m_id && isPlaying  ? "active" : ""}">
+                                            <ion-icon name="play"></ion-icon>
+                                        </div>
+                                        <div class="runAudio ${currentId === music.m_id && isPlaying ? "active" : ""}">
+                                            <div><span></span><span></span><span></span><span></span></div>
+                                        </div>
                                     </div>
-                                   
+                                    <div class="desMusic">
+                                        <div class="nameMusic">${music.name}</div>
+                                        <div id="name_artist" >${load_name_artist(music.artist)}</div>
+                                        <div class="time_up">${formatDDMMYY(music.date)}</div>
+                                    </div>
+                                    <div class="hoverItem">
+                                        <div class="hoverAnotherChoice">
+                                        <div class="add_library" id="add_library"> 
+                                        <div class="tooltip">
+                                            <ion-icon name="heart"></ion-icon>
+                                            <span class="tooltiptext">Thêm vào thư viện</span>
+                                        </div>
+                                    </div>
+                                        <div class="add_playlist" id="add_playlist">
+                                            <div class="tooltip">
+                                            <ion-icon name="add-outline"></ion-icon>
+                                                <span class="tooltiptext">Thêm vào Play list</span>
+                                            </div>
+                                        
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="list_choose_playlist">
+                                    <h3>Danh sách</h3>
+                                    <ul class="load_list_playlist">
+                                
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list_choose_playlist">
-                            <h3>Danh sách</h3>
-                            <ul class="load_list_playlist">
-                           
-                            </ul>
-                        </div>
                     </li>`
                 }).filter((elem, index) => index < total_music);
                 if (elem) {
@@ -892,19 +892,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 let html = musics.filter(item => {
                     return item.nation === "Việt Nam";
                 }).map((music, index) => {
-                    return `            <li class="song" index="${index}" id_song="${music.m_id}">
-            <div class="content">
-                <img src="${music.img}" alt="">
-                <div class="hover_playlist">
-                    <ion-icon name="close-outline" id="delete_playlist"></ion-icon>
-                    <ion-icon name="play" id="run_playlist"></ion-icon>
-                    <ion-icon name="heart"></ion-icon>
-                </div>
-            </div>
-            <div class="name_pl" style="margin-top:10px">${music.name}</div>
-            <div id="name_artist"  style="margin: 4px 0 2px 0;" >${load_name_artist(music.artist)}</div>
-
-        </li>`
+                    return ` <li class="song" index="${index}" id_song="${music.m_id}">
+                                <div class="content">
+                                    <img src="${music.img}" alt="">
+                                    <div class="hover_playlist">
+                                        <ion-icon name="close-outline" id="delete_playlist"></ion-icon>
+                                        <ion-icon name="play" id="run_playlist"></ion-icon>
+                                        <ion-icon name="heart"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="name_pl" style="margin-top:10px">${music.name}</div>
+                                <div id="name_artist"  style="margin: 4px 0 2px 0;" >${load_name_artist(music.artist)}</div>
+                            </li>`
                 }).filter((elem, index) => index < total_music);
                 if (elem) {
                     elem.innerHTML = html.join("");
@@ -918,52 +917,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Array.isArray(musics) && musics.length > 0) {
                     html = musics.map((music, index) => {
                                 return `<li class="song  ${currentId === music.m_id ? "active" : ""}" index="${index}" id_song="${music.m_id}">
-                        <div class='idMusic' style="${layout == null?"display:none":""}">${layout=="bxh"?`<span class="numberTop" id="top_${index+1}">${index+1}</span>`:'<ion-icon name="musical-notes-outline"></ion-icon>'}</div>
-                        <div class="contentMusic">
-                            <div class="imageMusic">
-                                <img src="${music.img}" alt="">
-                                <div class="playMusic ${currentId === music.m_id && isPlaying ? "active" : ""}">
-                                <ion-icon name="play"></ion-icon></div>
-                                <div class="runAudio ${currentId === music.m_id && isPlaying ? "active" : ""}">
-                                <div><span></span><span></span><span></span><span></span></div>
-                            </div>
-                            </div>
-                            <div class="desMusic">
-                                <div class="nameMusic">${music.name}</div>
-                                <div id="name_artist" >${load_name_artist(music.artist)}</div>
-                            </div>
-                        </div>
-                        <div class="timeMusic">${music.time}</div>
-                        <div class="hoverItem">
-                            <div class="hoverAnotherChoice">
-                                <div class="add_library" id="add_library" style="${showDelete == true ? "display:none":""}">
-                                    <div class="tooltip">
-                                        <ion-icon name="heart"></ion-icon>
-                                        <span class="tooltiptext">Thêm vào thư viện</span>
-                                    </div>
-                                </div>
-                                <div class="add_library" id="delete_library" style="${showDelete == false ? "display:none":""}">
-                                    <div class="tooltip">
-                                        <ion-icon name="close"></ion-icon>
-                                        <span class="tooltiptext">Xóa khỏi thư viện</span>
-                                    </div>
-                                </div>
-                                
-                                 <div class="add_playlist" id="add_playlist">
-                                    <div class="tooltip">
-                                    <ion-icon name="add-outline"></ion-icon>
-                                        <span class="tooltiptext">Thêm vào Play list</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list_choose_playlist">
-                        <h3>Danh sách</h3>
-                        <ul class="load_list_playlist">
-                       
-                        </ul>
-                    </div>
-                    </li>`;
+                                            <div class='idMusic' style="${layout == null?"display:none":""}">${layout=="bxh"?`<span class="numberTop" id="top_${index+1}">${index+1}</span>`:'<ion-icon name="musical-notes-outline"></ion-icon>'}</div>
+                                            <div class="contentMusic">
+                                                <div class="imageMusic">
+                                                    <img src="${music.img}" alt="">
+                                                    <div class="playMusic ${currentId === music.m_id && isPlaying ? "active" : ""}">
+                                                    <ion-icon name="play"></ion-icon></div>
+                                                    <div class="runAudio ${currentId === music.m_id && isPlaying ? "active" : ""}">
+                                                    <div><span></span><span></span><span></span><span></span></div>
+                                                </div>
+                                                </div>
+                                                <div class="desMusic">
+                                                    <div class="nameMusic">${music.name}</div>
+                                                    <div id="name_artist" >${load_name_artist(music.artist)}</div>
+                                                </div>
+                                            </div>
+                                            <div class="timeMusic">${music.time}</div>
+                                            <div class="hoverItem">
+                                                <div class="hoverAnotherChoice">
+                                                    <div class="add_library" id="add_library" style="${showDelete == true ? "display:none":""}">
+                                                        <div class="tooltip">
+                                                            <ion-icon name="heart"></ion-icon>
+                                                            <span class="tooltiptext">Thêm vào thư viện</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add_library" id="delete_library" style="${showDelete == false ? "display:none":""}">
+                                                        <div class="tooltip">
+                                                            <ion-icon name="close"></ion-icon>
+                                                            <span class="tooltiptext">Xóa khỏi thư viện</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="add_playlist" id="add_playlist">
+                                                        <div class="tooltip">
+                                                        <ion-icon name="add-outline"></ion-icon>
+                                                            <span class="tooltiptext">Thêm vào Play list</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="list_choose_playlist">
+                                            <h3>Danh sách</h3>
+                                            <ul class="load_list_playlist">
+                                        
+                                            </ul>
+                                        </div>
+                                    </li>`;
     })
 }
 if(element){
@@ -1209,7 +1208,7 @@ if (res.error !== 1) {
         if (searchVal != '') {
             $('#delSearch').css('display', 'block');
             datas.forEach((data, index) => {
-                if (data.name.toLowerCase().includes(searchVal)) {
+                if (data.name.toLowerCase().includes(searchVal) || data.artist.toLowerCase().includes(searchVal)) {
                     html += `<li class="song  ${currentId === data.m_id ? "active" : ""}" index="${index}" id_song="${data.m_id}">
                                         <div class="contentMusic">
                                             <div class="imageMusic">
@@ -2126,19 +2125,112 @@ $("#btn-upload-music").click(function(e) {
 handle_btn_upload_music();
 
 
+function load_layout_view_artist(data){
+    let avatar_artist = document.getElementById("avatar_artist");
+    let wall_artist = document.getElementById("wall_artist");
+    let name_artist_profile = document.querySelector("#name_artist_profile p");
+    let care_artist = document.querySelector(".care_artist>span");
+    let about_artist_img = document.querySelector('#about_artist img');
+    let about_artist_des = document.querySelector("#about_artist ul .des>p");   
+    let about_artist_des_other = document.querySelector("#about_artist ul .des_other>span");
+    if(avatar_artist && wall_artist && about_artist_img){
+        avatar_artist.src = data.avatar;
+        wall_artist.src = data.avatar;
+        about_artist_img.src = data.avatar;
+    }
+    if(name_artist_profile){
+        name_artist_profile.innerHTML = data.name_artist;
+    }
+    if(care_artist && about_artist_des_other){
+        care_artist.innerHTML = data.followers;
+        about_artist_des_other.innerHTML = data.followers;
+
+    }
+    if(about_artist_des){
+        about_artist_des.innerHTML = data.description;
+    }
+}
+
+function load_layout_music_hot(datas){
+    let html = datas.map((data,index)=>{
+        return `
+                <li class="song ${currentId === data.m_id ? "active" : ""}" index="${index}" id_song="${data.m_id}">
+                <div class="contentMusic">
+                    <div class="imageMusic">
+                        <img src="${data.img}" alt="">
+                        <div class="playMusic ">
+                            <ion-icon name="play"></ion-icon>
+                        </div>
+                        <div class="runAudio ">
+                            <div><span></span><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="desMusic">
+                        <div class="nameMusic">${data.name}</div>
+                        <div id="name_artist">${load_name_artist(data.artist)}</div>
+
+                    </div>
+                    <div class="timeMusic">${data.time}</div>
+
+                    <div class="hoverItem">
+                        <div class="hoverAnotherChoice">
+                            <div class="add_library" id="add_library">
+                                <div class="tooltip">
+                                    <ion-icon name="heart"></ion-icon>
+                                    <span class="tooltiptext">Thêm vào thư viện</span>
+                                </div>
+                            </div>
+                            <div class="add_playlist" id="add_playlist">
+                                <div class="tooltip">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                    <span class="tooltiptext">Thêm vào Play list</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list_choose_playlist">
+                    <h3>Danh sách</h3>
+                    <ul class="load_list_playlist">
+
+                    </ul>
+                </div>
+            </li>
+        `
+    })
+
+    if(document.getElementById('list_music_hot') && document.getElementById("all_playmusic")){
+        document.getElementById('list_music_hot').innerHTML = html.join('');
+        handlePlayMusic(document.querySelector('ul#list_music_hot'),datas);
+        handlePlayMusic(document.getElementById("all_playmusic"),datas);
+        handle_btn_name_artist();
+    }
+    
+}
+
 // show infor artist
 function handle_btn_name_artist(){
-document.querySelectorAll('.name_artist').forEach(elem=>{
-    if(elem){
-        elem.addEventListener('click',e=>{
-            $('main').load('./view/view_artist.php', function() {
-                document.querySelector("#name_artist_profile p").innerText = e.target.textContent.split(',').join('');
- 
+    document.querySelectorAll('.name_artist').forEach(elem=>{
+        if(elem){
+            elem.addEventListener('click',e=>{
+                $('main').load('./view/view_artist.php', function() {
+                    let get_name_artist = e.target.textContent.split(',').join('').trim();
+                    $.get('./controller/getDataArtist.php', { 'name_artist': get_name_artist }, function(response) {
+                        let res = JSON.parse(response);
+                        if (res.error != 1) {
+                            load_layout_view_artist(res.artist);
+                            load_layout_music_hot(res.data);
+                        } else {
+                            alert('empty');
+                        }
+                    })
+                })
             })
-        })
-    }
-})
+        }
+    })
 }
+
 
 })
 
@@ -2453,5 +2545,6 @@ if ($(e.target).attr('id') == "save_name") {
 }
 })
 }
+handle_btn_change_name();
 handle_btn_change_name();
 handle_btn_change_name();
