@@ -539,6 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                         $("#listSearch").css("display", "none");
                         $("#searchInput").val("");
+                        $('#blur').css('display', 'none');
 
                     }
                 } else if (isClick === "add_library") {
