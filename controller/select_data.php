@@ -66,8 +66,8 @@ if (!empty($_GET['u_id']) && !empty($_GET['btn_uploaded_id'])) {
         }
         // 
     } else if (!empty($_GET['key']) && $_GET['key'] === "getAllData") {
-        $result = $conn->query("SELECT musics.*,artist.ar_id FROM musics INNER JOIN albums ON albums.m_id = musics.m_id INNER JOIN artist ON artist.ar_id = albums.ar_id");
-
+        // $result = $conn->query("SELECT musics.*,artist.ar_id FROM musics INNER JOIN albums ON albums.m_id = musics.m_id INNER JOIN artist ON artist.ar_id = albums.ar_id");
+        $result = $conn->query("SELECT * FROM musics");
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;

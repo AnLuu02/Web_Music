@@ -2009,8 +2009,7 @@ $('main').load('./view/home.php', function() {
         let res = JSON.parse(response);
         if (res.error !== 1) {
             let datas = JSON.parse(res.data_music);
-            console.log(datas);
-            // load_music_home(datas);
+            load_music_home(datas);
         } else {
             alert(res.message);
         }
