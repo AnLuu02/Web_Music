@@ -1372,8 +1372,8 @@ if (rootLink == `./view/home`) {
         $.get(`./controller/select_data.php?key=discover`, {}, function(response) {
             let res = JSON.parse(response);
             if (res.error !== 1) {
-                load_music_discover(JSON.parse(res.data_discover), document.querySelector('#discover .list_music'), 9);
-                load_music_discover_hot(JSON.parse(res.data_discover),document.getElementById("list_music_vn"),5);
+                load_music_discover(JSON.parse(res.data_music), document.querySelector('#discover .list_music'), 9);
+                load_music_discover_hot(JSON.parse(res.data_music),document.getElementById("list_music_vn"),5);
             } else {
                 alert(res.message);
             }
@@ -2001,6 +2001,7 @@ $('.leftMusicFixed').on('click', function() {
 load_layout_playmusic_desktop();
 
 
+
 function load_layout_home_first(){
 $('main').load('./view/home.php', function() {
 
@@ -2008,7 +2009,8 @@ $('main').load('./view/home.php', function() {
         let res = JSON.parse(response);
         if (res.error !== 1) {
             let datas = JSON.parse(res.data_music);
-            load_music_home(datas);
+            console.log(datas);
+            // load_music_home(datas);
         } else {
             alert(res.message);
         }
@@ -2134,7 +2136,7 @@ function load_layout_view_artist(data){
     let about_artist_des = document.querySelector("#about_artist ul .des>p");   
     let about_artist_des_other = document.querySelector("#about_artist ul .des_other>span");
     if(avatar_artist && wall_artist && about_artist_img){
-        avatar_artist.src = data.avatar;
+        avatar_artist.src = data.avatar?data.avatar:"../uploads/avata_default.jpg";
         wall_artist.src = data.avatar;
         about_artist_img.src = data.avatar;
     }
@@ -2545,6 +2547,4 @@ if ($(e.target).attr('id') == "save_name") {
 }
 })
 }
-handle_btn_change_name();
-handle_btn_change_name();
 handle_btn_change_name();

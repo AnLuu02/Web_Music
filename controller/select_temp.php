@@ -52,30 +52,54 @@ if (!empty($_GET['u_id']) && !empty($_GET['btn_uploaded_id'])) {
     // select music load disvoer
     if (!empty($_GET['key']) && $_GET['key'] === "discover") {
         // $result = $conn->query("SELECT * FROM musics WHERE m_id BETWEEN 1 AND 9 ");
-        $result = $conn->query("SELECT * FROM musics");
+        // $result = $conn->query("SELECT * FROM musics");
 
-        if ($result->num_rows > 0) {
+        // if ($result->num_rows > 0) {
+        //     while ($row = $result->fetch_assoc()) {
+        //         $data[] = $row;
+        //     }
+        //     $json = json_encode($data);
+        //     $res = array('error' => 0, 'data_discover' => $json);
+        // } else {
+        //     $messege =  "Danh sách rỗng.";
+        //     $res = array('error' => 1, 'massasge' => $messege);
+        // }
+        $result = $conn->query("SELECT * FROM musics");
+        $result1 = $conn->query("SELECT musics.m_id,artist.ar_id,artist.name_artist FROM musics INNER JOIN albums ON albums.m_id = musics.m_id INNER JOIN artist ON artist.ar_id = albums.ar_id");
+
+        if ($result->num_rows > 0 && $result1->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
+            while ($row1 = $result1->fetch_assoc()) {
+                $id_artist[] = $row1;
+            }
+
             $json = json_encode($data);
-            $res = array('error' => 0, 'data_music' => $json);
+            $json1 = json_encode($id_artist);
+
+            $res = array('error' => 0, 'data_discover' => $json, 'id_artist' => $json1);
         } else {
-            $messege =  "Danh sách rỗng.";
-            $res = array('error' => 1, 'massasge' => $messege);
+            $messege = "Không có dữ liệu.";
+            $res = array('error' => 1, 'message' => $messege);
         }
         // 
     } else if (!empty($_GET['key']) && $_GET['key'] === "getAllData") {
-        $result = $conn->query("SELECT musics.*,artist.ar_id FROM musics INNER JOIN albums ON albums.m_id = musics.m_id INNER JOIN artist ON artist.ar_id = albums.ar_id");
+        $result = $conn->query("SELECT * FROM musics");
+        $result1 = $conn->query("SELECT musics.m_id,artist.ar_id,artist.name_artist FROM musics INNER JOIN albums ON albums.m_id = musics.m_id INNER JOIN artist ON artist.ar_id = albums.ar_id");
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows > 0 && $result1->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
+            while ($row1 = $result1->fetch_assoc()) {
+                $id_artist[] = $row1;
+            }
 
             $json = json_encode($data);
+            $json1 = json_encode($id_artist);
 
-            $res = array('error' => 0, 'data_music' => $json);
+            $res = array('error' => 0, 'data_music' => $json, 'id_artist' => $json1);
         } else {
             $messege = "Không có dữ liệu.";
             $res = array('error' => 1, 'message' => $messege);
