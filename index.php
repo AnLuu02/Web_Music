@@ -18,12 +18,9 @@ if (!empty($_SESSION["id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="shortcut icon" type="image/png" href="./image/icon.png" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/main_nav_header.css">
@@ -188,8 +185,7 @@ if (!empty($_SESSION["id"])) {
 
                 <!-- serach input header -->
                 <div class="search">
-                    <input type="text" name="" id="searchInput" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..."
-                        autocomplete="off">
+                    <input type="text" name="" id="searchInput" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
                     <label for="searchInput">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
@@ -220,8 +216,7 @@ if (!empty($_SESSION["id"])) {
                 <!-- search mobile -->
                 <div class="searchMobile">
                     <div class="search search_mb">
-                        <input type="text" name="" id="searchInputMb"
-                            placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
+                        <input type="text" name="" id="searchInputMb" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
                         <label for="searchInput">
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
@@ -492,8 +487,7 @@ if (!empty($_SESSION["id"])) {
     <div id="form_upload_playlist" class="form_upload">
         <div>
             <h3>Tạo playlist mới</h3>
-            <form id="form_playlist" method="POST" enctype="multipart/form-data"
-                action="./controller/create_playlist.php">
+            <form id="form_playlist" method="POST" enctype="multipart/form-data" action="./controller/create_playlist.php">
                 <input type="text" placeholder="Nhập tên playlist" name="name_playlist" id="name_playlist"><br>
                 <div class="img_upload">
                     <label for="fileUploadPlaylist">Ảnh nền: </label>
@@ -511,8 +505,7 @@ if (!empty($_SESSION["id"])) {
     <div class="form_upload form_upload_music" id="form_upload_music">
         <div>
             <h3>Upload music</h3>
-            <form id="form_music" method="POST" enctype="multipart/form-data" action="./controller/upload_video.php"
-                autocomplete="false">
+            <form id="form_music" method="POST" enctype="multipart/form-data" action="./controller/upload_video.php" autocomplete="false">
                 <input type="text" placeholder="Nhập tên bài hát" name="name_video" id="m_name_up"><br>
                 <input type="text" placeholder="Tên người thể hiện" name="name_artist" id="m_artist_up"><br>
                 <input type="text" placeholder="Thời gian" name="time" id="m_time_up"><br>
@@ -544,10 +537,8 @@ if (!empty($_SESSION["id"])) {
                     <input type="file" name="fileUploadAvatar" id="fileUploadAvatar">
                 </div>
                 <div class="btn-avatar" style="display: flex; justify-content: space-between;">
-                    <input type="submit" value="Lưu" name="btn-upload-avatar" style="margin-right: 10px;"
-                        id="btn-upload-avatar">
-                    <input type="submit" value="Gỡ ảnh cũ" name="btn-remove-avatar" id="btn-remove-avatar"
-                        style="background-color: gray!important;">
+                    <input type="submit" value="Lưu" name="btn-upload-avatar" style="margin-right: 10px;" id="btn-upload-avatar">
+                    <input type="submit" value="Gỡ ảnh cũ" name="btn-remove-avatar" id="btn-remove-avatar" style="background-color: gray!important;">
                 </div>
 
             </form>
