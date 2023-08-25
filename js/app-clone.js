@@ -527,9 +527,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 let res = JSON.parse(response);
                                 if (res.error !== 1) {
                                     let datas = JSON.parse(res.data_music);
-                                    // let filterData = data.filter(data => {
-                                    //     return data.m_id !== currentId;
-                                    // })
                                     load_music(datas, document.querySelector('#careMusic'));
                                     handlePlayMusic(document.querySelector('#careMusic'), datas);
                                 } else {
