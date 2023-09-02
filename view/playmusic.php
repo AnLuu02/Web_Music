@@ -8,7 +8,7 @@
         </div>
         <div class="name_music"></div>
         <div class="des">
-            <div class="author"></div>
+            <div class="author" id="name_artist"></div>
             <span>-</span>
             <div class="releaseDate"></div>
         </div>

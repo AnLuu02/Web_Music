@@ -353,8 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 listening_Music(data, id_artist, $('.list_music_playing > ul'));
                 if ($('#play_music').attr('category') === "playmusic") {
                     $('.play_music .audio img').attr('src', data.img);
-                    $('.play_music .name_music').html("hello");
-                    $('.play_music .des .author').html(data.artist);
+                    $('.play_music .name_music').html(data.name);
+                    $('.play_music .des #name_artist').html(load_name_artist(id_artist, data.m_id));
                     if ($('.play_music .releaseDate')) {
                         $('.play_music .releaseDate').html(formatDDMMYY(data.date));
                     }
@@ -363,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     // handle icon playmusic
                     handlePlayMusic(document.querySelector('.anotherChoice'), data, id_artist);
+                    handle_btn_name_artist();
                 }
 
                 if (document.querySelector('.img_playMusic_mobile img')) {

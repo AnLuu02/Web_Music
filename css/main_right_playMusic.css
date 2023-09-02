@@ -196,7 +196,6 @@ a {
     margin: 4px 0;
 }
 
-.play_music .author,
 .play_music .releaseDate,
 .play_music .like,
 .play_music .sub_left .des span {
@@ -223,7 +222,7 @@ a {
     padding: 10px 14px;
     border-radius: 20px;
     /* background: linear-gradient(to right, #5482aa, #b997d7, #c06c84); */
-    background: #1b2051!important;
+    background: #1b2051 !important;
     border: none;
     outline: none;
     color: white;
@@ -294,7 +293,7 @@ a {
 
 .sub_right {
     padding: 10px;
-    width: 95%!important;
+    width: 95% !important;
 }
 
 .same_list_music .list_music_playing {
@@ -344,7 +343,7 @@ a {
 /* start  list search*/
 
 .listSearch ul li {
-    width: 100%!important;
+    width: 100% !important;
     background-color: transparent;
 }
 
@@ -402,7 +401,7 @@ span.name_artist {
 
 #name_artist {
     width: max-content;
-    max-width: 80%!important;
+    max-width: 80% !important;
     font-size: 12px;
     color: white;
     opacity: 0.4;
@@ -520,9 +519,9 @@ span.name_artist {
 
 .same_list_music .list_music_render .imageMusic {
     position: relative;
-    width: 50px!important;
+    width: 50px !important;
     border-radius: 4px;
-    height: 50px!important;
+    height: 50px !important;
     display: flex;
     align-items: center;
 }
@@ -567,7 +566,7 @@ span.name_artist {
 .nameMusic {
     width: max-content;
     max-width: 80%;
-    font-weight: 500!important;
+    font-weight: 500 !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
