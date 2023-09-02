@@ -82,15 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentId = 0;
     let uID = $.cookie('u_id');
 
+    let sliderDiscover = null;
 
     document.querySelectorAll('.latter').forEach(item => {
         item.addEventListener('click', e => {
             if (e.target === e.currentTarget) {
                 if (e.target.closest('#message-library')) {
                     e.target.closest('#message-library').classList.remove('active');
+                    $('#blur').css({ 'display': 'none' });
+
                 }
                 if (e.target.closest('#message-playlist')) {
                     e.target.closest('#message-playlist').classList.remove('active');
+                    $('#blur').css({ 'display': 'none' });
+
                 }
             }
         })
@@ -822,7 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     let id_artist_temp = [];
-    function load_name_artist(id_artist, music_id) {
+    function load_name_artist(id_artist, music_id = -1, name_other_artist) {
         id_artist_temp = id_artist;
         let html = '';
         if (Array.isArray(id_artist)) {
@@ -838,8 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
         } else {
-            html += "jhello";
-
+            html += `<span class="name_artist" id_artist="${id_artist}"> ${name_other_artist}</span>`;
         }
 
 
@@ -1357,7 +1361,10 @@ ${data.name_playlist}
                 $('#blur').css('display', 'none');
             }
             $('main').load(url, function () {
-                setInterval(changeOrder, 4000);
+                if (sliderDiscover) {
+                    clearInterval(sliderDiscover);
+                }
+                sliderDiscover = setInterval(changeOrder, 4000);
 
                 function changeOrder() {
                     const allSlides = document.querySelectorAll(".single-slide");
@@ -1817,8 +1824,9 @@ ${data.name_playlist}
     function handle_sidebar() {
         $('.main_left ul li>a').on('click', function (e) {
             e.preventDefault();
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             let link;
-
             if (uID && $(this).attr('href') == "/library") {
                 $('li.active').removeClass('active');
                 $('#blur').css('display', 'none');
@@ -2247,6 +2255,35 @@ ${data.name_playlist}
     }
 
     // show infor artist
+    function load_view_other_artist(id_artist) {
+        $.get('./controller/getDataArtist.php', { 'current_artist': id_artist }, function (response) {
+            let res = JSON.parse(response);
+            let list_other_artist = JSON.parse(res.list_other_artist);
+            let html = list_other_artist.map((other_artist, index) => {
+                return `
+                        <li class="playlist_item" index="${index}">
+                        <div class="content">
+                            <img src="${other_artist.avatar}" alt="">
+                            <div class="hover_playlist">
+                                <ion-icon name="play" id="run_playlist"></ion-icon>
+                            </div>
+                        </div>
+                        <div id="name_artist">${load_name_artist(other_artist.ar_id, "", other_artist.name_artist)}</div>
+                        <div class="care_artist">
+                            <span>${other_artist.followers}</span> quan tâm
+                        </div>
+                        <div class="follow_artist">
+                            <ion-icon name="person-add-outline" id=""></ion-icon>
+                            <button>QUAN TÂM</button>
+                        </div>
+                    </li>
+                `
+            })
+            document.getElementById('list_artist_other').innerHTML = html.join("");
+            handle_btn_name_artist();
+        })
+
+    }
     function handle_btn_name_artist() {
         document.querySelectorAll('.name_artist').forEach(elem => {
             if (elem) {
@@ -2258,6 +2295,9 @@ ${data.name_playlist}
                             if (res.error != 1) {
                                 load_layout_view_artist(JSON.parse(res.artist));
                                 load_layout_music_hot(JSON.parse(res.data_music), JSON.parse(res.id_artist));
+                                load_view_other_artist(id_artist);
+                                document.body.scrollTop = 0; // For Safari
+                                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                             } else {
                                 alert('empty');
                             }
@@ -2580,5 +2620,9 @@ ${data.name_playlist}
         })
     }
     handle_btn_change_name();
+
+
+    $(document).on('click', '#more_des', function (e) {
+    })
 })
 

@@ -4,12 +4,12 @@
     position: relative;
     z-index: 100000;
     display: inline-block;
-    font-size: 11px!important;
+    font-size: 11px !important;
     font-weight: 500;
 }
 
 .tooltip ion-icon {
-    font-size: 20px!important;
+    font-size: 20px !important;
 }
 
 .tooltip .tooltiptext {
@@ -67,7 +67,7 @@
     width: 400px;
     background-color: white;
     /* background: linear-gradient(to top right, #355c7d, #6c5b7b, #c06c84); */
-    background: #1b2051!important;
+    background: #1b2051 !important;
     border-radius: 6px;
     padding: 10px;
     color: white;
@@ -169,8 +169,8 @@
 }
 
 .list_choose_playlist ul li {
-    width: 100%!important;
-    justify-content: unset!important;
+    width: 100% !important;
+    justify-content: unset !important;
     background-color: transparent;
     font-size: 14px;
     display: flex;
@@ -204,7 +204,7 @@ a.create_playlist:hover {
 
 #loading {
     background-color: #47d864;
-    z-index: 1000000!important;
+    z-index: 1000000 !important;
 }
 
 
@@ -242,6 +242,7 @@ a.create_playlist:hover {
         opacity: 0;
         transform: translateX(calc(100% + 32px));
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -253,6 +254,7 @@ a.create_playlist:hover {
         opacity: 0;
         transform: translateX(calc(-100% - 32px));
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -264,6 +266,7 @@ a.create_playlist:hover {
         opacity: 0;
         transform: translateY(-200px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -351,9 +354,9 @@ a.create_playlist:hover {
 }
 
 #about_artist ul li {
-    width: 453px!important;
+    width: 453px !important;
     height: 302px;
-    margin-right: 30px!important;
+    margin-right: 30px !important;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -365,9 +368,11 @@ a.create_playlist:hover {
 
 #about_artist ul li .des {
     font-size: 14px;
-    height: 150px;
+    height: 145px;
     overflow-y: hidden;
     margin-bottom: 48px;
+    text-overflow: ellipsis;
+    position: relative;
 }
 
 #about_artist ul li .des p {
@@ -376,13 +381,16 @@ a.create_playlist:hover {
 }
 
 #about_artist ul li .des span#more_des {
+    position: absolute;
     display: block;
     cursor: pointer;
+    bottom: 0;
+    right: 0;
     margin-top: 4px;
 }
 
 #about_artist ul li .des_other span {
-    display: block!important;
+    display: block !important;
     font-size: 20px;
 }
 
@@ -392,10 +400,37 @@ a.create_playlist:hover {
     opacity: .6;
 }
 
+#artist_other ul li {
+    width: 100% !important;
+    height: max-content !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#artist_other ul li #name_artist {
+    width: 100% !important;
+    text-align: center;
+    font-size: 14px;
+    opacity: 1 !important;
+    margin: 15px 0 4px 0;
+}
+
+#artist_other ul li .care_artist {
+    font-size: 12px;
+    opacity: .4;
+}
+
+#artist_other ul li .follow_artist {
+    margin: 15px 0px;
+    background-color: #2f86eb;
+}
+
 #list_artist_other li .content {
-    height: 212px!important;
-    width: 212px!important;
-    border-radius: 50%!important;
+    height: 212px !important;
+    width: 212px !important;
+    border-radius: 50% !important;
 }
 
 #list_artist_other .hover_playlist {

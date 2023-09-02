@@ -1,13 +1,13 @@
 .home {
     width: 100%;
-    color: white!important;
+    color: white !important;
     padding: 6% 3% 0 3%;
     overflow: hidden;
 }
 
 #home ul {
     width: 100%;
-    flex-wrap: nowrap!important;
+    flex-wrap: nowrap !important;
     overflow: hidden;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .home.active ul {
-    flex-wrap: wrap!important;
+    flex-wrap: wrap !important;
 }
 
 #home.active ul li {
@@ -45,11 +45,11 @@
 }
 
 .home .first_home.active {
-    display: block!important;
+    display: block !important;
 }
 
 .home .second_home.active {
-    display: block!important;
+    display: block !important;
 }
 
 .home .first_home .title_main>a.active,
@@ -78,7 +78,7 @@
 }
 
 #banner_home .content h2 {
-    font-size: 50px!important;
+    font-size: 50px !important;
     color: aqua;
     animation-delay: .6s;
 }
@@ -96,7 +96,7 @@
 
 #banner_home .content button {
     font-size: 14px;
-    background-color: transparent!important;
+    background-color: transparent !important;
     outline: none;
     font-weight: 500;
     cursor: pointer;
@@ -139,9 +139,9 @@
 }
 
 .content button a:hover {
-    border: unset!important;
+    border: unset !important;
     border: 1px solid aqua;
-    color: black!important;
+    color: black !important;
     background-color: aqua;
     box-shadow: 0px 0px 4px aqua, 0px 0px 6px aqua, 0px 0px 10px aqua;
 }
@@ -245,7 +245,7 @@
     margin-right: 24px;
 }
 
-.right_view_header .other_artist .follow_artist {
+.follow_artist {
     padding: 4px 24px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -255,7 +255,7 @@
     cursor: pointer;
 }
 
-.right_view_header .other_artist .follow_artist button {
+.follow_artist button {
     all: unset;
     margin-left: 4px;
 }
@@ -333,8 +333,8 @@
 }
 
 #list_music_hot li {
-    padding: 10px!important;
-    height: 60px!important;
+    padding: 10px !important;
+    height: 60px !important;
 }
 
 #list_music_hot li img {

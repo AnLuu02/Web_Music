@@ -32,6 +32,27 @@ if (!empty($_GET['id_artist'])) {
         $messege = "Không tìm thấy nghệ sĩ.";
         $res = array('error' => 1, 'message' => $messege);
     }
+} else if (isset($_GET['current_artist'])) {
+    $current_artist = $_GET['current_artist'];
+    $start = -1;
+    if ($current_artist > 1 && $current_artist + 6 <= 72) {
+        $start = $current_artist + 1;
+    } else {
+        $start = 2;
+    }
+    $begin = $start;
+    $end = $begin + 5;
+    $result = $conn->query("SELECT * FROM artist WHERE ar_id BETWEEN $begin and $end");
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $list_other_artist[] = $row;
+        }
+        $json = json_encode($list_other_artist);
+        $res = array('error' => 0, 'list_other_artist' => $json);
+    } else {
+        $messege = "Không tìm thấy nghệ sĩ.";
+        $res = array('error' => 1, 'message' => $messege);
+    }
 }
 echo json_encode($res);
 $conn->close();

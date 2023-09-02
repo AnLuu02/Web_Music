@@ -1,12 +1,12 @@
 .library {
-    width: 100%!important;
-    color: white!important;
+    width: 100% !important;
+    color: white !important;
     padding: 8% 3% 0 3%;
     overflow: hidden;
 }
 
 .library.active {
-    display: block!important;
+    display: block !important;
 }
 
 .library a {
@@ -29,17 +29,15 @@
     padding: 10px 0;
 }
 
-ul.list_playlist li:not(:nth-child(5n)) {
-    margin-right: 1%;
-}
 
 ul.list_playlist {
     width: 100%;
     font-size: 14px;
     font-weight: 500;
     margin: 10px 0 40px 0;
-    display: flex!important;
-    overflow: hidden!important;
+    display: flex !important;
+    overflow: hidden !important;
+    scroll-snap-type: x mandatory;
 }
 
 ul.list_playlist li {
@@ -47,18 +45,23 @@ ul.list_playlist li {
     flex: 0 0 19.2%;
     height: 275px;
     color: white;
+    scroll-snap-align: start;
+}
+
+ul.list_playlist li:not(:nth-child(5n)) {
+    margin-right: 1%;
 }
 
 ul.list_playlist li .name_pl,
 ul.list_playlist li .author_pl {
-    margin: 10px 0 4px 0!important;
+    margin: 10px 0 4px 0 !important;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis!important;
+    text-overflow: ellipsis !important;
 }
 
 ul.list_playlist li .author_pl {
-    margin: 0!important;
+    margin: 0 !important;
     width: 98%;
     opacity: .4;
 }
@@ -76,9 +79,9 @@ ul.list_playlist li .author_pl {
     height: 100%;
     border-radius: 6px;
     transition: 0.5s;
-    background-position: center!important;
-    background-size: cover!important;
-    object-fit: cover!important;
+    background-position: center !important;
+    background-size: cover !important;
+    object-fit: cover !important;
 }
 
 .list_playlist .content:hover .hover_playlist {
@@ -168,7 +171,7 @@ ul.list_playlist li .author_pl {
 }
 
 .library ul.nav_library li a {
-    color: white!important;
+    color: white !important;
 }
 
 .library ul.nav_library li.active {
@@ -210,13 +213,13 @@ ul.list_playlist li .author_pl {
 /* discover */
 
 #discover {
-    width: 100%!important;
+    width: 100% !important;
     padding: 8% 3% 0 3%;
     overflow: hidden;
 }
 
 #discover .same_list_music {
-    padding-bottom: 0!important;
+    padding-bottom: 0 !important;
 }
 
 #discover.active {
@@ -311,8 +314,8 @@ ul.list_playlist li .author_pl {
 }
 
 #discover .nav_country li {
-    width: max-content!important;
-    background-color: transparent!important;
+    width: max-content !important;
+    background-color: transparent !important;
 }
 
 #discover li#showAll {
@@ -320,7 +323,7 @@ ul.list_playlist li .author_pl {
 }
 
 #discover .showAll a {
-    color: white!important;
+    color: white !important;
     font-size: 14px;
 }
 
@@ -342,11 +345,11 @@ ul.list_playlist li .author_pl {
 .library ul.sub_nav_library li {
     padding: 6px 20px;
     font-size: 12px;
-    border-radius: 14px!important;
+    border-radius: 14px !important;
     font-weight: 500;
     border: 1px solid white;
     cursor: pointer;
-    color: white!important;
+    color: white !important;
 }
 
 #discover .nav_country>div li {
@@ -355,13 +358,13 @@ ul.list_playlist li .author_pl {
 
 #discover .nav_country>div li:not(.active):hover,
 .library ul.sub_nav_library li:not(.active):hover {
-    border-color: #1b2070!important;
-    color: #1b2070!important;
+    border-color: #1b2070 !important;
+    color: #1b2070 !important;
 }
 
 #discover .nav_country>div li.active {
-    background: #1b2070!important;
-    border: 2px solid #1b2070!important;
+    background: #1b2070 !important;
+    border: 2px solid #1b2070 !important;
     border: none;
 }
 
@@ -398,7 +401,7 @@ ul.list_playlist li .author_pl {
 }
 
 #discover .list_music .imageMusic {
-    width: 50px!important;
+    width: 50px !important;
     height: 50px;
     border-radius: 4px;
 }
