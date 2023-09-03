@@ -51,7 +51,7 @@
 
 .confirm_dialog {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
     bottom: 0;
@@ -72,6 +72,90 @@
     padding: 10px;
     color: white;
 }
+
+.confirm_dialog .show_about_artist {
+    height: 448px;
+    width: 480px;
+    color: white;
+    background-color: #1b2051;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}
+
+.confirm_dialog .show_about_artist .close_nav_left {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.confirm_dialog .show_about_artist .top_content {
+    padding: 24px 24px 0;
+    text-align: center;
+    width: 100%;
+    height: 182px;
+}
+
+.confirm_dialog .show_about_artist .top_content img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
+
+.confirm_dialog .show_about_artist .top_content .name_artist:hover {
+    cursor: unset;
+    text-decoration: unset;
+    color: unset;
+}
+
+.confirm_dialog .show_about_artist .top_content .name_artist {
+    font-size: 24px;
+    width: 100%;
+    height: 36px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm_dialog .show_about_artist .all_des {
+    padding: 24px !important;
+    width: 100%;
+    height: 266px;
+    font-size: 14px;
+    color: #FFFFFF80;
+}
+
+.confirm_dialog .show_about_artist .all_des p {
+    overflow-y: scroll;
+    padding-right: 10px;
+    height: 218px;
+}
+
+.confirm_dialog .show_about_artist .all_des p::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 20px;
+}
+
+/* Track */
+.confirm_dialog .show_about_artist .all_des p::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.confirm_dialog .show_about_artist .all_des p::-webkit-scrollbar-thumb {
+    background: rgba(256, 256, 256, 0.1);
+    border-radius: 20px;
+
+}
+
+
 
 .close-message {
     position: absolute;
@@ -120,7 +204,7 @@
 
 .dialog .nav-library button.active>a,
 .dialog .nav-library button.active {
-    background-color: #c06c84;
+    background-color: #2f86eb;
     border: none;
 }
 
@@ -369,7 +453,7 @@ a.create_playlist:hover {
 #about_artist ul li .des {
     font-size: 14px;
     height: 145px;
-    overflow-y: hidden;
+    overflow: hidden;
     margin-bottom: 48px;
     text-overflow: ellipsis;
     position: relative;
@@ -377,16 +461,14 @@ a.create_playlist:hover {
 
 #about_artist ul li .des p {
     text-align: justify;
-    opacity: .6;
+    color: #FFFFFF80;
+    height: 100%;
 }
 
 #about_artist ul li .des span#more_des {
-    position: absolute;
-    display: block;
     cursor: pointer;
-    bottom: 0;
-    right: 0;
     margin-top: 4px;
+    color: white;
 }
 
 #about_artist ul li .des_other span {

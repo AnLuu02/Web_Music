@@ -361,13 +361,8 @@
             </li>
             <li>
                 <div class="des">
-                    <p>DJ Onionn tên thật là Nguyễn Ngọc Hoàng Anh, sinh năm1993 và
-                        hiện tại đang theo học tại Đại học Văn hóa Hà Nội. Anh bắt đầu
-                        tìm tòi về việc phối khí từ cách đây 4 năm nhưng đến 2 năm trở lại
-                        đây tôi mới bắt đầu theo đuổi chuyên nghiệp.
-                        Anh đã từng tham gia phối khí cho một số liveshow truyền hình và
-                        các sản phẩm ca nhạc của nhiều ca sĩ qua lời giới thiệu của nhạc
-                        sỹ Huy Tuấn, DJ/Producer Touliver và nhà sản xuất... </p><span id="more_des"> XEM THÊM</span>
+                    <p>
+                    </p>
                 </div>
                 <div class="des_other">
                     <span>7.845</span>

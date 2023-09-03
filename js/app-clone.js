@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.confirm_dialog').addEventListener('click', e => {
                     if (e.target === e.currentTarget) {
                         e.target.style.display = 'none';
-                        $('#blur').css('display', 'block');
+                        // $('#blur').css('display', 'block');
 
                     }
                 })
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.confirm_dialog').addEventListener('click', e => {
                     if (e.target === e.currentTarget) {
                         e.target.style.display = 'none';
-                        $('#blur').css('display', 'block');
+                        // $('#blur').css('display', 'block');
                     }
                 })
 
@@ -2055,6 +2055,8 @@ ${data.name_playlist}
                     let id_artist = JSON.parse(res.id_artist);
                     load_music_home(datas, id_artist);
 
+
+
                 } else {
                     alert(res.message);
                 }
@@ -2192,10 +2194,45 @@ ${data.name_playlist}
             about_artist_des_other.innerHTML = data.followers;
 
         }
-        if (about_artist_des) {
-            about_artist_des.innerHTML = data.description;
+        if (about_artist_des && data.description.length > 0) {
+            let full_des = data.description;
+            let des = "";
+            if (full_des.length >= 430) {
+                des = full_des.slice(0, 430) + `... <span id="more_des"> XEM THÊM</span>`;
+                about_artist_des.innerHTML = des;
+                const more_des = document.getElementById('more_des');
+                if (more_des) {
+                    more_des.addEventListener('click', e => {
+                        if (e.target === e.currentTarget) {
+                            const confirm_dialog = document.querySelector('.confirm_dialog');
+                            const dialog = document.querySelector('.dialog');
+                            const show_about_artist = document.querySelector('.show_about_artist');
+                            const all_des = document.querySelector('.show_about_artist .all_des p');
+                            confirm_dialog.style.display = 'flex';
+                            dialog.style.display = 'none';
+                            show_about_artist.style.display = 'block';
+                            all_des.innerText = full_des;
+                            document.querySelector('.confirm_dialog').addEventListener('click', e => {
+                                if (e.target === e.currentTarget) {
+                                    e.target.style.display = 'none';
+
+                                }
+                            })
+                            document.querySelector('.confirm_dialog .show_about_artist .close_nav_left').addEventListener('click', e => {
+                                confirm_dialog.style.display = 'none';
+
+                            })
+                        }
+                    })
+                }
+            }
+        }
+        else {
+            document.querySelector('#about_artist .des').style.display = 'none';
         }
     }
+
+
 
     function load_layout_music_hot(datas, id_artist) {
         let html = datas.map((data, index) => {
@@ -2623,7 +2660,6 @@ ${data.name_playlist}
     handle_btn_change_name();
 
 
-    $(document).on('click', '#more_des', function (e) {
-    })
+
 })
 

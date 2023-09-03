@@ -18,12 +18,9 @@ if (!empty($_SESSION["id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="shortcut icon" type="image/png" href="./image/icon.png" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/main_nav_header.css">
@@ -188,8 +185,7 @@ if (!empty($_SESSION["id"])) {
 
                 <!-- serach input header -->
                 <div class="search">
-                    <input type="text" name="" id="searchInput" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..."
-                        autocomplete="off">
+                    <input type="text" name="" id="searchInput" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
                     <label for="searchInput">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
@@ -220,8 +216,7 @@ if (!empty($_SESSION["id"])) {
                 <!-- search mobile -->
                 <div class="searchMobile">
                     <div class="search search_mb">
-                        <input type="text" name="" id="searchInputMb"
-                            placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
+                        <input type="text" name="" id="searchInputMb" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." autocomplete="off">
                         <label for="searchInput">
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
@@ -492,8 +487,7 @@ if (!empty($_SESSION["id"])) {
     <div id="form_upload_playlist" class="form_upload">
         <div>
             <h3>Tạo playlist mới</h3>
-            <form id="form_playlist" method="POST" enctype="multipart/form-data"
-                action="./controller/create_playlist.php">
+            <form id="form_playlist" method="POST" enctype="multipart/form-data" action="./controller/create_playlist.php">
                 <input type="text" placeholder="Nhập tên playlist" name="name_playlist" id="name_playlist"><br>
                 <div class="img_upload">
                     <label for="fileUploadPlaylist">Ảnh nền: </label>
@@ -511,8 +505,7 @@ if (!empty($_SESSION["id"])) {
     <div class="form_upload form_upload_music" id="form_upload_music">
         <div>
             <h3>Upload music</h3>
-            <form id="form_music" method="POST" enctype="multipart/form-data" action="./controller/upload_video.php"
-                autocomplete="false">
+            <form id="form_music" method="POST" enctype="multipart/form-data" action="./controller/upload_video.php" autocomplete="false">
                 <input type="text" placeholder="Nhập tên bài hát" name="name_video" id="m_name_up"><br>
                 <input type="text" placeholder="Tên người thể hiện" name="name_artist" id="m_artist_up"><br>
                 <input type="text" placeholder="Thời gian" name="time" id="m_time_up"><br>
@@ -544,10 +537,8 @@ if (!empty($_SESSION["id"])) {
                     <input type="file" name="fileUploadAvatar" id="fileUploadAvatar">
                 </div>
                 <div class="btn-avatar" style="display: flex; justify-content: space-between;">
-                    <input type="submit" value="Lưu" name="btn-upload-avatar" style="margin-right: 10px;"
-                        id="btn-upload-avatar">
-                    <input type="submit" value="Gỡ ảnh cũ" name="btn-remove-avatar" id="btn-remove-avatar"
-                        style="background-color: gray!important;">
+                    <input type="submit" value="Lưu" name="btn-upload-avatar" style="margin-right: 10px;" id="btn-upload-avatar">
+                    <input type="submit" value="Gỡ ảnh cũ" name="btn-remove-avatar" id="btn-remove-avatar" style="background-color: gray!important;">
                 </div>
 
             </form>
@@ -563,6 +554,49 @@ if (!empty($_SESSION["id"])) {
             <div class="nav-library">
                 <button class="latter"><a href="#" id="no">Không</a></button>
                 <button class="active"><a href="#" id="yes">Có</a></button>
+            </div>
+        </div>
+        <div class="show_about_artist">
+            <span class="close_nav_left">
+                <ion-icon name="close"></ion-icon>
+            </span>
+            <div class="top_content">
+                <img src="./uploads/avata_default.jpg" alt="">
+                <div class="name_artist">Den</div>
+            </div>
+            <div class="all_des">
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere cumque eaque impedit eius voluptas
+                    harum nulla maiores quia officiis maxime nostrum consequuntur magnam magni aliquam, minima ut
+                    accusantium! Sed explicabo quibusdam doloremque laboriosam cupiditate eveniet eos consequatur.
+                    Obcaecati
+                    aperiam nesciunt aliquid deserunt voluptatum iste ipsum, cumque commodi, excepturi vitae beatae ex
+                    sit
+                    ea iusto repellendus natus quod. Voluptates laboriosam impedit nesciunt ipsa commodi soluta, aliquid
+                    accusantium assumenda nam accusamus facere illo iusto eos unde nobis, praesentium maiores tenetur
+                    deserunt voluptate nulla numquam excepturi minima! Sed consectetur perferendis libero laboriosam nam
+                    iste fugiat cumque eius quis eum dolore adipisci qui at, officia saepe, odit, quae esse repellendus!
+                    Ullam rerum architecto nihil quasi labore autem eius porro dignissimos! Ratione vel, est vitae, sed
+                    aspernatur voluptate dolores molestias, consectetur quis impedit ipsam sint qui quae ab! Deserunt
+                    exercitationem quaerat, deleniti officiis perspiciatis eos, minima eaque porro, vel rerum
+                    perferendis
+                    eligendi inventore sint! Voluptates eum id dolores laudantium maxime minima enim, expedita ut
+                    repellendus soluta. Nisi, iure corporis dicta molestias cum modi distinctio corrupti quibusdam
+                    reiciendis. Esse cumque facere adipisci? Omnis quisquam dolor corrupti minima recusandae placeat
+                    quam
+                    eius, vitae totam alias porro fuga libero sapiente nostrum doloribus neque qui. Dolorem numquam
+                    perferendis in! Vitae, eos neque? Corporis id reprehenderit doloribus ea! Excepturi recusandae
+                    consequatur suscipit ex dolorem sequi expedita modi dolore, molestiae ea ullam sed, natus odit.
+                    Autem
+                    nulla hic quis fugit ratione labore nisi, mollitia a velit sed quia at exercitationem, voluptatum
+                    dignissimos tempora minima repudiandae magni enim maxime itaque repellendus. Sequi reprehenderit
+                    autem,
+                    ipsam explicabo porro praesentium fuga eius voluptatibus deserunt eaque iste sapiente alias a dicta
+                    nobis ut inventore laboriosam, aut velit enim dolor, nemo et aperiam! Sint distinctio, impedit
+                    minima
+                    repudiandae nulla deleniti magnam atque nesciunt magni! Nobis aliquid voluptatum accusantium,
+                    consequatur iste itaque. Error totam aliquam itaque quasi.
+                </p>
             </div>
         </div>
     </div>
