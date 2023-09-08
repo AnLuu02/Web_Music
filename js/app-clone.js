@@ -2208,10 +2208,16 @@ ${data.name_playlist}
                             const dialog = document.querySelector('.dialog');
                             const show_about_artist = document.querySelector('.show_about_artist');
                             const all_des = document.querySelector('.show_about_artist .all_des p');
+                            const avatar_artist = document.querySelector('.top_content img');
+                            const name_artist = document.querySelector('.top_content .name_artist');
+
+                            name_artist
                             confirm_dialog.style.display = 'flex';
                             dialog.style.display = 'none';
                             show_about_artist.style.display = 'block';
                             all_des.innerText = full_des;
+                            avatar_artist.src = data.avatar;
+                            name_artist.innerHTML = data.name_artist;
                             document.querySelector('.confirm_dialog').addEventListener('click', e => {
                                 if (e.target === e.currentTarget) {
                                     e.target.style.display = 'none';
